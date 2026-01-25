@@ -69,7 +69,7 @@ window.addEventListener("DOMContentLoaded", () => {
       { t:"out", s:"¿Sirve para agendar turnos?" },
       { t:"in",  s:"¡Claro! Confirmamos, reprogramamos y cancelamos citas automáticamente 📅." },
       { t:"out", s:"Perfecto, quiero una demo." },
-      { t:"in",  s:"Te paso un link directo 💬👇" },
+      { t:"in",  s:"Hablame y te paso el contacto para probarlo 💬👇" },
     ];
     let i = 0;
     const delay = 1600;
