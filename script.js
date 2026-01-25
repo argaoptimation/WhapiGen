@@ -68,7 +68,7 @@ window.addEventListener("DOMContentLoaded", () => {
       { t:"out", s:"Hola, quiero saber cómo funciona." },
       { t:"in",  s:"Automatizamos tus mensajes de WhatsApp con IA 🤖." },
       { t:"out", s:"¿Sirve para agendar turnos?" },
-      { t:"in",  s:"¡Claro! Confirmamos y recordamos citas automáticamente 📅." },
+      { t:"in",  s:"¡Claro! Confirmamos, reprogramamos y cancelamos citas automáticamente 📅." },
       { t:"out", s:"Perfecto, quiero una demo." },
       { t:"in",  s:"Te paso un link directo 💬👇" },
     ];
@@ -137,7 +137,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // Typed
   if (window.Typed) {
     new Typed("#typed", {
-      strings: ["pet shops","clínicas","cafeterías","tiendas online","negocios locales"],
+      strings: ["pet shops","barberias","centros estéticos","negocios locales"],
       typeSpeed: 36, backSpeed: 18, backDelay: 1300, loop: true,
     });
   }
