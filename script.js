@@ -64,7 +64,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const typing = $("#typing");
   if (live && typing) {
     const msgs = [
-      { t:"in",  s:"Hola 👋 soy el asistente de WAPIGEN." },
       { t:"out", s:"Hola, quiero saber cómo funciona." },
       { t:"in",  s:"Automatizamos tus mensajes de WhatsApp con IA 🤖." },
       { t:"out", s:"¿Sirve para agendar turnos?" },
