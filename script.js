@@ -70,6 +70,7 @@ window.addEventListener("DOMContentLoaded", () => {
       { t:"in",  s:"¡Claro! Confirmamos, reprogramamos y cancelamos citas automáticamente 📅." },
       { t:"out", s:"Perfecto, quiero una demo." },
       { t:"in",  s:"Hablame y te paso el contacto para probarlo 💬👇" },
+      { t:"in",  html:`<a href="https://wa.me/5492664405019" target="_blank" rel="noopener noreferrer">Abrir WhatsApp</a>` },
     ];
     let i = 0;
     const delay = 1600;
@@ -77,7 +78,11 @@ window.addEventListener("DOMContentLoaded", () => {
       if (i >= msgs.length) { typing.style.display = "none"; return; }
       const el = document.createElement("div");
       el.className = `msg msg-${msgs[i].t}`;
-      el.textContent = msgs[i].s;
+      if (msgs[i].html) {
+        el.innerHTML = msgs[i].html;     // link clickeable
+      } else {
+        el.textContent = msgs[i].s;      // texto normal
+      }
       live.appendChild(el);
       live.scrollTop = live.scrollHeight;
       typing.style.visibility = "visible";
