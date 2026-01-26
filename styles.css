@@ -150,6 +150,20 @@ label{display:flex;flex-direction:column;font-weight:700;margin:10px 0;gap:6px}
 .switch input:checked + .slider{background:linear-gradient(90deg,var(--secondary),var(--accent))}
 .switch input:checked + .slider:before{transform:translateX(22px)}
 
+.pricing-toggle .save {
+  font-size: 0.9rem; /* Aumentamos el tamaño (antes era small) */
+  font-weight: 700;
+  color: var(--primary); /* O usá var(--accent) si querés que resalte más */
+  background: rgba(39, 215, 141, 0.15); /* Un fondito suave para que parezca botón */
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(39, 215, 141, 0.3);
+  margin-left: 6px;
+  text-transform: uppercase; /* Opcional: para que se vea más como "badge" */
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+}
+
 /* Contact */
 .contact-form .form-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:8px}
 .form-msg{min-height:18px;margin-top:6px;color:var(--muted)}
