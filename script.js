@@ -129,7 +129,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const period = $$(".price-amount .period");
   const updatePrices = (yearly) => {
     values.forEach(v => { v.textContent = yearly ? v.dataset.yearly : v.dataset.monthly; });
-    period.forEach(p => p.textContent = yearly ? "/mes (anual)" : "/mes");
+    period.forEach(p => p.textContent = yearly ? "USD/mes (anual)" : "USD/mes");
   };
   toggle?.addEventListener("change", e => updatePrices(e.target.checked));
 
