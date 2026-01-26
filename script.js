@@ -124,13 +124,23 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // Toggle precios
-  const toggle = $("#billingToggle");
-  const values = $$(".price-amount .value");
-  const period = $$(".price-amount .period");
-  const updatePrices = (yearly) => {
-    values.forEach(v => { v.textContent = yearly ? v.dataset.yearly : v.dataset.monthly; });
-    period.forEach(p => p.textContent = yearly ? "USD/mes (anual)" : "USD/mes");
-  };
+  const billingToggle = document.getElementById('billingToggle');
+  const values = document.querySelectorAll('.value');
+  const periods = document.querySelectorAll('.period');
+
+  billingToggle.addEventListener('change', () => {
+      const isYearly = billingToggle.checked;
+
+      // Cambia los números
+      values.forEach(val => {
+          val.textContent = isYearly ? val.getAttribute('data-yearly') : val.getAttribute('data-monthly');
+      });
+
+      // Cambia el texto de USD/mes
+      periods.forEach(p => {
+          p.textContent = isYearly ? p.getAttribute('data-yearly') : p.getAttribute('data-monthly');
+      });
+  });
   toggle?.addEventListener("change", e => updatePrices(e.target.checked));
 
   // Tilt
