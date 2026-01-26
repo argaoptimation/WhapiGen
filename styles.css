@@ -417,12 +417,28 @@ label{display:flex;flex-direction:column;font-weight:700;margin:10px 0;gap:6px}
 
 /* === Responsive: separar botón del precio en mobile === */
 @media (max-width: 768px) {
+  /* Card Price actualizada */
   .card.price {
-    margin-bottom: 24px;
-    padding-bottom: 32px;
+    position: relative;
+    /* Agregamos Flexbox */
+    display: flex;
+    flex-direction: column;
+    /* Asegura que todas las tarjetas en la misma fila tengan igual altura */
+    height: 100%; 
   }
-  .price-amount {
-    margin-bottom: 18px;
+
+  /* El truco: La lista crece para empujar al botón */
+  .card.price .list {
+    flex-grow: 1;      /* Esto hace que la lista tome todo el espacio sobrante */
+    margin-bottom: 24px; /* Mantiene el salto de línea genérico que definimos antes */
+    list-style: none;
+    padding: 0;
+  }
+
+  /* Alineación del botón */
+  .card.price .btn {
+    margin-top: auto;   /* Refuerza que el botón se quede en el fondo */
+    width: 100%;
   }
 }
 /* === Centrado móvil: Hero, Demo y Precios === */
