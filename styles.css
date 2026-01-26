@@ -494,6 +494,41 @@ label{display:flex;flex-direction:column;font-weight:700;margin:10px 0;gap:6px}
   }
 
   /* --- PRECIOS --- */
+  /* Contenedor principal del precio */
+.price-amount {
+    display: flex;
+    flex-direction: column; /* Apila el numero y el USD/mes */
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    margin: 15px 0;
+}
+
+/* Fila para el $ y el Numero */
+.price-row {
+    display: flex;
+    align-items: baseline; /* Alinea el $ con la base del numero */
+    gap: 4px;
+}
+
+.price-amount .value {
+    font-size: 42px; /* Ajustalo a tu gusto */
+    font-weight: 800;
+}
+
+.price-amount .currency {
+    font-size: 24px;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+/* El texto USD/mes debajo */
+.price-amount .period {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 500;
+}
+
   #pricing {
     text-align: center;
   }
