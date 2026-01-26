@@ -178,7 +178,7 @@ window.addEventListener("DOMContentLoaded", () => {
       console.warn("EmailJS error:", err?.message || err);
     }
     // Fallback mailto
-    const subject = encodeURIComponent("Nuevo mensaje desde WAPIGEN");
+    const subject = encodeURIComponent("Nuevo mensaje desde WHAPIGEN");
     const body = encodeURIComponent(`Nombre: ${data.name}\nEmail: ${data.email}\nWhatsApp: ${data.phone}\n\nMensaje:\n${data.message}`);
     window.location.href = `mailto:${DESTINO}?subject=${subject}&body=${body}`;
     formMsg.textContent = "Abrimos tu cliente de correo para completar el envío ✉️";
