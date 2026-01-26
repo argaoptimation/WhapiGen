@@ -493,15 +493,25 @@ label{display:flex;flex-direction:column;font-weight:700;margin:10px 0;gap:6px}
     transform: scale(1.05);
   }
 
-  /* --- PRECIOS --- */
-  /* Contenedor principal del precio */
+/* --- PRECIOS --- */
+
+/* Contenedor principal de la tarjeta para alinear el botón al fondo */
+.card.price {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Permite que todas las tarjetas midan lo mismo */
+    padding: 26px 18px;
+    text-align: center;
+}
+
+/* Contenedor del precio (Número + Período) */
 .price-amount {
     display: flex;
     flex-direction: column; /* Apila el numero y el USD/mes */
     align-items: center;
     justify-content: center;
-    gap: 2px;
-    margin: 15px 0;
+    margin: 15px 0 20px;
+    gap: 0; /* Espacio mínimo para controlarlo con márgenes */
 }
 
 /* Fila para el $ y el Numero */
@@ -512,14 +522,14 @@ label{display:flex;flex-direction:column;font-weight:700;margin:10px 0;gap:6px}
 }
 
 .price-amount .value {
-    font-size: 42px; /* Ajustalo a tu gusto */
+    font-size: 48px; /* Tamaño más destacado para el número */
     font-weight: 800;
+    line-height: 1;
 }
 
 .price-amount .currency {
     font-size: 24px;
-    font-weight: 600;
-    opacity: 0.9;
+    font-weight: 700;
 }
 
 /* El texto USD/mes debajo */
@@ -527,39 +537,61 @@ label{display:flex;flex-direction:column;font-weight:700;margin:10px 0;gap:6px}
     font-size: 14px;
     color: var(--muted);
     font-weight: 500;
+    margin-top: 4px; /* Espacio controlado hacia arriba */
 }
 
-  #pricing {
+/* Empuje el botón al fondo usando la lista */
+.card.price .list {
+    flex-grow: 1; /* La lista se estira para ocupar el espacio sobrante */
+    margin-bottom: 24px; /* El "salto genérico" de 24px que querías */
+    text-align: left;
+    padding: 0;
+    list-style: none;
+}
+
+/* Ajustes Generales de la Sección */
+#pricing {
     text-align: center;
-  }
-  #pricing .section-title,
-  #pricing .section-subtitle {
+}
+
+#pricing .section-title,
+#pricing .section-subtitle {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-  }
-  #pricing .pricing-toggle {
+}
+
+#pricing .pricing-toggle {
     justify-content: center;
-  }
-  #pricing .pricing-cards {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 26px;
-  }
-  #pricing .card.price {
-    width: 90%;
-    max-width: 340px;
-    text-align: center;
-  }
-  #pricing .price-amount {
-    justify-content: center;
-  }
-  #pricing .btn {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-  }
+    margin-bottom: 40px;
+}
+
+/* Configuración de las 4 columnas (Grid) */
+.pricing-cards.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+/* === RESPONSIVE === */
+
+@media (max-width: 1100px) {
+    .pricing-cards.grid-4 {
+        grid-template-columns: repeat(2, 1fr); /* 2x2 en pantallas medianas */
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-cards.grid-4 {
+        grid-template-columns: 1fr; /* 1 columna en móviles */
+    }
+    
+    #pricing .card.price {
+        width: 100%;
+        max-width: 360px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 /* === Ajuste final: separar los ejemplos del borde en Demo Interactiva === */
