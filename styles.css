@@ -842,9 +842,21 @@ user-select: none;
 }
 
 .card.price .value {
-  font-size: 3.5rem;
+  font-size: 3.5rem; /* Aseguramos el tamaño fijo */
   font-weight: 800;
+  line-height: 1;
   letter-spacing: -1px;
+  
+  /* EL TRUCO DE INGENIERÍA: */
+  font-variant-numeric: tabular-nums; /* Hace que el 1 ocupe lo mismo que el 9 */
+  font-feature-settings: "tnum"; /* Soporte extra para navegadores viejos */
+  
+  /* Evitamos que el navegador intente animar el texto si cambia */
+  transition: color 0.2s ease; /* Solo animamos color, no tamaño */
+  
+  /* Fix para renderizado en Chrome/Windows */
+  -webkit-font-smoothing: antialiased;
+  transform: translateZ(0); /* Fuerza al GPU a renderizarlo estático */
 }
 
 .card.price .period {
