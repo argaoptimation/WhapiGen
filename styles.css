@@ -352,6 +352,28 @@ label{display:flex;flex-direction:column;font-weight:700;margin:10px 0;gap:6px}
   border-radius: 18px;
   text-align: center;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  
+  /* Agregamos esto para que el contenido se distribuya mejor */
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- ESTE ES EL SALTO DE 24PX --- */
+.card.price .list {
+  margin-bottom: 24px; /* Desplaza el botón hacia abajo */
+  text-align: left;    /* Opcional: las listas suelen leerse mejor alineadas a la izquierda */
+  padding: 0 10px;
+}
+
+/* --- ESTILO PARA EL SET UP --- */
+.setup-fee {
+  font-size: 0.85rem;
+  color: var(--primary); /* O un gris intermedio si preferís que sea discreto */
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: block;
+  opacity: 0.8;
 }
 
 :root[data-theme="dark"] .card.price {
@@ -366,6 +388,7 @@ label{display:flex;flex-direction:column;font-weight:700;margin:10px 0;gap:6px}
   box-shadow: 0 12px 40px rgba(122, 92, 255, 0.2);
   transform: translateY(-3px);
 }
+/* ... resto de tus botones ... */
 
 /* === Botones de precios === */
 .btn.primary {
