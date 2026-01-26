@@ -149,10 +149,10 @@ window.addEventListener("DOMContentLoaded", () => {
   // Animaciones GSAP
   if (window.gsap && window.ScrollTrigger && window.TextPlugin) {
     gsap.registerPlugin(ScrollTrigger, TextPlugin);
-    gsap.from(".title-animated", { y:18, opacity:0, duration:.8, ease:"power2.out" });
+    gsap.from(".title-animated", { y:18, opacity:30, duration:.8, ease:"power2.out" });
     $$(".section").forEach(sec => {
       gsap.from(sec.querySelectorAll(".section-title, .section-subtitle, .card, .case, .review, .phone"), {
-        opacity:0, y:26, duration:.7, ease:"power2.out", stagger:.05,
+        opacity:30, y:26, duration:.7, ease:"power2.out", stagger:.05,
         scrollTrigger:{ trigger:sec, start:"top 80%" }
       });
     });
