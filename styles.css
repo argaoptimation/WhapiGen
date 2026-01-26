@@ -1,23 +1,23 @@
 /* ===== Theme ===== */
 :root{
-  --bg:#f5f7fb; --bg-alt:#ffffff; --text:#0f172a; --muted:#6b7280;
-  --primary:#27d78d; --secondary:#2aa9ff; --accent:#7a5cff;
-  --border:rgba(15,23,42,.08); --shadow:0 10px 30px rgba(15,23,42,.08);
-  --glass:rgba(255,255,255,.6); --ring:0 0 0 6px rgba(39,215,141,.18);
+--bg:#f5f7fb; --bg-alt:#ffffff; --text:#0f172a; --muted:#6b7280;
+--primary:#27d78d; --secondary:#2aa9ff; --accent:#7a5cff;
+--border:rgba(15,23,42,.08); --shadow:0 10px 30px rgba(15,23,42,.08);
+--glass:rgba(255,255,255,.6); --ring:0 0 0 6px rgba(39,215,141,.18);
 }
 :root[data-theme="dark"]{
-  --bg:#0b1220; --bg-alt:#0f1628; --text:#e6f0ff; --muted:#a7b3c6;
-  --border:rgba(255,255,255,.08); --shadow:0 10px 40px rgba(0,0,0,.35);
-  --glass:rgba(11,18,32,.55); --ring:0 0 0 6px rgba(42,169,255,.16);
+--bg:#0b1220; --bg-alt:#0f1628; --text:#e6f0ff; --muted:#a7b3c6;
+--border:rgba(255,255,255,.08); --shadow:0 10px 40px rgba(0,0,0,.35);
+--glass:rgba(11,18,32,.55); --ring:0 0 0 6px rgba(42,169,255,.16);
 }
 *{box-sizing:border-box} html,body{height:100%} html{scroll-behavior:smooth}
 body{
-  margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
-  background:
-    radial-gradient(1500px 900px at 70% -10%, rgba(42,169,255,.10), transparent 45%),
-    radial-gradient(1000px 800px at -20% 30%, rgba(39,215,141,.12), transparent 45%),
-    var(--bg);
-  background-repeat:no-repeat; background-size:cover; color:var(--text); line-height:1.6;
+margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+background:
+radial-gradient(1500px 900px at 70% -10%, rgba(42,169,255,.10), transparent 45%),
+radial-gradient(1000px 800px at -20% 30%, rgba(39,215,141,.12), transparent 45%),
+var(--bg);
+background-repeat:no-repeat; background-size:cover; color:var(--text); line-height:1.6;
 }
 img{max-width:100%;display:block}
 .container{width:min(1100px,92%);margin:0 auto}
@@ -30,9 +30,9 @@ img{max-width:100%;display:block}
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 
 @media (max-width:990px){
-  .grid-2, .grid-3, .grid-4 {
-    grid-template-columns: 1fr;
-  }
+.grid-2, .grid-3, .grid-4 {
+grid-template-columns: 1fr;
+}
 }
 
 /* Progress */
@@ -59,9 +59,9 @@ img{max-width:100%;display:block}
 .nav-toggle{display:none;background:none;border:0;cursor:pointer}
 .nav-toggle span{display:block;width:24px;height:2px;background:var(--text);margin:5px 0;border-radius:2px;transition:.3s}
 @media (max-width:880px){
-  .nav-toggle{display:block}
-  .nav-links{position:absolute;right:4%;top:64px;background:var(--bg-alt);border:1px solid var(--border);border-radius:14px;padding:12px;flex-direction:column;display:none;box-shadow:var(--shadow);z-index:101}
-  .nav-links.show{display:flex}
+.nav-toggle{display:block}
+.nav-links{position:absolute;right:4%;top:64px;background:var(--bg-alt);border:1px solid var(--border);border-radius:14px;padding:12px;flex-direction:column;display:none;box-shadow:var(--shadow);z-index:101}
+.nav-links.show{display:flex}
 }
 
 /* Hero */
@@ -173,23 +173,23 @@ label{display:flex;flex-direction:column;font-weight:700;margin:10px 0;gap:6px}
 
 /* Fondo más claro en secciones alt y cards */
 .section.alt {
-  background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 100%);
+background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 100%);
 }
 
 /* Cards y precios: fondo más blanco, sombra más suave */
 .card,
 .case,
 .review {
-  background: color-mix(in oklab, var(--bg-alt) 95%, #fff 5%);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+background: color-mix(in oklab, var(--bg-alt) 95%, #fff 5%);
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
 /* En modo oscuro, elevamos un poco la luminosidad */
 :root[data-theme="dark"] .card,
 :root[data-theme="dark"] .case,
 :root[data-theme="dark"] .review {
-  background: color-mix(in oklab, var(--bg-alt) 92%, #1a2234 8%);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+background: color-mix(in oklab, var(--bg-alt) 92%, #1a2234 8%);
+box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
 }
 
 /* Textos dentro de precios y cards más contrastados */
@@ -198,120 +198,120 @@ label{display:flex;flex-direction:column;font-weight:700;margin:10px 0;gap:6px}
 .card.price .price-amount,
 .card.price ul,
 .card.price a.btn {
-  color: var(--text);
+color: var(--text);
 }
 
 /* Sombra y borde de cards más suave en modo claro */
 :root:not([data-theme="dark"]) .card {
-  border-color: rgba(15, 23, 42, 0.05);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+border-color: rgba(15, 23, 42, 0.05);
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 
 /* === Loader minimalista sin card, solo logo + línea + texto === */
 
 #loader {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: radial-gradient(circle at 50% 30%, #bfffea 0%, #cfe8ff 80%);
-  background-size: 200% 200%;
-  animation: gradientMove 6s ease-in-out infinite alternate;
-  z-index: 99999;
-  transition: opacity 1.2s ease, visibility 1.2s ease;
+position: fixed;
+inset: 0;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background: radial-gradient(circle at 50% 30%, #bfffea 0%, #cfe8ff 80%);
+background-size: 200% 200%;
+animation: gradientMove 6s ease-in-out infinite alternate;
+z-index: 99999;
+transition: opacity 1.2s ease, visibility 1.2s ease;
 }
 
 :root[data-theme="dark"] #loader {
-  background: radial-gradient(circle at 50% 30%, #062620 0%, #0a1533 80%);
-  animation: gradientMoveDark 6s ease-in-out infinite alternate;
+background: radial-gradient(circle at 50% 30%, #062620 0%, #0a1533 80%);
+animation: gradientMoveDark 6s ease-in-out infinite alternate;
 }
 
 /* Contenido suelto (sin card) */
 .loader-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 22px;
-  text-align: center;
-  animation: fadeZoomIn 1s ease both;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 22px;
+text-align: center;
+animation: fadeZoomIn 1s ease both;
 }
 
 .loader-inner img {
-  width: 130px;
-  height: auto;
-  animation: pulseLogo 1.8s ease-in-out infinite;
+width: 130px;
+height: auto;
+animation: pulseLogo 1.8s ease-in-out infinite;
 }
 
 /* Línea de carga */
 .loader-bar {
-  width: 280px;
-  height: 6px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.35);
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+width: 280px;
+height: 6px;
+border-radius: 999px;
+background: rgba(255, 255, 255, 0.35);
+overflow: hidden;
+box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
 .loader-bar span {
-  display: block;
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, var(--secondary), var(--accent));
-  animation: loadProgress 1.8s ease forwards;
+display: block;
+height: 100%;
+width: 0%;
+background: linear-gradient(90deg, var(--secondary), var(--accent));
+animation: loadProgress 1.8s ease forwards;
 }
 
 /* Texto */
 .loader-inner p {
-  font-weight: 600;
-  font-size: 16px;
-  letter-spacing: 0.2px;
-  color: #0f172a;
+font-weight: 600;
+font-size: 16px;
+letter-spacing: 0.2px;
+color: #0f172a;
 }
 
 :root[data-theme="dark"] .loader-inner p {
-  color: #e6f0ff;
+color: #e6f0ff;
 }
 
 /* Etapas de desaparición */
 #loader.fade-logo img,
 #loader.fade-logo p,
 #loader.fade-logo .loader-bar {
-  opacity: 0;
-  transition: opacity 0.6s ease;
+opacity: 0;
+transition: opacity 0.6s ease;
 }
 
 #loader.hide {
-  opacity: 0;
-  visibility: hidden;
-  transition-delay: 0.4s;
+opacity: 0;
+visibility: hidden;
+transition-delay: 0.4s;
 }
 
 /* Animaciones */
 @keyframes fadeZoomIn {
-  0% { opacity: 0; transform: scale(0.95); }
-  100% { opacity: 1; transform: scale(1); }
+0% { opacity: 0; transform: scale(0.95); }
+100% { opacity: 1; transform: scale(1); }
 }
 
 @keyframes pulseLogo {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.07); opacity: 0.9; }
+0%, 100% { transform: scale(1); opacity: 1; }
+50% { transform: scale(1.07); opacity: 0.9; }
 }
 
 @keyframes loadProgress {
-  to { width: 100%; }
+to { width: 100%; }
 }
 
 @keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
+0% { background-position: 0% 50%; }
+100% { background-position: 100% 50%; }
 }
 
 @keyframes gradientMoveDark {
-  0% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+0% { background-position: 100% 50%; }
+100% { background-position: 0% 50%; }
 }
 
 
@@ -319,199 +319,189 @@ label{display:flex;flex-direction:column;font-weight:700;margin:10px 0;gap:6px}
 
 /* Secciones más luminosas */
 .section.alt {
-  background: linear-gradient(180deg, #f9fbfe 0%, #f5f8ff 100%);
+background: linear-gradient(180deg, #f9fbfe 0%, #f5f8ff 100%);
 }
 :root[data-theme="dark"] .section.alt {
-  background: linear-gradient(180deg, #0d1425 0%, #0b1220 100%);
+background: linear-gradient(180deg, #0d1425 0%, #0b1220 100%);
 }
 
 /* === Características === */
 .card {
-  background: var(--bg-alt);
-  border: 1px solid rgba(15, 23, 42, 0.05);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+background: var(--bg-alt);
+border: 1px solid rgba(15, 23, 42, 0.05);
+box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
 }
 
 :root[data-theme="dark"] .card {
-  background: color-mix(in oklab, var(--bg-alt) 96%, #1a2234 4%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+background: color-mix(in oklab, var(--bg-alt) 96%, #1a2234 4%);
+border: 1px solid rgba(255, 255, 255, 0.08);
+box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
 }
 
 .card h3 {
-  color: var(--text);
+color: var(--text);
 }
 .card p,
 .card li {
-  color: var(--muted);
+color: var(--muted);
 }
 
 /* === Precios === */
 .pricing-cards {
-  gap: 38px;
+gap: 38px;
 }
 
 .card.price {
-  background: var(--bg-alt);
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  padding: 26px 18px;
-  border-radius: 18px;
-  text-align: center;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-  
-  /* Agregamos esto para que el contenido se distribuya mejor */
-  display: flex;
-  flex-direction: column;
+background: var(--bg-alt);
+border: 1px solid rgba(15, 23, 42, 0.08);
+padding: 26px 18px;
+border-radius: 18px;
+text-align: center;
+box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+
+/* Agregamos esto para que el contenido se distribuya mejor */
+display: flex;
+flex-direction: column;
 }
 
 /* --- ESTE ES EL SALTO DE 24PX --- */
 .card.price .list {
-  margin-bottom: 24px; /* Desplaza el botón hacia abajo */
-  text-align: left;    /* Opcional: las listas suelen leerse mejor alineadas a la izquierda */
-  padding: 0 10px;
+margin-bottom: 24px; /* Desplaza el botón hacia abajo */
+text-align: left;    /* Opcional: las listas suelen leerse mejor alineadas a la izquierda */
+padding: 0 10px;
 }
 
 /* --- ESTILO PARA EL SET UP --- */
 .setup-fee {
-  font-size: 0.85rem;
-  color: var(--primary); /* O un gris intermedio si preferís que sea discreto */
-  font-weight: 600;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  display: block;
-  opacity: 0.8;
+font-size: 0.85rem;
+color: var(--primary); /* O un gris intermedio si preferís que sea discreto */
+font-weight: 600;
+margin-top: 10px;
+margin-bottom: 20px;
+display: block;
+opacity: 0.8;
 }
 
 :root[data-theme="dark"] .card.price {
-  background: color-mix(in oklab, var(--bg-alt) 94%, #1a2234 6%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
+background: color-mix(in oklab, var(--bg-alt) 94%, #1a2234 6%);
+border: 1px solid rgba(255, 255, 255, 0.08);
+box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
 }
 
 /* === Plan Pro destacado === */
 .card.price.featured {
-  border: 2px solid var(--accent);
-  box-shadow: 0 12px 40px rgba(122, 92, 255, 0.2);
-  transform: translateY(-3px);
+border: 2px solid var(--accent);
+box-shadow: 0 12px 40px rgba(122, 92, 255, 0.2);
+transform: translateY(-3px);
 }
 /* ... resto de tus botones ... */
 
 /* === Botones de precios === */
 .btn.primary {
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  color: #071018 !important;
-  border: 0;
+background: linear-gradient(90deg, var(--primary), var(--secondary));
+color: #071018 !important;
+border: 0;
 }
 
 .btn.contrast {
-  background: linear-gradient(90deg, var(--accent), var(--secondary));
-  color: #fff !important;
-  border: 0;
+background: linear-gradient(90deg, var(--accent), var(--secondary));
+color: #fff !important;
+border: 0;
 }
 
 .btn.primary:hover,
 .btn.contrast:hover {
-  transform: translateY(-2px);
-  opacity: 0.95;
+transform: translateY(-2px);
+opacity: 0.95;
 }
 
 /* === Responsive: separar botón del precio en mobile === */
 @media (max-width: 768px) {
-  /* Card Price actualizada */
-  .card.price {
-    position: relative;
-    /* Agregamos Flexbox */
-    display: flex;
-    flex-direction: column;
-    /* Asegura que todas las tarjetas en la misma fila tengan igual altura */
-    height: 100%; 
-  }
+/* Card Price actualizada */
+.card.price {
+position: relative;
+/* Agregamos Flexbox */
+display: flex;
+flex-direction: column;
+/* Asegura que todas las tarjetas en la misma fila tengan igual altura */
+height: 100%; 
+}
 
-  /* El truco: La lista crece para empujar al botón */
-  .card.price .list {
-    flex-grow: 1;      /* Esto hace que la lista tome todo el espacio sobrante */
-    margin-bottom: 24px; /* Mantiene el salto de línea genérico que definimos antes */
-    list-style: none;
-    padding: 0;
-  }
+/* El truco: La lista crece para empujar al botón */
+.card.price .list {
+flex-grow: 1;      /* Esto hace que la lista tome todo el espacio sobrante */
+margin-bottom: 24px; /* Mantiene el salto de línea genérico que definimos antes */
+list-style: none;
+padding: 0;
+}
 
-  /* Alineación del botón */
-  .card.price .btn {
-    margin-top: auto;   /* Refuerza que el botón se quede en el fondo */
-    width: 100%;
-  }
+/* Alineación del botón */
+.card.price .btn {
+margin-top: auto;   /* Refuerza que el botón se quede en el fondo */
+width: 100%;
+}
 }
 /* === Centrado móvil: Hero, Demo y Precios === */
 @media (max-width: 768px) {
 
-  /* --- HERO --- */
-  #home .hero-copy {
-    text-align: center !important;
-    align-items: center;
-  }
-  #home .cta-row,
-  #home .badges {
-    justify-content: center;
-  }
-  #home .title-animated {
-    text-align: center;
-  }
-
-  /* --- DEMO INTERACTIVA --- */
-  #demo {
-    text-align: center;
-  }
-  #demo .section-title,
-  #demo .section-subtitle {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  #demo .demo-tabs {
-    justify-content: center;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  #demo .demo-panels {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 22px;
-  }
-  #demo .panel {
-    display: none;
-    width: 100%;
-    justify-content: center;
-  }
-  #demo .panel.active {
-    display: flex !important;
-    justify-content: center;
-  }
-  #demo .phone.mini {
-    margin: 0 auto;
-    transform: scale(1.05);
-  }
-
-/* --- PRECIOS --- */
-
-/* Contenedor principal de la tarjeta para alinear el botón al fondo */
-.card.price {
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* Permite que todas las tarjetas midan lo mismo */
-    padding: 26px 18px;
-    text-align: center;
+/* --- HERO --- */
+#home .hero-copy {
+text-align: center !important;
+align-items: center;
+}
+#home .cta-row,
+#home .badges {
+justify-content: center;
+}
+#home .title-animated {
+text-align: center;
 }
 
-/* Contenedor del precio (Número + Período) */
+/* --- DEMO INTERACTIVA --- */
+#demo {
+text-align: center;
+}
+#demo .section-title,
+#demo .section-subtitle {
+text-align: center;
+margin-left: auto;
+margin-right: auto;
+}
+#demo .demo-tabs {
+justify-content: center;
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+}
+#demo .demo-panels {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 22px;
+}
+#demo .panel {
+display: none;
+width: 100%;
+justify-content: center;
+}
+#demo .panel.active {
+display: flex !important;
+justify-content: center;
+}
+#demo .phone.mini {
+margin: 0 auto;
+transform: scale(1.05);
+}
+
+/* --- PRECIOS --- */
+  /* Contenedor principal del precio */
 .price-amount {
     display: flex;
     flex-direction: column; /* Apila el numero y el USD/mes */
     align-items: center;
     justify-content: center;
-    margin: 15px 0 20px;
-    gap: 0; /* Espacio mínimo para controlarlo con márgenes */
+    gap: 2px;
+    margin: 15px 0;
 }
 
 /* Fila para el $ y el Numero */
@@ -522,14 +512,14 @@ label{display:flex;flex-direction:column;font-weight:700;margin:10px 0;gap:6px}
 }
 
 .price-amount .value {
-    font-size: 48px; /* Tamaño más destacado para el número */
+    font-size: 42px; /* Ajustalo a tu gusto */
     font-weight: 800;
-    line-height: 1;
 }
 
 .price-amount .currency {
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 600;
+    opacity: 0.9;
 }
 
 /* El texto USD/mes debajo */
@@ -537,199 +527,177 @@ label{display:flex;flex-direction:column;font-weight:700;margin:10px 0;gap:6px}
     font-size: 14px;
     color: var(--muted);
     font-weight: 500;
-    margin-top: 4px; /* Espacio controlado hacia arriba */
 }
 
-/* Empuje el botón al fondo usando la lista */
-.card.price .list {
-    flex-grow: 1; /* La lista se estira para ocupar el espacio sobrante */
-    margin-bottom: 24px; /* El "salto genérico" de 24px que querías */
-    text-align: left;
-    padding: 0;
-    list-style: none;
-}
-
-/* Ajustes Generales de la Sección */
 #pricing {
-    text-align: center;
+text-align: center;
 }
-
 #pricing .section-title,
 #pricing .section-subtitle {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+text-align: center;
+margin-left: auto;
+margin-right: auto;
 }
-
 #pricing .pricing-toggle {
-    justify-content: center;
-    margin-bottom: 40px;
+justify-content: center;
 }
-
-/* Configuración de las 4 columnas (Grid) */
-.pricing-cards.grid-4 {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
+#pricing .pricing-cards {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 26px;
 }
-
-/* === RESPONSIVE === */
-
-@media (max-width: 1100px) {
-    .pricing-cards.grid-4 {
-        grid-template-columns: repeat(2, 1fr); /* 2x2 en pantallas medianas */
-    }
+#pricing .card.price {
+width: 90%;
+max-width: 340px;
+text-align: center;
 }
-
-@media (max-width: 768px) {
-    .pricing-cards.grid-4 {
-        grid-template-columns: 1fr; /* 1 columna en móviles */
-    }
-    
-    #pricing .card.price {
-        width: 100%;
-        max-width: 360px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+#pricing .price-amount {
+justify-content: center;
+}
+#pricing .btn {
+margin-left: auto;
+margin-right: auto;
+display: block;
+}
 }
 
 /* === Ajuste final: separar los ejemplos del borde en Demo Interactiva === */
 @media (max-width: 768px) {
-  #demo .demo-panels {
-    padding-top: 20px;
-    padding-bottom: 24px;
-  }
+#demo .demo-panels {
+padding-top: 20px;
+padding-bottom: 24px;
+}
 
-  #demo .panel.active {
-    margin-top: 12px;
-    margin-bottom: 12px;
-  }
+#demo .panel.active {
+margin-top: 12px;
+margin-bottom: 12px;
+}
 
-  #demo .phone.mini {
-    margin-top: 10px;
-    margin-bottom: 16px;
-    transform: scale(1.05);
-  }
+#demo .phone.mini {
+margin-top: 10px;
+margin-bottom: 16px;
+transform: scale(1.05);
+}
 }
 
 /* === CHAT ESTILO WHATSAPP === */
 
 /* Fondo característico */
 .phone-screen {
-  background: #e5ddd5 url("https://e1.pxfuel.com/desktop-wallpaper/500/451/desktop-wallpaper-whatsapp-chat-whatsapp.jpg") repeat;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
+background: #e5ddd5 url("https://e1.pxfuel.com/desktop-wallpaper/500/451/desktop-wallpaper-whatsapp-chat-whatsapp.jpg") repeat;
+background-size: cover;
+background-position: center;
+display: flex;
+flex-direction: column;
 }
 
 :root[data-theme="dark"] .phone-screen {
-  background: #111b21 url("https://e1.pxfuel.com/desktop-wallpaper/500/451/desktop-wallpaper-whatsapp-chat-whatsapp.jpg") repeat;
-  background-size: cover;
-  background-position: center;
+background: #111b21 url("https://e1.pxfuel.com/desktop-wallpaper/500/451/desktop-wallpaper-whatsapp-chat-whatsapp.jpg") repeat;
+background-size: cover;
+background-position: center;
 }
 
 /* Cabecera tipo contacto */
 .chat-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #075e54;
-  color: #fff;
-  padding: 10px 12px;
-  font-size: 14px;
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
+display: flex;
+align-items: center;
+gap: 10px;
+background: #075e54;
+color: #fff;
+padding: 10px 12px;
+font-size: 14px;
+border-top-left-radius: 18px;
+border-top-right-radius: 18px;
 }
 .chat-header img {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #fff;
+width: 34px;
+height: 34px;
+border-radius: 50%;
+object-fit: cover;
+border: 2px solid #fff;
 }
 .chat-header .info {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
+display: flex;
+flex-direction: column;
+line-height: 1.1;
 }
 .chat-header .name {
-  font-weight: 600;
+font-weight: 600;
 }
 .chat-header .status {
-  font-size: 12px;
-  color: #dcf8c6;
+font-size: 12px;
+color: #dcf8c6;
 }
 
 /* Área de chat */
 .chat {
-  flex: 1;
-  overflow-y: auto;
-  padding: 12px 10px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-size: 14px;
-  position: relative;
+flex: 1;
+overflow-y: auto;
+padding: 12px 10px 18px;
+display: flex;
+flex-direction: column;
+gap: 8px;
+font-size: 14px;
+position: relative;
 }
 
 /* Mensajes */
 .msg {
-  max-width: 80%;
-  padding: 8px 10px;
-  border-radius: 10px;
-  box-shadow: 0 1px 2px rgba(0,0,0,.1);
-  line-height: 1.4;
-  position: relative;
+max-width: 80%;
+padding: 8px 10px;
+border-radius: 10px;
+box-shadow: 0 1px 2px rgba(0,0,0,.1);
+line-height: 1.4;
+position: relative;
 }
 
 /* Mensaje entrante */
 .msg-in {
-  align-self: flex-start;
-  background: #ffffff;
-  border-radius: 0 8px 8px 8px;
+align-self: flex-start;
+background: #ffffff;
+border-radius: 0 8px 8px 8px;
 }
 
 /* Mensaje saliente */
 .msg-out {
-  align-self: flex-end;
-  background: #dcf8c6;
-  border-radius: 8px 0 8px 8px;
+align-self: flex-end;
+background: #dcf8c6;
+border-radius: 8px 0 8px 8px;
 }
 
 /* Efecto leve de sombra tipo WhatsApp */
 .msg-in {
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 .msg-out {
-  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+box-shadow: 0 1px 2px rgba(0,0,0,0.08);
 }
 
 /* Scroll suave */
 .chat::-webkit-scrollbar {
-  width: 4px;
+width: 4px;
 }
 .chat::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.2);
-  border-radius: 10px;
+background: rgba(0,0,0,0.2);
+border-radius: 10px;
 }
 
 /* Animación de escritura */
 .typing {
-  position: absolute;
-  bottom: 8px;
-  left: 12px;
-  display: flex;
-  gap: 4px;
+position: absolute;
+bottom: 8px;
+left: 12px;
+display: flex;
+gap: 4px;
 }
 .typing span {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #34b7f1;
-  opacity: 0.6;
-  animation: blink 1.2s infinite ease-in-out;
+width: 6px;
+height: 6px;
+border-radius: 50%;
+background: #34b7f1;
+opacity: 0.6;
+animation: blink 1.2s infinite ease-in-out;
 }
 .typing span:nth-child(2){animation-delay:.15s}
 .typing span:nth-child(3){animation-delay:.3s}
@@ -738,83 +706,83 @@ label{display:flex;flex-direction:column;font-weight:700;margin:10px 0;gap:6px}
 /* === Fix de contraste y texto para burbujas tipo WhatsApp === */
 
 .msg-in {
-  background: #ffffff;
-  color: #111;
-  border-radius: 0 10px 10px 10px;
+background: #ffffff;
+color: #111;
+border-radius: 0 10px 10px 10px;
 }
 
 .msg-out {
-  background: #dcf8c6;
-  color: #071a0c;
-  border-radius: 10px 0 10px 10px;
+background: #dcf8c6;
+color: #071a0c;
+border-radius: 10px 0 10px 10px;
 }
 
 /* Ajuste de sombra más suave para realismo */
 .msg-in, .msg-out {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* En modo oscuro: revertimos los tonos */
 :root[data-theme="dark"] .msg-in {
-  background: #202c33;
-  color: #e9edef;
+background: #202c33;
+color: #e9edef;
 }
 :root[data-theme="dark"] .msg-out {
-  background: #005c4b;
-  color: #e9edef;
+background: #005c4b;
+color: #e9edef;
 }
 /* === Cabecera estilo WhatsApp realista === */
 
 .chat-header.whatsapp {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #128c7e;
-  color: #fff;
-  padding: 10px 12px;
-  font-size: 14px;
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+background: #128c7e;
+color: #fff;
+padding: 10px 12px;
+font-size: 14px;
+border-top-left-radius: 18px;
+border-top-right-radius: 18px;
 }
 
 .chat-header.whatsapp .left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+display: flex;
+align-items: center;
+gap: 10px;
 }
 
 .chat-header.whatsapp img {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #fff;
+width: 36px;
+height: 36px;
+border-radius: 50%;
+object-fit: cover;
+border: 2px solid #fff;
 }
 
 .chat-header.whatsapp .info {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
+display: flex;
+flex-direction: column;
+line-height: 1.1;
 }
 
 .chat-header.whatsapp .name {
-  font-weight: 600;
-  font-size: 15px;
+font-weight: 600;
+font-size: 15px;
 }
 
 .chat-header.whatsapp .status {
-  font-size: 12px;
-  color: #c3f3d3;
+font-size: 12px;
+color: #c3f3d3;
 }
 
 .chat-header.whatsapp .actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 18px;
-  opacity: 0.9;
+display: flex;
+align-items: center;
+gap: 12px;
+font-size: 18px;
+opacity: 0.9;
 }
 .chat-header.whatsapp .actions .icon {
-  cursor: default;
-  user-select: none;
+cursor: default;
+user-select: none;
 }
