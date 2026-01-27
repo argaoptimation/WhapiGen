@@ -196,10 +196,9 @@ window.addEventListener("DOMContentLoaded", () => {
       }
 
       // 4. Armado del mensaje
-      const text = `*Nuevo Lead desde la Web* 🚀%0A%0A` +
-                   `👤 *Nombre:* ${name}%0A` +
+      const text = `👤 *Nombre:* ${name}%0A` +
                    `🏢 *Empresa:* ${business}%0A` +
-                   `📱 *WhatsApp:* ${phone}%0A` +
+                   `📱 *Número de contacto:* ${phone}%0A` +
                    `💬 *Consulta:* ${message}`;
 
       // 5. Redirección
