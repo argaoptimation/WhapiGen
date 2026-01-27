@@ -118,13 +118,60 @@ grid-template-columns: 1fr;
 .review{background:var(--bg-alt);border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px;min-height:140px}
 .stars{color:#f59e0b;letter-spacing:1px}
 
-/* Demo tabs */
-.demo-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-.tab-btn{background:var(--bg-alt);border:1px solid var(--border);border-radius:999px;padding:8px 14px;color:var(--text);cursor:pointer;font-weight:700}
-.tab-btn.active,.tab-btn:hover{background:linear-gradient(90deg,var(--secondary),var(--accent));color:#071018;border-color:transparent}
-.demo-panels{display:grid;grid-template-columns:1fr;gap:16px}
-.panel{display:none}
-.panel.active{display:block}
+/* Demo tabs - CORREGIDO PARA CELULAR */
+.demo-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap; /* En PC dejamos que baje si es necesario */
+  margin-bottom: 12px;
+}
+
+.tab-btn {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 14px;
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 700; /* Peso fijo siempre */
+  white-space: nowrap; /* IMPORTANTE: Evita que el texto del botón se parta */
+  transition: all 0.2s ease;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+  background: linear-gradient(90deg, var(--secondary), var(--accent));
+  color: #071018;
+  border-color: transparent;
+  /* Quitamos el font-weight extra si lo hubiera para evitar saltos */
+}
+
+.demo-panels {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* FIX PARA CELULARES: Scroll horizontal estilo App */
+@media (max-width: 480px) {
+  .demo-tabs {
+    flex-wrap: nowrap; /* Prohibido bajar de línea */
+    overflow-x: auto;  /* Habilitar deslizamiento lateral */
+    justify-content: flex-start;
+    padding-bottom: 4px; /* Espacio para que no se corte el borde */
+    
+    /* Ocultar barra de scroll fea */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; 
+  }
+  
+  .demo-tabs::-webkit-scrollbar {
+    display: none;
+  }
+}
 
 /* Buttons & inputs */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;padding:10px 14px;font-weight:800;text-decoration:none;border:1px solid var(--border);transition:.2s;cursor:pointer}
