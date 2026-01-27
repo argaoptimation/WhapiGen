@@ -2,7 +2,7 @@
 const EMAILJS_PUBLIC_KEY = "TU_PUBLIC_KEY";
 const EMAILJS_SERVICE_ID = "TU_SERVICE_ID";
 const EMAILJS_TEMPLATE_ID = "TU_TEMPLATE_ID";
-const DESTINO = "arielmartinelli2019@gmail.com";
+const DESTINO = "arga.optimation@gmail.com";
 
 // Utils
 const $  = (s, ctx=document) => ctx.querySelector(s);
@@ -168,29 +168,55 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // EmailJS + fallback
-  const form = $("#contactForm");
-  const formMsg = $("#formMsg");
-  try { if (EMAILJS_PUBLIC_KEY && window.emailjs) emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); } catch(e){}
-  form?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(form).entries());
-    if (data.empresa) return; // honeypot
-    if (!data.name || !data.email || !data.phone || !data.message) { formMsg.textContent = "Completá todos los campos."; return; }
-    formMsg.textContent = "Enviando…";
-    try {
-      if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) throw new Error("Faltan keys EmailJS");
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-        from_name: data.name, from_email: data.email, phone: data.phone, message: data.message, to_email: DESTINO
-      });
-      formMsg.textContent = "✅ Mensaje enviado. ¡Gracias!"; form.reset(); return;
-    } catch(err) {
-      console.warn("EmailJS error:", err?.message || err);
-    }
-    // Fallback mailto
-    const subject = encodeURIComponent("Nuevo mensaje desde WHAPIGEN");
-    const body = encodeURIComponent(`Nombre: ${data.name}\nEmail: ${data.email}\nWhatsApp: ${data.phone}\n\nMensaje:\n${data.message}`);
-    window.location.href = `mailto:${DESTINO}?subject=${subject}&body=${body}`;
-    formMsg.textContent = "Abrimos tu cliente de correo para completar el envío ✉️";
-  });
+  /* === Lógica del Formulario a WhatsApp (Actualizado para Empresa) === */
+  const contactForm = document.getElementById('contactForm');
+  const formMsg = document.getElementById('formMsg');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault(); // Evita recarga
+
+      // 1. Anti-spam (Honeypot)
+      // El campo oculto 'empresa' (class hp) debe estar vacío.
+      const honeyPot = contactForm.querySelector('input[name="empresa"]');
+      if (honeyPot && honeyPot.value) return;
+
+      // 2. Captura de datos
+      const formData = new FormData(contactForm);
+      const name = formData.get('name');      // Nombre y Apellido
+      const phone = formData.get('phone');    // WhatsApp
+      const business = formData.get('business'); // Nombre de la empresa (NUEVO)
+      const message = formData.get('message'); // Mensaje
+
+      // 3. Validación
+      if (!name || !phone || !business || !message) {
+        if (formMsg) {
+          formMsg.textContent = "Por favor, completá todos los campos.";
+          formMsg.style.color = "red";
+        }
+        return;
+      }
+
+      // 4. Armado del mensaje para WhatsApp
+      // Usamos %0A para saltos de línea
+      const text = `*Nuevo Lead desde la Web* 🚀%0A%0A` +
+                  `👤 *Nombre:* ${name}%0A` +
+                  `🏢 *Empresa:* ${business}%0A` +
+                  `📱 *WhatsApp:* ${phone}%0A` +
+                  `💬 *Consulta:* ${message}`;
+
+      // 5. Redirección
+      const myPhone = '5492664405019';
+      const url = `https://wa.me/${myPhone}?text=${text}`;
+
+      window.open(url, '_blank');
+
+      if (formMsg) {
+        formMsg.textContent = "✅ Abriendo WhatsApp...";
+        formMsg.style.color = "var(--primary)";
+      }
+      
+      contactForm.reset();
+    });
+  }
 });
