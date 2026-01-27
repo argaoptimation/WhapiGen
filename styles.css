@@ -151,16 +151,19 @@ label{display:flex;flex-direction:column;font-weight:700;margin:10px 0;gap:6px}
 .switch input:checked + .slider:before{transform:translateX(22px)}
 
 .pricing-toggle .save {
-  font-size: 0.9rem; /* Aumentamos el tamaño (antes era small) */
+  font-size: 0.85rem; /* Aumentamos el tamaño (antes era small) */
   font-weight: 700;
   color: var(--primary); /* O usá var(--accent) si querés que resalte más */
   background: rgba(39, 215, 141, 0.15); /* Un fondito suave para que parezca botón */
   padding: 4px 8px;
   border-radius: 6px;
   border: 1px solid rgba(39, 215, 141, 0.3);
-  margin-left: 6px;
+  margin-left: 5px;
   text-transform: uppercase; /* Opcional: para que se vea más como "badge" */
   letter-spacing: 0.5px;
+  vertical-align: middle;
+  white-space: nowrap; /* <--- ESTO EVITA QUE SE CORTE */
+  display: inline-block;
   vertical-align: middle;
 }
 
@@ -748,45 +751,53 @@ color: #e9edef;
 /* === Cabecera estilo WhatsApp realista === */
 
 .chat-header.whatsapp {
-display: flex;
-align-items: center;
-justify-content: space-between;
-background: #128c7e;
-color: #fff;
-padding: 10px 12px;
-font-size: 14px;
-border-top-left-radius: 18px;
-border-top-right-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #128c7e;
+  color: #fff;
+  padding: 10px 12px;
+  font-size: 14px;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  display: flex;
+  align-items: center; /* Alinea verticalmente la foto con el texto */
+  justify-content: flex-start; /* Alinea todo el bloque a la izquierda */
 }
 
 .chat-header.whatsapp .left {
-display: flex;
-align-items: center;
-gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .chat-header.whatsapp img {
-width: 36px;
-height: 36px;
-border-radius: 50%;
-object-fit: cover;
-border: 2px solid #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
 }
 
 .chat-header.whatsapp .info {
-display: flex;
-flex-direction: column;
-line-height: 1.1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* <--- ESTO ES LO QUE ALINEA EL TEXTO A LA IZQUIERDA */
+  justify-content: center;
+  line-height: 1.2;
+  margin-left: 10px; /* Un poco de aire entre la foto y el texto */
 }
 
 .chat-header.whatsapp .name {
-font-weight: 600;
-font-size: 15px;
+  font-weight: 600;
+  font-size: 15px;
+  text-align: left; /* Aseguramos alineación */
 }
 
 .chat-header.whatsapp .status {
 font-size: 12px;
 color: #c3f3d3;
+text-align: left; /* Aseguramos alineación */
 }
 
 .chat-header.whatsapp .actions {
@@ -888,7 +899,44 @@ user-select: none;
   padding-left: 10px; /* Un poquito de aire */
 }
 
+/* Lista de precios */
+.card.price .list {
+  flex-grow: 1; /* Para empujar el botón al fondo */
+  margin: 0 0 24px;
+  padding: 0; /* Quitamos el padding por defecto del navegador */
+  list-style: none; /* Quitamos los puntos negros feos */
+  text-align: left; /* Alineamos el texto a la izquierda */
+}
+
+/* Cada ítem de la lista */
+.card.price .list li {
+  position: relative;
+  padding-left: 24px; /* Espacio para que entre el check verde */
+  margin-bottom: 10px;
+  line-height: 1.4;
+  color: var(--text); /* Aseguramos que se lea bien */
+}
+
+/* Dibujamos el Check Verde Automático */
+.card.price .list li::before {
+  content: "✔"; /* El símbolo */
+  position: absolute;
+  left: 0;
+  top: 1px; /* Ajuste fino vertical */
+  color: var(--primary); /* Tu color verde */
+  font-weight: 800;
+  font-size: 1.1em;
+}
+
 .card.price .btn {
   margin-top: auto;
   width: 100%;
+}
+
+/* OJO: Mantén la media query para móviles al final de tu CSS o cerca de esto */
+@media (max-width: 480px) {
+  .pricing-toggle .save {
+    font-size: 0.7rem; /* Reducimos un pelín la fuente en celular */
+    padding: 3px 5px;
+  }
 }
