@@ -195,27 +195,23 @@ window.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // 4. Feedback inmediato
+      // 4. Armado del mensaje
+      const text = `Hola, quiero que me contacten:%0A` +
+                   `*Nombre:* ${name}%0A` +
+                   `*Empresa:* ${business}%0A` +
+                   `*Número de contacto:* ${phone}%0A` +
+                   `*Consulta:* ${message}`;
+
+      // 5. Redirección
+      const myPhone = '5492664405019';
+      window.open(`https://wa.me/${myPhone}?text=${text}`, '_blank');
+
       if (formMsg) {
         formMsg.textContent = "✅ Abriendo WhatsApp...";
         formMsg.style.color = "var(--primary)";
       }
-
-      // Armado del mensaje (USANDO encodeURIComponent para soportar emojis)
-      const rawText = `*Nuevo Lead desde la Web* 🚀\n\n` +
-                      `👤 *Nombre:* ${name}\n` +
-                      `🏢 *Empresa:* ${business}\n` +
-                      `📱 *WhatsApp:* ${phone}\n` +
-                      `💬 *Consulta:* ${message}`;
-
-      const encodedText = encodeURIComponent(rawText);
-      const myPhone = '5492664405019';
-      
-      // Abrir WhatsApp
-      window.open(`https://wa.me/${myPhone}?text=${encodedText}`, '_blank');
       
       contactForm.reset();
     });
   }
-
 });
