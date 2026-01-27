@@ -70,7 +70,7 @@ window.addEventListener("DOMContentLoaded", () => {
       { t:"in",  s:"¡Claro! Confirmamos, reprogramamos y cancelamos citas automáticamente 📅." },
       { t:"out", s:"Perfecto, quiero una demo." },
       { t:"in",  s:"Hablame y te paso el contacto para probarlo 💬👇" },
-      { t:"in",  html:`<a href="https://wa.me/5492664405019" target="_blank" rel="noopener noreferrer">Abrir WhatsApp</a>` },
+      { t:"in",  html:`<a href="https://wa.me/5492664405019?text=Hola%20WHAPIGEN%20quiero%20una%20demo" target="_blank" rel="noopener noreferrer">Abrir WhatsApp</a>` },
     ];
     let i = 0;
     const delay = 1600;
