@@ -195,11 +195,19 @@ window.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // 4. Armado del mensaje
-      const text = `👤 *Nombre:* ${name}%0A` +
-                   `🏢 *Empresa:* ${business}%0A` +
-                   `📱 *Número de contacto:* ${phone}%0A` +
-                   `💬 *Consulta:* ${message}`;
+      // 4. Armado del mensaje (USANDO \n y Emojis normales)
+      // Nota: Usamos \n en lugar de %0A porque encodeURIComponent lo va a convertir solo.
+      const rawText = `*Hola, quiero que me contacten:* \n\n` +
+                      `👤 *Nombre:* ${name}\n` +
+                      `🏢 *Empresa:* ${business}\n` +
+                      `📱 *WhatsApp:* ${phone}\n` +
+                      `💬 *Consulta:* ${message}`;
+
+      // 5. Redirección (Codificamos TODO el texto para que se vean los emojis)
+      const encodedText = encodeURIComponent(rawText);
+      const myPhone = '5492664405019';
+      
+      window.open(`https://wa.me/${myPhone}?text=${encodedText}`, '_blank');
 
       // 5. Redirección
       const myPhone = '5492664405019';
