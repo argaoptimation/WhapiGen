@@ -118,12 +118,26 @@ grid-template-columns: 1fr;
 .review{background:var(--bg-alt);border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px;min-height:140px}
 .stars{color:#f59e0b;letter-spacing:1px}
 
-/* Demo tabs - CORREGIDO PARA CELULAR */
+/* Demo tabs - FIX DEFINITIVO DE ALTURA */
 .demo-tabs {
   display: flex;
   gap: 8px;
-  flex-wrap: wrap; /* En PC dejamos que baje si es necesario */
+  flex-wrap: wrap;
   margin-bottom: 12px;
+  justify-content: center; /* Centrados se ven mejor en celular */
+  
+  /* EL TRUCO: */
+  min-height: 50px; /* Reserva espacio mínimo para evitar saltos pequeños */
+  align-items: center; /* Centra los botones verticalmente en ese espacio */
+}
+
+/* Ajuste específico para Celulares */
+@media (max-width: 480px) {
+  .demo-tabs {
+    /* Forzamos una altura mínima que cubra 2 renglones de botones */
+    min-height: 90px; 
+    align-content: center; /* Mantiene el bloque centrado */
+  }
 }
 
 .tab-btn {
@@ -133,9 +147,10 @@ grid-template-columns: 1fr;
   padding: 8px 14px;
   color: var(--text);
   cursor: pointer;
-  font-weight: 700; /* Peso fijo siempre */
-  white-space: nowrap; /* IMPORTANTE: Evita que el texto del botón se parta */
+  font-weight: 700;
   transition: all 0.2s ease;
+  /* Evitamos que el texto dentro del botón se rompa */
+  white-space: nowrap; 
 }
 
 .tab-btn.active,
@@ -143,7 +158,6 @@ grid-template-columns: 1fr;
   background: linear-gradient(90deg, var(--secondary), var(--accent));
   color: #071018;
   border-color: transparent;
-  /* Quitamos el font-weight extra si lo hubiera para evitar saltos */
 }
 
 .demo-panels {
@@ -154,24 +168,6 @@ grid-template-columns: 1fr;
 
 .panel { display: none; }
 .panel.active { display: block; }
-
-/* FIX PARA CELULARES: Scroll horizontal estilo App */
-@media (max-width: 480px) {
-  .demo-tabs {
-    flex-wrap: nowrap; /* Prohibido bajar de línea */
-    overflow-x: auto;  /* Habilitar deslizamiento lateral */
-    justify-content: flex-start;
-    padding-bottom: 4px; /* Espacio para que no se corte el borde */
-    
-    /* Ocultar barra de scroll fea */
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; 
-  }
-  
-  .demo-tabs::-webkit-scrollbar {
-    display: none;
-  }
-}
 
 /* Buttons & inputs */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;padding:10px 14px;font-weight:800;text-decoration:none;border:1px solid var(--border);transition:.2s;cursor:pointer}
