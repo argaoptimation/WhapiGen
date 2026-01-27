@@ -141,8 +141,7 @@ window.addEventListener("DOMContentLoaded", () => {
           p.textContent = isYearly ? p.getAttribute('data-yearly') : p.getAttribute('data-monthly');
       });
   });
-  toggle?.addEventListener("change", e => updatePrices(e.target.checked));
-
+  
   // Tilt
   if (window.VanillaTilt) {
     VanillaTilt.init($$(".tilt"), { max: 10, speed: 400, glare: true, "max-glare": 0.15 });
@@ -168,25 +167,24 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* === Lógica del Formulario a WhatsApp (Actualizado para Empresa) === */
+  /* === Lógica del Formulario a WhatsApp === */
   const contactForm = document.getElementById('contactForm');
   const formMsg = document.getElementById('formMsg');
 
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
-      e.preventDefault(); // Evita recarga
+      e.preventDefault(); // ESTO evita que la página se recargue
 
-      // 1. Anti-spam (Honeypot)
-      // El campo oculto 'empresa' (class hp) debe estar vacío.
+      // 1. Anti-spam
       const honeyPot = contactForm.querySelector('input[name="empresa"]');
       if (honeyPot && honeyPot.value) return;
 
       // 2. Captura de datos
       const formData = new FormData(contactForm);
-      const name = formData.get('name');      // Nombre y Apellido
-      const phone = formData.get('phone');    // WhatsApp
-      const business = formData.get('business'); // Nombre de la empresa (NUEVO)
-      const message = formData.get('message'); // Mensaje
+      const name = formData.get('name');      
+      const phone = formData.get('phone');    
+      const business = formData.get('business'); 
+      const message = formData.get('message'); 
 
       // 3. Validación
       if (!name || !phone || !business || !message) {
@@ -197,19 +195,16 @@ window.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // 4. Armado del mensaje para WhatsApp
-      // Usamos %0A para saltos de línea
+      // 4. Armado del mensaje
       const text = `*Nuevo Lead desde la Web* 🚀%0A%0A` +
-                  `👤 *Nombre:* ${name}%0A` +
-                  `🏢 *Empresa:* ${business}%0A` +
-                  `📱 *WhatsApp:* ${phone}%0A` +
-                  `💬 *Consulta:* ${message}`;
+                   `👤 *Nombre:* ${name}%0A` +
+                   `🏢 *Empresa:* ${business}%0A` +
+                   `📱 *WhatsApp:* ${phone}%0A` +
+                   `💬 *Consulta:* ${message}`;
 
       // 5. Redirección
       const myPhone = '5492664405019';
-      const url = `https://wa.me/${myPhone}?text=${text}`;
-
-      window.open(url, '_blank');
+      window.open(`https://wa.me/${myPhone}?text=${text}`, '_blank');
 
       if (formMsg) {
         formMsg.textContent = "✅ Abriendo WhatsApp...";
