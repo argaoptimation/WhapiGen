@@ -855,6 +855,29 @@ cursor: default;
 user-select: none;
 }
 
+/* Corrección Cabecera WhatsApp */
+.chat-header.whatsapp {
+  display: flex;
+  align-items: center;       /* Centra verticalmente (que no quede ni muy arriba ni muy abajo) */
+  justify-content: space-between; /* ESTO es la clave: manda uno a la izq y otro a la derecha */
+  padding: 10px 15px;        /* Un poco de aire en los bordes */
+  width: 100%;               /* Que ocupe todo el ancho del celular */
+}
+
+/* Aseguramos que la foto y el texto se mantengan pegaditos a la izquierda */
+.chat-header.whatsapp .left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Opcional: Ajuste fino de los puntitos */
+.chat-header.whatsapp .actions {
+  font-size: 20px;
+  line-height: 1;
+  color: #fff; /* O el color que uses para los íconos */
+  cursor: pointer;
+}
 /* =========================================
    PARCHE SOLO PARA PRECIOS (Corregido)
    ========================================= */
