@@ -8,16 +8,21 @@ const DESTINO = "arga.optimation@gmail.com";
 const $  = (s, ctx=document) => ctx.querySelector(s);
 const $$ = (s, ctx=document) => Array.from(ctx.querySelectorAll(s));
 
-// ===== Loader con fade secuencial =====
-window.addEventListener("load", () => {
+// ===== Loader a prueba de Instagram =====
+function hideLoader() {
   const loader = document.getElementById("loader");
-  if (!loader) return;
+  if (!loader || loader.classList.contains("hide")) return;
+  
+  // Animación de salida
+  loader.classList.add("fade-logo");
+  setTimeout(() => loader.classList.add("hide"), 800);
+}
 
-  // 1️⃣ Espera 1.8s (barra de carga)
-  setTimeout(() => loader.classList.add("fade-logo"), 1800);
-  // 2️⃣ Luego de 2.6s desaparece el fondo
-  setTimeout(() => loader.classList.add("hide"), 2600);
-});
+// 1. Intento normal: Cuando carga todo
+window.addEventListener("load", hideLoader);
+
+// 2. Plan B: Si tarda mucho (Instagram), forzamos la apertura a los 3 segundos
+setTimeout(hideLoader, 3000);
 
 
 // Año footer
@@ -215,3 +220,13 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+/* Fix de altura para celulares (Instagram/Facebook) */
+.hero {
+  min-height: 100vh;  /* Para navegadores viejos */
+  min-height: 100dvh; /* Para navegadores modernos (Dynamic Viewport Height) */
+  
+  /* Asegurate que el contenido se centre si la pantalla es alta */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+}
