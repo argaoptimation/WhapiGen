@@ -67,6 +67,27 @@ window.addEventListener("scroll", () => {
 });
 
 window.addEventListener("DOMContentLoaded", () => {
+
+  /* === DETECTOR DE INSTAGRAM / FACEBOOK === */
+  const ua = navigator.userAgent || navigator.vendor || window.opera;
+  // Detectamos palabras clave de los navegadores in-app
+  const isInApp = (ua.indexOf("Instagram") > -1) || (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
+
+  if (isInApp) {
+    const alertBox = document.getElementById("insta-alert");
+    const closeBtn = document.getElementById("close-alert");
+    
+    // Mostramos el alerta
+    if (alertBox) alertBox.classList.add("show");
+    
+    // Opción para cerrar el alerta si el usuario quiere sufrir igual
+    if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
+            alertBox.classList.remove("show");
+        });
+    }
+  }
+  
   // Smooth scroll (Lenis)
   if (window.Lenis) {
     const lenis = new Lenis({ duration: 0.95, smoothWheel: true });
