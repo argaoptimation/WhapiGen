@@ -65,7 +65,20 @@ grid-template-columns: 1fr;
 }
 
 /* Hero */
-.hero{position:relative;overflow:hidden}
+/* Hero - CON FIX DE ALTURA */
+.hero {
+  position: relative;
+  overflow: hidden;
+  
+  /* Esto asegura que ocupe toda la pantalla del celular (incluyendo Instagram) */
+  min-height: 100vh;
+  min-height: 100dvh; 
+  
+  /* Esto centra el contenido verticalmente */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .lead{color:var(--muted)}
 .accent{color:var(--primary)}
 .gradient-text{background:linear-gradient(90deg,var(--secondary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
