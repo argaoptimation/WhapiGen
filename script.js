@@ -170,35 +170,49 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Animaciones GSAP (CON "MODO SEGURO" PARA INSTAGRAM)
-  // 1. Detectamos si es Instagram, Facebook o LinkedIn (Navegadores problemáticos)
-  const ua = navigator.userAgent || navigator.vendor || window.opera;
-  const isInAppBrowser = (ua.indexOf("Instagram") > -1) || (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
-
-  // 2. Solo ejecutamos animaciones si NO es un navegador interno
-  if (window.gsap && window.ScrollTrigger && !isInAppBrowser) {
+  // Animaciones GSAP (CON RED DE SEGURIDAD)
+  if (window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
     
-    // Título
+    // 1. Configuración de animaciones (Intento normal)
     const titleAnim = $(".title-animated");
     if(titleAnim) {
-       gsap.from(titleAnim, { y:18, opacity:1, duration:.8, ease:"power2.out" });
+       gsap.from(titleAnim, { y:18, opacity:0, duration:.8, ease:"power2.out" });
     }
 
-    // Secciones
     $$(".section").forEach(sec => {
       const elements = sec.querySelectorAll(".section-title, .section-subtitle, .card, .case, .review, .phone");
       if (elements.length > 0) {
         gsap.from(elements, {
-          opacity: 1,
-          y: 30,
+          opacity: 0,       
+          y: 30,            
           duration: 0.8,
           ease: "power2.out",
           stagger: 0.1,
-          scrollTrigger: { trigger: sec, start: "top 85%" }
+          scrollTrigger: { trigger: sec, start: "top 90%" } // "90%" ayuda a que dispare antes en móviles
         });
       }
     });
+
+    // 2. RED DE SEGURIDAD (La Solución Anti-Instagram) 🛡️
+    // Si por alguna razón (navegador lento, bug de Instagram) las cosas siguen ocultas
+    // después de 1 segundo, las forzamos a aparecer.
+    setTimeout(() => {
+      const animatableElements = document.querySelectorAll(".section-title, .section-subtitle, .card, .case, .review, .phone, .title-animated");
+      
+      animatableElements.forEach(el => {
+        // Si el elemento sigue invisible (opacity cercano a 0), lo mostramos a la fuerza
+        if (getComputedStyle(el).opacity < 0.1) {
+          el.style.opacity = "1";
+          el.style.transform = "none"; // Quitamos cualquier desplazamiento trabado
+          el.style.visibility = "visible";
+        }
+      });
+      
+      // Forzamos a GSAP a recalcular una vez más por si acaso
+      ScrollTrigger.refresh();
+      
+    }, 1500); // Se ejecuta a los 1.5 segundos de cargar
   }
 
   /* === Lógica del Formulario a WhatsApp === */
