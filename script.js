@@ -177,7 +177,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // Título principal
     const titleAnim = $(".title-animated");
     if(titleAnim) {
-       gsap.from(titleAnim, { y:18, opacity:0, duration:.8, ease:"power2.out" });
+       gsap.from(titleAnim, { y:18, opacity:1, duration:.8, ease:"power2.out" });
     }
 
     // Secciones (Cards, teléfonos, textos)
@@ -185,7 +185,7 @@ window.addEventListener("DOMContentLoaded", () => {
       const elements = sec.querySelectorAll(".section-title, .section-subtitle, .card, .case, .review, .phone");
       if (elements.length > 0) {
         gsap.from(elements, {
-          opacity: 0,       // CORREGIDO: Empieza en 0 (invisible)
+          opacity: 1,       // CORREGIDO: Empieza en 1 (invisible)
           y: 30,            // Se mueve desde un poco más abajo
           duration: 0.8,
           ease: "power2.out",
