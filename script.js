@@ -8,21 +8,31 @@ const DESTINO = "arga.optimation@gmail.com";
 const $  = (s, ctx=document) => ctx.querySelector(s);
 const $$ = (s, ctx=document) => Array.from(ctx.querySelectorAll(s));
 
-// ===== Loader a prueba de Instagram =====
+// ===== Loader INTELIGENTE (Con tiempo mínimo de lectura) =====
+const MIN_TIME = 2000; // Tiempo mínimo en milisegundos (2 seg)
+const start = Date.now();
+
 function hideLoader() {
   const loader = document.getElementById("loader");
   if (!loader || loader.classList.contains("hide")) return;
-  
-  // Animación de salida
-  loader.classList.add("fade-logo");
-  setTimeout(() => loader.classList.add("hide"), 800);
+
+  // Calculamos cuánto falta para cumplir los 2 segundos
+  const elapsed = Date.now() - start;
+  const remaining = Math.max(0, MIN_TIME - elapsed);
+
+  setTimeout(() => {
+    loader.classList.add("fade-logo");
+    setTimeout(() => {
+        loader.classList.add("hide");
+        // IMPORTANTE: Refresca las animaciones cuando se va el loader
+        if (window.ScrollTrigger) ScrollTrigger.refresh(); 
+    }, 800);
+  }, remaining);
 }
 
-// 1. Intento normal: Cuando carga todo
 window.addEventListener("load", hideLoader);
-
-// 2. Plan B: Si tarda mucho (Instagram), forzamos la apertura a los 3 segundos
-setTimeout(hideLoader, 3000);
+// Plan B (Anti-Instagram): Si a los 4 seg no cargó, forzar salida
+setTimeout(hideLoader, 4000);
 
 
 // Año footer
@@ -160,15 +170,29 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Animaciones GSAP
-  if (window.gsap && window.ScrollTrigger && window.TextPlugin) {
-    gsap.registerPlugin(ScrollTrigger, TextPlugin);
-    gsap.from(".title-animated", { y:18, opacity:30, duration:.8, ease:"power2.out" });
+  // Animaciones GSAP (CORREGIDO)
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Título principal
+    const titleAnim = $(".title-animated");
+    if(titleAnim) {
+       gsap.from(titleAnim, { y:18, opacity:0, duration:.8, ease:"power2.out" });
+    }
+
+    // Secciones (Cards, teléfonos, textos)
     $$(".section").forEach(sec => {
-      gsap.from(sec.querySelectorAll(".section-title, .section-subtitle, .card, .case, .review, .phone"), {
-        opacity:30, y:26, duration:.7, ease:"power2.out", stagger:.05,
-        scrollTrigger:{ trigger:sec, start:"top 80%" }
-      });
+      const elements = sec.querySelectorAll(".section-title, .section-subtitle, .card, .case, .review, .phone");
+      if (elements.length > 0) {
+        gsap.from(elements, {
+          opacity: 0,       // CORREGIDO: Empieza en 0 (invisible)
+          y: 30,            // Se mueve desde un poco más abajo
+          duration: 0.8,
+          ease: "power2.out",
+          stagger: 0.1,     // Efecto cascada
+          scrollTrigger: { trigger: sec, start: "top 85%" }
+        });
+      }
     });
   }
 
