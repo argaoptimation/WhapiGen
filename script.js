@@ -177,14 +177,14 @@ window.addEventListener("DOMContentLoaded", () => {
     // 1. Configuración de animaciones (Intento normal)
     const titleAnim = $(".title-animated");
     if(titleAnim) {
-       gsap.from(titleAnim, { y:18, opacity:0, duration:.8, ease:"power2.out" });
+       gsap.from(titleAnim, { y:18, opacity:1, duration:.8, ease:"power2.out" });
     }
 
     $$(".section").forEach(sec => {
       const elements = sec.querySelectorAll(".section-title, .section-subtitle, .card, .case, .review, .phone");
       if (elements.length > 0) {
         gsap.from(elements, {
-          opacity: 0,       
+          opacity: 1,       
           y: 30,            
           duration: 0.8,
           ease: "power2.out",
