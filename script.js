@@ -170,26 +170,31 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Animaciones GSAP (CORREGIDO)
-  if (window.gsap && window.ScrollTrigger) {
+  // Animaciones GSAP (CON "MODO SEGURO" PARA INSTAGRAM)
+  // 1. Detectamos si es Instagram, Facebook o LinkedIn (Navegadores problemáticos)
+  const ua = navigator.userAgent || navigator.vendor || window.opera;
+  const isInAppBrowser = (ua.indexOf("Instagram") > -1) || (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
+
+  // 2. Solo ejecutamos animaciones si NO es un navegador interno
+  if (window.gsap && window.ScrollTrigger && !isInAppBrowser) {
     gsap.registerPlugin(ScrollTrigger);
     
-    // Título principal
+    // Título
     const titleAnim = $(".title-animated");
     if(titleAnim) {
        gsap.from(titleAnim, { y:18, opacity:1, duration:.8, ease:"power2.out" });
     }
 
-    // Secciones (Cards, teléfonos, textos)
+    // Secciones
     $$(".section").forEach(sec => {
       const elements = sec.querySelectorAll(".section-title, .section-subtitle, .card, .case, .review, .phone");
       if (elements.length > 0) {
         gsap.from(elements, {
-          opacity: 1,       // CORREGIDO: Empieza en 1 (invisible)
-          y: 30,            // Se mueve desde un poco más abajo
+          opacity: 1,
+          y: 30,
           duration: 0.8,
           ease: "power2.out",
-          stagger: 0.1,     // Efecto cascada
+          stagger: 0.1,
           scrollTrigger: { trigger: sec, start: "top 85%" }
         });
       }
