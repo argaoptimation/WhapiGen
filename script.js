@@ -219,15 +219,5 @@ window.addEventListener("DOMContentLoaded", () => {
       contactForm.reset();
     });
   }
-  /* Fix de altura para celulares (Instagram/Facebook) */
-  .hero {
-    min-height: 100vh;  /* Para navegadores viejos */
-    min-height: 100dvh; /* Para navegadores modernos (Dynamic Viewport Height) */
-    
-    /* Asegurate que el contenido se centre si la pantalla es alta */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-  }
 });
 
