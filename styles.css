@@ -312,10 +312,14 @@ text-align: center;
 animation: fadeZoomIn 1s ease both;
 }
 
+/* Busca esta parte en tu CSS */
 .loader-inner img {
-width: 130px;
-height: auto;
-animation: pulselogo2 1.8s ease-in-out infinite;
+  width: 130px;
+  height: auto;
+  animation: pulseLogo 1.8s ease-in-out infinite;
+  
+  /* AGREGA ESTA LÍNEA: */
+  mix-blend-mode: screen; 
 }
 
 /* Línea de carga */
