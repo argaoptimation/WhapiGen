@@ -832,11 +832,18 @@ color: #e9edef;
 }
 
 .chat-header.whatsapp img {
-  width: 36px;
-  height: 36px;
+  width: 38px; /* Un pelín más grande para que se luzca */
+  height: 38px;
   border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #fff;
+  object-fit: contain; /* 'contain' es mejor para logos que 'cover' */
+  
+  /* FONDO OSCURO PARA QUE SE VEA BIEN EL LOGO */
+  background-color: #071018; /* El mismo azul oscuro de tu página */
+  
+  /* Borde sutil que combine */
+  border: 1px solid rgba(39, 215, 141, 0.3); /* Verde neón suavecito */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Una pequeña sombrita para darle volumen */
+  padding: 2px; /* Espacio entre el logo y el borde */
 }
 
 .chat-header.whatsapp .info {
