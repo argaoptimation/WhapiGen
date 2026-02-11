@@ -1073,3 +1073,38 @@ user-select: none;
   font-size: 13px;
   cursor: pointer;
 }
+
+/* === LOADER CAMUFLADO (FONDO OSCURO) === */
+
+#loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* Usamos el negro profundo de tu imagen como base */
+  background: radial-gradient(circle at 50% 40%, #0d1b1b 0%, #071018 70%); 
+  z-index: 99999;
+  transition: opacity 1.2s ease, visibility 1.2s ease;
+}
+
+/* En modo oscuro lo hacemos aún más profundo */
+:root[data-theme="dark"] #loader {
+  background: radial-gradient(circle at 50% 40%, #061616 0%, #050a0f 100%);
+}
+
+/* El texto del loader debe ser claro para que se lea sobre el negro */
+.loader-inner p {
+  color: #e6f0ff !important;
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+/* OPCIONAL: El toque final para que los bordes de la imagen desaparezcan */
+.loader-inner img {
+  width: 140px;
+  height: auto;
+  filter: drop-shadow(0 0 15px rgba(39, 215, 141, 0.3)); /* Brillo verde como tu logo */
+  mix-blend-mode: lighten; /* Esto hace que el negro de la foto sea "invisible" */
+}
