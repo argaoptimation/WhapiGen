@@ -21,7 +21,7 @@ function hideLoader() {
   const remaining = Math.max(0, MIN_TIME - elapsed);
 
   setTimeout(() => {
-    loader.classList.add("fade-logo");
+    loader.classList.add("fade-logo 2");
     setTimeout(() => {
         loader.classList.add("hide");
         // IMPORTANTE: Refresca las animaciones cuando se va el loader
