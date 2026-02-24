@@ -187,7 +187,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // Typed
   if (window.Typed) {
     new Typed("#typed", {
-      strings: ["pet shops","barberias","centros estéticos","negocios locales"],
+      strings: ["pet shops","barberias","centros estéticos","pymes de distintos rubros"],
       typeSpeed: 36, backSpeed: 18, backDelay: 1300, loop: true,
     });
   }
