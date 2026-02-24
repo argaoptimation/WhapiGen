@@ -105,9 +105,9 @@ window.addEventListener("DOMContentLoaded", () => {
       { t:"out", s:"¿Que se puede automatizar?" },
       { t:"in",  s:"El pedido de productos, agendar citas, asesoramiento técnico y mucho más!" },
       { t:"in",  s:"Todo personalizado en base a tu negocio y tus preferencias." },
-      { t:"out", s:"Muy bueno, quiero una demo." },
-      { t:"in",  s:"Hablame y te paso el contacto para probarlo 💬👇" },
-      { t:"in",  html:`<a href="https://wa.me/5492664405019?text=Hola%20WHAPIGEN%20quiero%20una%20demo" target="_blank" rel="noopener noreferrer">Abrir WhatsApp</a>` },
+      { t:"out", s:"Muy bueno, como puedo saber si sirve en mi caso." },
+      { t:"in",  s:"Hablame y coordinamos una llamada de 5 minutos para brindarte la mejor solución 💬👇" },
+      { t:"in",  html:`<a href="https://wa.me/5492664405019?text=Hola%20Gabriel,%20quiero%20automatizar%20mi%20negocio" target="_blank" rel="noopener noreferrer">Abrir WhatsApp</a>` },
     ];
     let i = 0;
     const delay = 1600;
