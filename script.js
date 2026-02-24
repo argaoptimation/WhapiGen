@@ -4,6 +4,32 @@ const EMAILJS_SERVICE_ID = "TU_SERVICE_ID";
 const EMAILJS_TEMPLATE_ID = "TU_TEMPLATE_ID";
 const DESTINO = "arga.optimation@gmail.com";
 
+const industryToggle = document.getElementById('industryToggle');
+const esteticaElements = document.querySelectorAll('.type-estetica');
+const empresaElements = document.querySelectorAll('.type-empresa');
+const labelEstetica = document.getElementById('label-estetica');
+const labelEmpresa = document.getElementById('label-empresa');
+
+industryToggle.addEventListener('change', () => {
+    if (industryToggle.checked) {
+        // MODO EMPRESA
+        esteticaElements.forEach(el => el.style.display = 'none');
+        empresaElements.forEach(el => el.style.display = 'block');
+        labelEmpresa.style.fontWeight = 'bold';
+        labelEmpresa.style.color = 'var(--primary)';
+        labelEstetica.style.fontWeight = 'normal';
+        labelEstetica.style.color = 'inherit';
+    } else {
+        // MODO ESTÉTICA
+        esteticaElements.forEach(el => el.style.display = 'block');
+        empresaElements.forEach(el => el.style.display = 'none');
+        labelEstetica.style.fontWeight = 'bold';
+        labelEstetica.style.color = 'var(--primary)';
+        labelEmpresa.style.fontWeight = 'normal';
+        labelEmpresa.style.color = 'inherit';
+    }
+});
+
 // Utils
 const $  = (s, ctx=document) => ctx.querySelector(s);
 const $$ = (s, ctx=document) => Array.from(ctx.querySelectorAll(s));

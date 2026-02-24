@@ -269,115 +269,133 @@
     </div>
 
 
-  <section id="pricing" class="section">
-    <div class="container">
-      <h2 class="section-title">Precios</h2>
-      <p class="section-subtitle">Elegí el plan ideal según la cantidad de profesionales y servicios de tu centro.</p>
-      <p class="section-subtitle">Todo plan es personalizable a gusto del cliente.</p>
-      
-      <div class="pricing-toggle">
-        <span>Mensual</span>
-        <label class="switch">
-          <input id="billingToggle" type="checkbox">
-          <span class="slider"></span>
-        </label>
-        <span>Anual <small class="save">ahorrá 20%</small></span>
-      </div>
-
-      <div class="cards grid-4 pricing-cards">
-        <article class="card price tilt">
-          <h3>Esencial</h3>
-          <p class="muted">Para independientes</p>
-          <div class="price-amount">
-            <div class="price-row">
-              <span class="currency">$</span>
-              <span class="value" data-monthly="39" data-yearly="31">39</span>
-            </div>
-            <span class="period" data-monthly="USD/mes" data-yearly="USD/mes (anual)">USD/mes</span>
-          </div>
-          <p class="setup-fee">Set Up: 119USD (pago único)</p>
-          <ul class="list">
-            <li><strong>1 Profesional</strong></li>
-            <li>Hasta 10 servicios</li>
-            <li>Soporte vía WhatsApp</li>
-            <li>IA con respuesta humana</li>
-            <li>Pausa automática al intervenir un humano</li>
-            <li>Integración con Google Calendar</li>
-          </ul>
-          <a class="btn primary block" target="_blank" href="https://wa.me/5492664405019?text=Hola!%20Quiero%20saber%20más%20sobre%20el%20plan%20Esencial">Elegir plan</a>
-        </article>
-
-        <article class="card price featured tilt">
-          <div class="ribbon">Popular</div>
-          <h3>Premium</h3>
-          <p class="muted">Centros en crecimiento</p>
-          <div class="price-amount">
-            <div class="price-row">
-              <span class="currency">$</span>
-              <span class="value" data-monthly="79" data-yearly="63">79</span>
-            </div>
-            <span class="period" data-monthly="USD/mes" data-yearly="USD/mes (anual)">USD/mes</span>
-          </div>
-          <p class="setup-fee">Set Up: 249USD (pago único)</p>
-          <ul class="list">
-            <li><strong>2 a 4 Profesionales</strong></li>
-            <li>Hasta 20 servicios</li>
-            <li>Todas las funcionalidades del plan Esencial, más:</li>
-            <li>Soporte específico</li>
-            <li>Envío de recordatorios via WhatsApp</li>
-            <li>Integración con Google Sheets</li>
-            <li>Botones para respuestas dinámicas</li>
-            <li>CRM propio</li>
-            
-          </ul>
-          <a class="btn contrast block" target="_blank" href="https://wa.me/5492664405019?text=Hola!%20Quiero%20saber%20más%20sobre%20el%20plan%20Premium">Elegir plan</a>
-        </article>
-
-        <article class="card price tilt">
-          <h3>Business</h3>
-          <p class="muted">Grandes centros</p>
-          <div class="price-amount">
-            <div class="price-row">
-              <span class="currency">$</span>
-              <span class="value" data-monthly="139" data-yearly="111">139</span>
-            </div>
-            <span class="period" data-monthly="USD/mes" data-yearly="USD/mes (anual)">USD/mes</span>
-          </div>
-          <p class="setup-fee">Set Up: 449USD (pago único)</p>
-          <ul class="list">
-            <li><strong>5 a 9 Profesionales</strong></li>
-            <li>Hasta 40 servicios</li>
-            <li>Todas las funcionalidades del plan Premium, más:</li>
-            <li>Soporte prioritario</li>
-            <li>Follow-Up de ventas</li>
-            <li>Comprueba pagos de los clientes</li>
-            <li>Reportes de gestión mensuales</li>
-          </ul>
-          <a class="btn primary block" target="_blank" href="https://wa.me/5492664405019?text=Hola!%20Quiero%20saber%20más%20sobre%20el%20plan%20Business">Elegir plan</a>
-        </article>
-
-        <article class="card price tilt">
-          <h3>Enterprise</h3>
-          <p class="muted">Empresa</p>
-          <div class="price-amount">
-            <div class="price-row">
-              <span class="value" data-monthly="Desde $179" data-yearly="Desde $143">Desde $179</span>
-            </div>
-            <span class="period" data-monthly="USD/mes" data-yearly="USD/mes (anual)">USD/mes</span>
-          </div>
-          <p class="setup-fee">Set Up: Consultar precio específico</p>
-          <ul class="list">
-            <li><strong>Más de 10 Profesionales</strong></li>
-            <li>Servicios ilimitados</li>
-            <li>Todas las funcionalidades del plan Business, más:</li>
-            <li>Personalización total de IA</li>
-            <li>Reportes de gestión mensuales</li>
-          </ul>
-          <a class="btn primary block" target="_blank" href="https://wa.me/5492664405019?text=Hola!%20Quiero%20consultar%20cotización%20por%20el%20plan%20Enterprise">Consultar</a>
-        </article>
-      </div>
+ <section id="pricing" class="section">
+  <div class="container">
+    <h2 class="section-title">Precios</h2>
+    
+    <div class="category-toggle" style="margin-bottom: 25px; display: flex; justify-content: center; align-items: center; gap: 15px;">
+      <span id="label-estetica" style="font-weight: bold; color: var(--primary);">Estética y Salud</span>
+      <label class="switch">
+        <input id="industryToggle" type="checkbox">
+        <span class="slider"></span>
+      </label>
+      <span id="label-empresa">Empresas y Servicios</span>
     </div>
-  </section>
+
+    <div class="pricing-toggle">
+      <span>Mensual</span>
+      <label class="switch">
+        <input id="billingToggle" type="checkbox">
+        <span class="slider"></span>
+      </label>
+      <span>Anual <small class="save">ahorrá 20%</small></span>
+    </div>
+
+    <div class="cards grid-4 pricing-cards">
+      
+      <article class="card price tilt">
+        <h3>Esencial</h3>
+        <p class="muted type-estetica">Para independientes</p>
+        <p class="muted type-empresa" style="display:none;">Pequeños negocios</p>
+        <div class="price-amount">
+          <div class="price-row">
+            <span class="currency">$</span>
+            <span class="value" data-monthly="39" data-yearly="31">39</span>
+          </div>
+          <span class="period" data-monthly="USD/mes" data-yearly="USD/mes (anual)">USD/mes</span>
+        </div>
+        <p class="setup-fee">Set Up: 119USD (pago único)</p>
+        <ul class="list">
+          <li class="type-estetica"><strong>1 Profesional</strong></li>
+          <li class="type-empresa" style="display:none;"><strong>1 Agente de IA</strong></li>
+          <li class="type-estetica">Hasta 10 servicios</li>
+          <li class="type-empresa" style="display:none;">FAQ Inteligente de Catálogo</li>
+          <li>Soporte vía WhatsApp</li>
+          <li>IA con respuesta humana</li>
+          <li>Pausa automática al intervenir un humano</li>
+          <li class="type-estetica">Integración con Google Calendar</li>
+          <li class="type-empresa" style="display:none;">Integración con Google Sheets</li>
+        </ul>
+        <a class="btn primary block" target="_blank" href="https://wa.me/5492664405019?text=Hola!%20Quiero%20saber%20más%20sobre%20el%20plan%20Esencial">Elegir plan</a>
+      </article>
+
+      <article class="card price featured tilt">
+        <div class="ribbon">Popular</div>
+        <h3>Premium</h3>
+        <p class="muted type-estetica">Centros en crecimiento</p>
+        <p class="muted type-empresa" style="display:none;">Pymes en crecimiento</p>
+        <div class="price-amount">
+          <div class="price-row">
+            <span class="currency">$</span>
+            <span class="value" data-monthly="79" data-yearly="63">79</span>
+          </div>
+          <span class="period" data-monthly="USD/mes" data-yearly="USD/mes (anual)">USD/mes</span>
+        </div>
+        <p class="setup-fee">Set Up: 249USD (pago único)</p>
+        <ul class="list">
+          <li class="type-estetica"><strong>2 a 4 Profesionales</strong></li>
+          <li class="type-empresa" style="display:none;"><strong>Gestión de Pedidos y Stock</strong></li>
+          <li class="type-estetica">Hasta 20 servicios</li>
+          <li class="type-empresa" style="display:none;">Consultas de disponibilidad 24/7</li>
+          <li>Todas las funcionalidades del Esencial, más:</li>
+          <li class="type-estetica">Envío de recordatorios via WhatsApp</li>
+          <li class="type-empresa" style="display:none;">Alertas críticas al dueño (Handoff)</li>
+          <li>Integración con Google Sheets</li>
+          <li>Botones para respuestas dinámicas</li>
+          <li>CRM propio</li>
+        </ul>
+        <a class="btn contrast block" target="_blank" href="https://wa.me/5492664405019?text=Hola!%20Quiero%20saber%20más%20sobre%20el%20plan%20Premium">Elegir plan</a>
+      </article>
+
+      <article class="card price tilt">
+        <h3>Business</h3>
+        <p class="muted type-estetica">Grandes centros</p>
+        <p class="muted type-empresa" style="display:none;">Soporte Técnico Avanzado</p>
+        <div class="price-amount">
+          <div class="price-row">
+            <span class="currency">$</span>
+            <span class="value" data-monthly="139" data-yearly="111">139</span>
+          </div>
+          <span class="period" data-monthly="USD/mes" data-yearly="USD/mes (anual)">USD/mes</span>
+        </div>
+        <p class="setup-fee">Set Up: 449USD (pago único)</p>
+        <ul class="list">
+          <li class="type-estetica"><strong>5 a 9 Profesionales</strong></li>
+          <li class="type-empresa" style="display:none;"><strong>Asistente Técnico IA (RAG)</strong></li>
+          <li class="type-estetica">Hasta 40 servicios</li>
+          <li class="type-empresa" style="display:none;">Lectura de Manuales y OCR</li>
+          <li>Todas las funcionalidades del Premium, más:</li>
+          <li>Soporte prioritario</li>
+          <li>Follow-Up de ventas</li>
+          <li class="type-estetica">Comprueba pagos de los clientes</li>
+          <li class="type-empresa" style="display:none;">Integración con n8n avanzada</li>
+          <li>Reportes de gestión mensuales</li>
+        </ul>
+        <a class="btn primary block" target="_blank" href="https://wa.me/5492664405019?text=Hola!%20Quiero%20saber%20más%20sobre%20el%20plan%20Business">Elegir plan</a>
+      </article>
+
+      <article class="card price tilt">
+        <h3>Enterprise</h3>
+        <p class="muted">Soluciones Corporativas</p>
+        <div class="price-amount">
+          <div class="price-row">
+            <span class="value" data-monthly="Desde $179" data-yearly="Desde $143">Desde $179</span>
+          </div>
+          <span class="period">USD/mes</span>
+        </div>
+        <p class="setup-fee">Set Up: Consultar cotización</p>
+        <ul class="list">
+          <li>Personalización total de IA</li>
+          <li>Integración con Sistemas Propios</li>
+          <li>Desarrollos a medida en n8n</li>
+          <li>Capacitación técnica de equipo</li>
+        </ul>
+        <a class="btn primary block" target="_blank" href="https://wa.me/5492664405019?text=Hola!%20Quiero%20consultar%20cotización%20por%20el%20plan%20Enterprise">Consultar</a>
+      </article>
+
+    </div>
+  </div>
+</section>
 
   <!-- CONTACT -->
   <section id="contact" class="section alt"><div class="container">
