@@ -304,12 +304,16 @@ animation: gradientMoveDark 6s ease-in-out infinite alternate;
 
 /* Contenido suelto (sin card) */
 .loader-inner {
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 22px;
-text-align: center;
-animation: fadeZoomIn 1s ease both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  text-align: center;
+  /* ELIMINAMOS EL FONDO Y LA SOMBRA PARA CAMUFLARLO */
+  background: transparent; 
+  box-shadow: none;
+  border: none;
+  backdrop-filter: none;
 }
 
 /* Busca esta parte en tu CSS */
