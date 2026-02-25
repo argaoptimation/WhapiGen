@@ -15,17 +15,17 @@ industryToggle.addEventListener('change', () => {
         // MODO EMPRESA
         esteticaElements.forEach(el => el.style.display = 'none');
         empresaElements.forEach(el => el.style.display = 'block');
-        labelEmpresa.style.fontWeight = 'bold';
+        labelEmpresa.style.fontWeight = '700'; // Bold
         labelEmpresa.style.color = 'var(--primary)';
-        labelEstetica.style.fontWeight = 'normal';
+        labelEstetica.style.fontWeight = '400'; // Normal
         labelEstetica.style.color = 'inherit';
     } else {
         // MODO ESTÉTICA
         esteticaElements.forEach(el => el.style.display = 'block');
         empresaElements.forEach(el => el.style.display = 'none');
-        labelEstetica.style.fontWeight = 'bold';
+        labelEstetica.style.fontWeight = '700';
         labelEstetica.style.color = 'var(--primary)';
-        labelEmpresa.style.fontWeight = 'normal';
+        labelEmpresa.style.fontWeight = '400';
         labelEmpresa.style.color = 'inherit';
     }
 });
