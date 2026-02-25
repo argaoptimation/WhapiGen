@@ -1120,30 +1120,32 @@ user-select: none;
   mix-blend-mode: lighten; /* Esto hace que el negro de la foto sea "invisible" */
 }
 
-/* Ajuste para que el toggle no se pise con el título en móviles */
 .category-toggle {
-    margin-top: 50px;     /* Separa el toggle del título "Precios" */
-    margin-bottom: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;      /* Permite que los textos se acomoden si la pantalla es muy angosta */
+    gap: 12px;           /* Espacio equilibrado */
+    margin-top: 45px;    /* Separación con el título Precios */
+    margin-bottom: 25px;
+    flex-wrap: nowrap;   /* PROHIBIDO que baje de línea */
+    width: 100%;
+    padding: 0 10px;
 }
 
 .category-toggle span {
-    font-size: 16px;
-    white-space: nowrap; /* Evita que el texto se corte en dos líneas */
+    font-size: 15px;      /* Tamaño ideal para móvil */
+    white-space: nowrap;  /* Evita que el texto se corte internamente */
+    transition: font-weight 0.2s ease; /* Suaviza el cambio a negrita */
+    flex-shrink: 1;      /* Permite que el texto se achique un poco si es necesario */
 }
 
-/* Ajuste fino para celulares muy pequeños */
-@media (max-width: 480px) {
+/* Ajuste específico para celulares muy angostos */
+@media (max-width: 400px) {
     .category-toggle {
-        margin-top: 40px;
-        gap: 10px;
+        gap: 8px;        /* Achicamos el hueco para que entre todo */
     }
     
     .category-toggle span {
-        font-size: 14px;
+        font-size: 13px; /* Bajamos un punto la letra para ganar espacio */
     }
 }
