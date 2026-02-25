@@ -1119,3 +1119,31 @@ user-select: none;
   filter: drop-shadow(0 0 15px rgba(39, 215, 141, 0.3)); /* Brillo verde como tu logo */
   mix-blend-mode: lighten; /* Esto hace que el negro de la foto sea "invisible" */
 }
+
+/* Ajuste para que el toggle no se pise con el título en móviles */
+.category-toggle {
+    margin-top: 50px;     /* Separa el toggle del título "Precios" */
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;      /* Permite que los textos se acomoden si la pantalla es muy angosta */
+}
+
+.category-toggle span {
+    font-size: 16px;
+    white-space: nowrap; /* Evita que el texto se corte en dos líneas */
+}
+
+/* Ajuste fino para celulares muy pequeños */
+@media (max-width: 480px) {
+    .category-toggle {
+        margin-top: 40px;
+        gap: 10px;
+    }
+    
+    .category-toggle span {
+        font-size: 14px;
+    }
+}
