@@ -75,10 +75,11 @@ navToggle?.addEventListener("click", () => {
 // Tema
 (() => {
   const stored = localStorage.getItem("theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const initial = stored || (prefersDark ? "dark" : "light");
+  // Si no hay nada guardado, elegimos "dark" por defecto sin preguntar al sistema
+  const initial = stored || "dark"; 
   document.documentElement.setAttribute("data-theme", initial);
 })();
+
 $("#themeToggle")?.addEventListener("click", () => {
   const cur = document.documentElement.getAttribute("data-theme") || "light";
   const next = cur === "light" ? "dark" : "light";
