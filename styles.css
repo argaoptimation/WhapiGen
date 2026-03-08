@@ -1038,6 +1038,39 @@ user-select: none;
     padding: 3px 5px;
   }
 }
+
+@media (max-width: 768px) {
+    .mobile-fab {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #25d366 0%, #26a9ff 100%); /* Tu degradado de WHAPIGEN */
+        color: white;
+        padding: 12px 20px;
+        border-radius: 50px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 10px 25px rgba(38, 169, 255, 0.4);
+        z-index: 999;
+        font-weight: bold;
+        font-size: 14px;
+        animation: pulse 2s infinite; /* Un pequeño pulso para llamar la atención */
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+}
+
+/* Ocultar en escritorio */
+@media (min-width: 769px) {
+    .mobile-fab { display: none; }
+}
+
 /* Estilos del Aviso Anti-Instagram */
 .browser-alert {
   display: none; /* Oculto por defecto */
