@@ -48,7 +48,11 @@ grid-template-columns: 1fr;
 @keyframes load{to{width:100%}}
 
 /* Navbar */
-.navbar{position:sticky;top:0;z-index:100;backdrop-filter:saturate(120%) blur(10px);background:color-mix(in oklab, var(--glass) 60%, transparent);border-bottom:1px solid var(--border)}
+.navbar{position:fixed;top:0;left:0;width: 100%;z-index:1000;backdrop-filter:saturate(120%) blur(10px);background:color-mix(in oklab, var(--glass) 60%, transparent);border-bottom:1px solid var(--border)}
+/* IMPORTANTE: Agregá esto para que el contenido de la web no se meta debajo del menú */
+body {
+    padding-top: 70px; /* Ajustá este valor según la altura de tu navbar */
+}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
 .brand{display:flex;gap:10px;align-items:center;color:var(--text);text-decoration:none;font-weight:800}
 .logo2{width:36px;height:36px}
