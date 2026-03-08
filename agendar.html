@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Llamada de Diagnóstico — WHAPIGEN</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            background-color: #0b1220; /* Tu azul oscuro de fondo */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #ffffff;
+            font-family: sans-serif;
+        }
+        .header-container {
+            text-align: center;
+            padding: 20px;
+        }
+        .back-link {
+            color: #26a9ff;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <a href="index.html" class="back-link">← Volver a la web</a>
+        <h1 style="margin: 0; font-size: 24px;">Configurá tu cita</h1>
+        <p style="color: #a7b3c6;">Completá los datos para que podamos asesorarte mejor.</p>
+    </div>
+
+    <div class="calendly-inline-widget" 
+         data-url="https://calendly.com/d/cxsg-78n-tmz?hide_gdpr_banner=1&background_color=0b1220&text_color=ffffff&primary_color=26a9ff" 
+         style="min-width:320px; height:700px; width: 100%;">
+    </div>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    </body>
+</html>
