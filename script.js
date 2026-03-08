@@ -133,8 +133,8 @@ window.addEventListener("DOMContentLoaded", () => {
       { t:"in",  s:"El pedido de productos, agendar citas, asesoramiento técnico y mucho más!" },
       { t:"in",  s:"Todo personalizado en base a tu negocio y tus preferencias." },
       { t:"out", s:"Muy bueno, como puedo saber si sirve en mi caso." },
-      { t:"in",  s:"Hablame y coordinamos una llamada de 5 minutos para brindarte la mejor solución 💬👇" },
-      { t:"in",  html:`<a href="https://wa.me/5492664405019?text=Hola%20Gabriel,%20quiero%20automatizar%20mi%20negocio" target="_blank" rel="noopener noreferrer">Abrir WhatsApp</a>` },
+      { t:"in",  s:"Agendá una breve llamada de diagnóstico para ver tu caso💬👇" },
+      { t:"in",  html:`<a href="agendar.html" target="_blank" rel="noopener noreferrer">Agendar</a>` },
     ];
     let i = 0;
     const delay = 1600;
