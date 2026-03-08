@@ -88,5 +88,14 @@
     </div>
 
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const plan = urlParams.get('plan');
+    if (plan) {
+        // Esto pre-rellena el campo de interés si configurás la pregunta en Calendly
+        const widget = document.querySelector('.calendly-inline-widget');
+        widget.setAttribute('data-url', widget.getAttribute('data-url') + '&a1=' + encodeURIComponent(plan));
+    }
+</script>
 </body>
 </html>
