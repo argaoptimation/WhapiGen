@@ -54,8 +54,15 @@ grid-template-columns: 1fr;
     font-weight: 700;
     font-size: 15px;
     transition: all 0.3s ease;
+    opacity: 0;                /* Invisible al inicio */
+    pointer-events: none;      /* No se puede clickear mientras es invisible */
+    transition: opacity 0.8s ease-out, transform 0.3s ease; /* Transición suave */
 }
-
+/* Esta clase la agregaremos con JS cuando termine el loader */
+.floating-cta.visible {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
 .floating-cta:hover {
     transform: scale(1.05) translateY(-5px);
 }
@@ -190,6 +197,15 @@ body {
     min-height: 90px; 
     align-content: center; /* Mantiene el bloque centrado */
   }
+}
+
+@media (max-width: 480px) {
+    .floating-cta {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 18px;
+        font-size: 13px;
+    }
 }
 
 .tab-btn {

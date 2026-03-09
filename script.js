@@ -313,3 +313,13 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+window.addEventListener('load', () => {
+    // Esperamos un momento después de que la ventana cargue 
+    // para que coincida con la desaparición de tu #loader
+    setTimeout(() => {
+        const fab = document.querySelector('.floating-cta');
+        if (fab) {
+            fab.classList.add('visible');
+        }
+    }, 1500); // 1.5 segundos es un tiempo estándar para que el loader se vaya
+});
