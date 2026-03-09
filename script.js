@@ -321,5 +321,5 @@ window.addEventListener('load', () => {
         if (fab) {
             fab.classList.add('visible');
         }
-    }, 1500); // 1.5 segundos es un tiempo estándar para que el loader se vaya
+    }, 2000); // 2 segundos es un tiempo estándar para que el loader se vaya
 });
