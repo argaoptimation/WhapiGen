@@ -12,7 +12,6 @@
         }
         body {
             background-color: var(--bg);
-            /* Efecto de resplandor de fondo para que no sea "triste" */
             background-image: radial-gradient(circle at top right, rgba(38, 169, 255, 0.1), transparent),
                               radial-gradient(circle at bottom left, rgba(37, 211, 102, 0.05), transparent);
             margin: 0;
@@ -25,40 +24,37 @@
         }
         .header-container {
             text-align: center;
-            padding: 60px 20px 20px;
+            padding: 40px 20px 10px;
             max-width: 800px;
         }
-        /* Título con el degradado de tu marca */
         .gradient-text {
             background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
         .subtitle {
             color: #a7b3c6;
-            font-size: 1.1rem;
-            margin-bottom: 30px;
+            font-size: 1rem;
+            margin-bottom: 20px;
         }
-        /* Botón de volver con estilo de la web */
         .back-btn {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: #ffffff;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 50px;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
         .back-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
             border-color: #26a9ff;
+            background: rgba(255, 255, 255, 0.1);
         }
-        /* Contenedor del widget con efecto cristal */
         .calendly-wrapper {
             width: 100%;
             max-width: 1000px;
@@ -68,7 +64,7 @@
             overflow: hidden;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(20px);
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
     </style>
 </head>
@@ -77,25 +73,32 @@
     <div class="header-container">
         <a href="index.html" class="back-btn">← Volver al inicio</a>
         <h1 class="gradient-text">Configurá tu cita</h1>
-        <p class="subtitle">Estás a un paso de escalar tu atención con Inteligencia Artificial.</p>
+        <p class="subtitle">Estás a un paso de escalar tu atención con IA.</p>
     </div>
 
     <div class="calendly-wrapper">
         <div class="calendly-inline-widget" 
-             data-url="https://calendly.com/d/cxsg-78n-tmz?hide_gdpr_banner=1&background_color=0b1220&text_color=ffffff&primary_color=26a9ff" 
+             id="calendly-widget"
+             data-url="https://calendly.com/arga-optimation/30min?hide_gdpr_banner=1&background_color=0b1220&text_color=ffffff&primary_color=26a9ff" 
              style="min-width:320px; height:700px; width: 100%;">
         </div>
     </div>
 
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const plan = urlParams.get('plan');
-    if (plan) {
-        // Esto pre-rellena el campo de interés si configurás la pregunta en Calendly
-        const widget = document.querySelector('.calendly-inline-widget');
-        widget.setAttribute('data-url', widget.getAttribute('data-url') + '&a1=' + encodeURIComponent(plan));
-    }
-</script>
+
+    <script>
+        // Sincronización del plan con el widget
+        window.addEventListener('load', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const plan = urlParams.get('plan');
+            const widget = document.getElementById('calendly-widget');
+            
+            if (plan && widget) {
+                let currentUrl = widget.getAttribute('data-url');
+                // Añadimos el plan a la URL del widget para pre-rellenar la respuesta
+                widget.setAttribute('data-url', currentUrl + '&a1=' + encodeURIComponent(plan));
+            }
+        });
+    </script>
 </body>
 </html>
