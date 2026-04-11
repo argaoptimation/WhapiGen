@@ -21,7 +21,7 @@ background-repeat:no-repeat; background-size:cover; color:var(--text); line-heig
 }
 img{max-width:100%;display:block}
 .container{width:min(1100px,92%);margin:0 auto}
-.section{padding:88px 0;position:relative;overflow:hidden}
+.section{padding:40px 0;position:relative;overflow:hidden}
 .section.alt{background:linear-gradient(180deg, rgba(15,23,42,.03), transparent 45%)}
 .section-title{font-size:clamp(28px,4vw,42px);margin:0 0 8px;line-height:1.1}
 .section-subtitle{margin:0 0 28px;color:var(--muted)}
@@ -93,7 +93,7 @@ grid-template-columns: 1fr;
 .navbar{position:fixed;top:0;left:0;width: 100%;z-index:1000;backdrop-filter:saturate(120%) blur(10px);background:color-mix(in oklab, var(--glass) 60%, transparent);border-bottom:1px solid var(--border)}
 /* IMPORTANTE: Agregá esto para que el contenido de la web no se meta debajo del menú */
 body {
-    padding-top: 70px; /* Ajustá este valor según la altura de tu navbar */
+    padding-top: 40px; /* Ajustá este valor según la altura de tu navbar */
 }
 .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
 .brand{display:flex;gap:10px;align-items:center;color:var(--text);text-decoration:none;font-weight:800}
@@ -284,11 +284,11 @@ label{display:flex;flex-direction:column;font-weight:700;margin:10px 0;gap:6px}
 
 /* Footer */
 .footer{border-top:1px solid var(--border);margin-top:24px;padding-top:18px}
-.footer-inner{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;text-align:center}
+.footer-inner{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;text-align:center}
 .f-links{display:flex;gap:16px;flex-wrap:wrap}
 .f-links a{color:var(--muted);text-decoration:none}
 .f-links a:hover{color:var(--text)}
-.legal{text-align:center;color:var(--muted);padding:1rem 0 2rem}
+.legal{text-align:center;color:var(--muted);padding:1rem 0 0.5rem}
 @media (max-width:768px){.footer-inner{justify-content:center}.legal{padding:12px 0}}
 
 /* WhatsApp float */
