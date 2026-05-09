@@ -3,162 +3,425 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conectar - Whapigen</title>
+    <title>Whapigen - Sistemas Automatizados</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&family=JetBrains+Mono:wght@400;700&display=swap');
         
+        :root {
+            --bg-deep: #02050a;
+            --cyan: #00f2ff;
+            --green: #00ff88;
+            --purple: #b400ff;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-sans: 'Inter', sans-serif;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
+            font-family: var(--font-mono);
+            background-color: var(--bg-deep);
+            color: #fff;
             min-height: 100vh;
+            margin: 0;
+            overflow: hidden; 
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin: 0;
-            overflow-x: hidden;
+            user-select: none;
         }
 
-        /* Tech Background Effect (Mismo estilo que la tarjeta) */
-        .tech-bg {
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 40%),
-                        radial-gradient(circle at 90% 80%, rgba(0, 200, 100, 0.1) 0%, transparent 40%),
-                        linear-gradient(180deg, #020617 0%, #0f172a 100%);
-            z-index: -2;
+        /* --- Fondos y Overlays --- */
+        #bg-canvas { 
+            position: fixed; inset: 0; z-index: 1; 
+        }
+        
+        .noise-overlay {
+            position: fixed; inset: 0; pointer-events: none; z-index: 50;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03; /* Ruido al 3% */
+        }
+        
+        .scanline {
+            position: fixed; inset: 0; pointer-events: none; z-index: 40;
+            background: linear-gradient(to bottom, transparent, rgba(0, 242, 255, 0.03) 50%, transparent);
+            height: 4px; /* Casi invisible, estilizado */
+            animation: scan 8s linear infinite;
+        }
+        @keyframes scan { 0% { top: -10px; } 100% { top: 100vh; } }
+
+        /* --- UI Principal --- */
+        .ui-layer { 
+            position: relative; z-index: 10; width: 100%; max-width: 420px; 
+            padding: 2rem; display: flex; flex-direction: column; gap: 2.5rem; 
         }
 
-        .circuit-lines {
-            position: fixed;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
-            background-size: 30px 30px;
-            mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
-            z-index: -1;
-            pointer-events: none;
+        /* Status Indicator */
+        .status-container { 
+            display: flex; align-items: center; gap: 0.5rem; justify-content: center; 
+            font-size: 0.65rem; color: rgba(255,255,255,0.6); text-transform: uppercase;
+            letter-spacing: 2px; margin-bottom: -1rem;
+        }
+        .status-dot { 
+            width: 6px; height: 6px; background-color: var(--green); border-radius: 50%; 
+            filter: drop-shadow(0 0 5px var(--green)); animation: pulseDot 2s infinite; 
+        }
+        @keyframes pulseDot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        /* Titulo Tornasolado Desplazándose */
+        .title-wrapper { filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.4)); text-align: center; }
+        .title { 
+            font-family: var(--font-sans);
+            font-size: 2.8rem; font-weight: 800; margin: 0; 
+            letter-spacing: 4px;
+            background: linear-gradient(90deg, var(--cyan), var(--purple), var(--green), var(--cyan));
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 6s linear infinite;
+        }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+        
+        .subtitle { 
+            text-align: center; font-size: 0.7rem; color: var(--cyan); margin-top: 0.2rem; 
+            letter-spacing: 4px; opacity: 0.9;
         }
 
-        /* Botones Glassmorphism */
-        .btn-tech {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* --- Botones Profundos Glassmorphism --- */
+        .cyber-btn {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            
+            /* Borde Gradiente con Radius (Técnica Background-Clip) */
+            border: 1.5px solid transparent;
+            background-image: linear-gradient(rgba(10, 15, 20, 0.8), rgba(10, 15, 20, 0.8)), linear-gradient(135deg, var(--cyan), rgba(255,255,255,0.05), var(--green));
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            
+            border-radius: 16px;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+            
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
             position: relative;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
             overflow: hidden;
         }
 
-        .btn-tech::before {
+        /* Pulso interno en Hover/Active */
+        .cyber-btn::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: 0.5s;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
+            background: radial-gradient(circle, rgba(0, 242, 255, 0.4) 0%, transparent 60%);
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease-out;
+            opacity: 0;
+            pointer-events: none;
         }
 
-        .btn-tech:hover::before {
-            left: 100%;
+        .cyber-btn:hover, .cyber-btn:active {
+            transform: scale(0.97);
+            box-shadow: 0 0 25px rgba(0, 242, 255, 0.3);
         }
 
-        .btn-tech:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
-            border-color: rgba(6, 182, 212, 0.5);
+        .cyber-btn:active::after {
+            width: 400px; height: 400px;
+            opacity: 1;
+        }
+        
+        .icon-container { display: flex; align-items: center; gap: 1.2rem; position: relative; z-index: 2; }
+        
+        .btn-title { 
+            font-family: var(--font-sans); font-weight: 800; font-size: 1.1rem; 
+            color: #fff; letter-spacing: 1px; margin: 0;
+        }
+        .btn-sub { 
+            font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.6); 
+            display: block; margin-top: 0.2rem; letter-spacing: 0.5px; text-transform: uppercase;
+        }
+        .btn-arrow { color: rgba(255,255,255,0.5); transition: color 0.3s, transform 0.3s; position: relative; z-index: 2;}
+        .cyber-btn:hover .btn-arrow { color: var(--cyan); transform: translateX(5px); }
+
+        /* --- QR Scanner Section --- */
+        .qr-section { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
+        .qr-toggle { 
+            background: transparent; border: none; color: var(--cyan); font-size: 0.65rem; 
+            font-family: var(--font-mono); letter-spacing: 3px; cursor: pointer; text-transform: uppercase; 
+            transition: filter 0.3s; opacity: 0.7;
+        }
+        .qr-toggle:hover { filter: drop-shadow(0 0 5px var(--cyan)); opacity: 1; }
+        
+        .qr-frame-wrapper {
+            max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .qr-frame-wrapper.open { max-height: 250px; }
+        
+        .qr-frame {
+            position: relative;
+            padding: 1.5rem;
+            background: rgba(0, 242, 255, 0.02);
+            clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--cyan);
+            border-bottom: 1px solid var(--green);
+            overflow: hidden;
         }
 
-        .btn-whatsapp:hover {
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
-            border-color: rgba(34, 197, 94, 0.5);
+        .qr-scanner-laser {
+            position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+            background: var(--cyan);
+            box-shadow: 0 0 15px var(--cyan), 0 0 30px var(--cyan);
+            animation: scannerSweep 2.5s ease-in-out infinite alternate;
+            z-index: 10;
+            pointer-events: none;
+        }
+        @keyframes scannerSweep { 
+            0% { top: 0%; opacity: 0; } 
+            10% { opacity: 1; } 
+            90% { opacity: 1; } 
+            100% { top: calc(100% - 3px); opacity: 0; } 
         }
 
-        /* Avatar Glow */
-        .avatar-glow {
-            box-shadow: 0 0 30px rgba(6, 182, 212, 0.2);
-            animation: pulse 3s infinite;
+        .qr-img { 
+            width: 130px; height: 130px; 
+            mix-blend-mode: screen;
+            opacity: 0.9;
+            position: relative; z-index: 5;
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 30px rgba(6, 182, 212, 0.2); }
-            50% { box-shadow: 0 0 50px rgba(6, 182, 212, 0.4); }
-            100% { box-shadow: 0 0 30px rgba(6, 182, 212, 0.2); }
-        }
     </style>
 </head>
-<body class="p-6 text-white">
+<body>
 
-    <div class="tech-bg"></div>
-    <div class="circuit-lines"></div>
+    <canvas id="bg-canvas"></canvas>
+    <div class="noise-overlay"></div>
+    <div class="scanline"></div>
 
-    <!-- Contenedor Principal -->
-    <main class="w-full max-w-md flex flex-col items-center space-y-8 z-10">
+    <div class="ui-layer">
         
-        <!-- Header / Avatar -->
-        <div class="flex flex-col items-center space-y-4 text-center">
-            <div class="w-24 h-24 rounded-full bg-slate-800 flex items-center justify-center border-2 border-cyan-500/30 avatar-glow relative mb-2">
-                <i data-lucide="bot" class="text-cyan-400 w-12 h-12"></i>
-                <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-4 border-slate-900"></div>
-            </div>
-            
-            <div>
-                <h1 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-emerald-400">
-                    WHAPIGEN
-                </h1>
-                <p class="text-slate-400 text-sm mt-1">Automatización Inteligente</p>
-            </div>
+        <!-- Estado del Sistema -->
+        <div class="status-container">
+            <div class="status-dot"></div>
+            <span>Core System Active</span>
         </div>
 
-        <!-- Texto de Bienvenida -->
-        <div class="text-center px-4">
-            <p class="text-slate-200 text-lg font-medium leading-relaxed">
-                ¡Hola! 👋<br>Selecciona cómo te gustaría continuar:
-            </p>
+        <!-- Identidad -->
+        <div class="title-wrapper">
+            <h1 class="title">WHAPIGEN</h1>
+            <div class="subtitle">SISTEMAS AUTOMATIZADOS</div>
         </div>
 
-        <!-- Botones de Acción -->
-        <div class="w-full space-y-4">
+        <!-- Botones Profundos Glassmorphism -->
+        <div class="flex flex-col gap-4">
             
-            <!-- Botón Web -->
-            <a href="https://whapigen.cloud" target="_blank" class="btn-tech group w-full p-4 rounded-xl flex items-center justify-between hover:bg-slate-800/50 cursor-pointer text-decoration-none">
-                <div class="flex items-center space-x-4">
-                    <div class="p-2 rounded-lg bg-cyan-500/10 text-cyan-400">
-                        <i data-lucide="globe" class="w-6 h-6"></i>
+            <!-- Boton 1: Pagina Web -->
+            <a href="https://whapigen.cloud" target="_blank" class="cyber-btn">
+                <div class="icon-container">
+                    <img src="WhapiGen/assets/logo2.png" alt="Web" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,242,255,0.8)]" 
+                         onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%2300f2ff\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><circle cx=\'12\' cy=\'12\' r=\'10\'></circle><line x1=\'2\' y1=\'12\' x2=\'22\' y2=\'12\'></line><path d=\'M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z\'></path></svg>';">
+                    <div>
+                        <div class="btn-title">PAGINA WEB</div>
+                        <span class="btn-sub">whapigen.cloud</span>
                     </div>
-                    <span class="font-semibold text-slate-100 group-hover:text-cyan-400 transition-colors">Visitar Sitio Web</span>
                 </div>
-                <i data-lucide="chevron-right" class="w-5 h-5 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all"></i>
+                <i data-lucide="chevron-right" class="w-6 h-6 btn-arrow"></i>
             </a>
 
-            <!-- Botón WhatsApp -->
-            <!-- IMPORTANTE: Reemplaza el número 1234567890 con tu número real -->
-            <a href="https://wa.me/5492664405019?text=Hola!%20Quiero%20saber%20mas%20sobre%20Whapigen" target="_blank" class="btn-tech btn-whatsapp group w-full p-4 rounded-xl flex items-center justify-between hover:bg-slate-800/50 cursor-pointer text-decoration-none">
-                <div class="flex items-center space-x-4">
-                    <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400">
-                        <i data-lucide="message-circle" class="w-6 h-6"></i>
+            <!-- Boton 2: WhatsApp -->
+            <a href="https://wa.me/5492664405019?text=Hola!%20Quiero%20saber%20mas%20sobre%20Whapigen" target="_blank" class="cyber-btn">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" class="w-8 h-8 drop-shadow-[0_0_10px_rgba(34,197,94,0.6)]" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: #25D366;">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    </svg>
+                    <div>
+                        <div class="btn-title">WHATSAPP</div>
+                        <span class="btn-sub">Canal Directo</span>
                     </div>
-                    <span class="font-semibold text-slate-100 group-hover:text-emerald-400 transition-colors">Chatear por WhatsApp</span>
                 </div>
-                <i data-lucide="chevron-right" class="w-5 h-5 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all"></i>
+                <i data-lucide="chevron-right" class="w-6 h-6 btn-arrow"></i>
             </a>
 
+            <!-- Boton 3: Instagram -->
+            <a href="https://www.instagram.com/whapigen/" target="_blank" class="cyber-btn">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" class="w-8 h-8" fill="none" stroke="url(#ig-grad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 10px rgba(180,0,255,0.4));">
+                        <defs>
+                            <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#00f2ff" />
+                                <stop offset="100%" stop-color="#b400ff" />
+                            </linearGradient>
+                        </defs>
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                    <div>
+                        <div class="btn-title">INSTAGRAM</div>
+                        <span class="btn-sub">@whapigen</span>
+                    </div>
+                </div>
+                <i data-lucide="chevron-right" class="w-6 h-6 btn-arrow"></i>
+            </a>
         </div>
 
-        <!-- Footer -->
-        <footer class="pt-8 text-center text-slate-600 text-xs">
-            <p>&copy; 2026 WHAPIGEN</p>
-        </footer>
-
-    </main>
+        <!-- Escáner QR Integrado -->
+        <div class="qr-section">
+            <button onclick="toggleQR()" class="qr-toggle">
+                [ INIT_SCANNER ]
+            </button>
+            <div id="qr-wrapper" class="qr-frame-wrapper">
+                <div class="qr-frame mt-4">
+                    <div class="qr-scanner-laser"></div>
+                    <img id="qr-image" src="" alt="Session QR" class="qr-img">
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         lucide.createIcons();
+
+        function toggleQR() {
+            const wrapper = document.getElementById('qr-wrapper');
+            const img = document.getElementById('qr-image');
+            
+            if (!wrapper.classList.contains('open')) {
+                const url = window.location.href;
+                img.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(url)}&bgcolor=000000&color=00ff88`;
+            }
+            wrapper.classList.toggle('open');
+        }
+
+        // --- Motor Canvas Batería-Optimizada ---
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d', { alpha: false });
+        let width, height;
+        let nodes = [];
+        const NODE_COUNT = 500;
+        let mouse = { x: -1000, y: -1000 };
+        
+        // Optimización: Pausar renderizado cuando la ventana no está visible
+        let isVisible = true;
+        document.addEventListener('visibilitychange', () => { isVisible = !document.hidden; });
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        
+        const trackCursor = (x, y) => { mouse.x = x; mouse.y = y; };
+        window.addEventListener('mousemove', e => trackCursor(e.clientX, e.clientY));
+        window.addEventListener('touchmove', e => trackCursor(e.touches[0].clientX, e.touches[0].clientY), {passive: true});
+        window.addEventListener('mouseout', () => trackCursor(-1000, -1000));
+        window.addEventListener('touchend', () => trackCursor(-1000, -1000));
+
+        class Node {
+            constructor() {
+                this.x = Math.random() * window.innerWidth;
+                this.y = Math.random() * window.innerHeight;
+                this.vx = (Math.random() - 0.5) * 0.4; // Velocidad reducida
+                this.vy = (Math.random() - 0.5) * 0.4;
+                this.baseRadius = Math.random() * 1.5 + 0.5;
+                this.radius = this.baseRadius;
+                this.pulse = Math.random() > 0.97; // Solo 3% pulsan (ahorro batería)
+                this.pulsePhase = Math.random() * Math.PI * 2;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distSq = dx*dx + dy*dy;
+                if (distSq < 22500) { 
+                    this.x += dx * 0.01;
+                    this.y += dy * 0.01;
+                }
+
+                if (this.pulse) {
+                    this.pulsePhase += 0.05;
+                    this.radius = this.baseRadius + Math.abs(Math.sin(this.pulsePhase)) * 1.5;
+                }
+            }
+        }
+
+        function initCanvas() {
+            resize();
+            nodes = Array.from({length: NODE_COUNT}, () => new Node());
+            requestAnimationFrame(render);
+        }
+
+        function render() {
+            if (!isVisible) {
+                requestAnimationFrame(render);
+                return;
+            }
+
+            ctx.fillStyle = '#02050a';
+            ctx.fillRect(0, 0, width, height);
+            ctx.lineWidth = 0.5;
+
+            // Optimizacion estricta O(n^2) con Culling cuadrado
+            for (let i = 0; i < nodes.length; i++) {
+                let n1 = nodes[i];
+                n1.update();
+
+                for (let j = i + 1; j < nodes.length; j++) {
+                    let n2 = nodes[j];
+                    let dx = n1.x - n2.x;
+                    let dy = n1.y - n2.y;
+                    
+                    if(Math.abs(dx) > 80 || Math.abs(dy) > 80) continue; // Culling estricto 80px
+                    
+                    let distSq = dx*dx + dy*dy;
+                    if (distSq < 6400) { // 80px max
+                        let dist = Math.sqrt(distSq);
+                        let opacity = (1 - dist / 80) * 0.3 + 0.1;
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(n1.x, n1.y);
+                        ctx.lineTo(n2.x, n2.y);
+                        ctx.strokeStyle = `rgba(0, 242, 255, ${opacity.toFixed(2)})`;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            for (let i = 0; i < nodes.length; i++) {
+                let n = nodes[i];
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.radius, 0, Math.PI*2);
+                
+                if (n.pulse) {
+                    ctx.fillStyle = '#00ff88';
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, n.radius * 3, 0, Math.PI*2);
+                    ctx.fillStyle = 'rgba(0, 255, 136, 0.1)';
+                    ctx.fill();
+                } else {
+                    ctx.fillStyle = '#00f2ff';
+                    ctx.fill();
+                }
+            }
+
+            requestAnimationFrame(render);
+        }
+
+        initCanvas();
     </script>
 </body>
 </html>
