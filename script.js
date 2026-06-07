@@ -1,3 +1,43 @@
+// ===== ARS / USD Toggle =====
+let blueRate = null;
+let currMode = 'USD';
+
+async function fetchBlue() {
+  try {
+    const r = await fetch('https://dolarapi.com/v1/dolares/blue');
+    if (!r.ok) return;
+    const d = await r.json();
+    blueRate = parseFloat(d.venta);
+    const info = document.getElementById('blue-rate-info');
+    if (info) info.textContent = `USD Blue Venta: $${blueRate.toLocaleString('es-AR')}`;
+    const wrap = document.getElementById('currency-toggle-wrap');
+    if (wrap) wrap.style.visibility = 'visible';
+  } catch { /* silently fail */ }
+}
+
+function toARS(usdStr) {
+  const isDesde = /desde/i.test(String(usdStr));
+  const num = parseFloat(String(usdStr).replace(/[^0-9.]/g, ''));
+  if (isNaN(num)) return usdStr;
+  const rounded = Math.floor((num * blueRate) / 500) * 500;
+  const ars = rounded.toLocaleString('es-AR');
+  return isDesde ? `Desde $${ars}` : ars;
+}
+
+function refreshPrices() {
+  const isYearly = document.getElementById('billingToggle')?.checked;
+  const key = isYearly ? 'yearly' : 'monthly';
+  document.querySelectorAll('.value').forEach(el => {
+    const usd = el.getAttribute(`data-${key}`);
+    if (!usd) return;
+    el.textContent = (currMode === 'ARS' && blueRate) ? toARS(usd) : usd;
+  });
+  document.querySelectorAll('.period').forEach(el => {
+    const raw = el.getAttribute(`data-${key}`) || el.getAttribute('data-monthly') || '';
+    el.textContent = (currMode === 'ARS') ? raw.replace('USD', 'ARS') : raw;
+  });
+}
+
 // ===== EmailJS config (si usás EmailJS) =====
 const EMAILJS_PUBLIC_KEY = "TU_PUBLIC_KEY";
 const EMAILJS_SERVICE_ID = "TU_SERVICE_ID";
@@ -34,31 +74,6 @@ industryToggle.addEventListener('change', () => {
 const $  = (s, ctx=document) => ctx.querySelector(s);
 const $$ = (s, ctx=document) => Array.from(ctx.querySelectorAll(s));
 
-// ===== Loader INTELIGENTE (Con tiempo mínimo de lectura) =====
-const MIN_TIME = 2000; // Tiempo mínimo en milisegundos (2 seg)
-const start = Date.now();
-
-function hideLoader() {
-  const loader = document.getElementById("loader");
-  if (!loader || loader.classList.contains("hide")) return;
-
-  // Calculamos cuánto falta para cumplir los 2 segundos
-  const elapsed = Date.now() - start;
-  const remaining = Math.max(0, MIN_TIME - elapsed);
-
-  setTimeout(() => {
-    loader.classList.add("fade-logo2");
-    setTimeout(() => {
-        loader.classList.add("hide");
-        // IMPORTANTE: Refresca las animaciones cuando se va el loader
-        if (window.ScrollTrigger) ScrollTrigger.refresh(); 
-    }, 800);
-  }, remaining);
-}
-
-window.addEventListener("load", hideLoader);
-// Plan B (Anti-Instagram): Si a los 4 seg no cargó, forzar salida
-setTimeout(hideLoader, 4000);
 
 
 // Año footer
@@ -187,29 +202,37 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Toggle precios
-  const billingToggle = document.getElementById('billingToggle');
-  const values = document.querySelectorAll('.value');
-  const periods = document.querySelectorAll('.period');
+  // Toggle precios (mensual / anual) — usa refreshPrices para respetar el modo ARS
+  document.getElementById('billingToggle')?.addEventListener('change', refreshPrices);
 
-  billingToggle.addEventListener('change', () => {
-      const isYearly = billingToggle.checked;
-
-      // Cambia los números
-      values.forEach(val => {
-          val.textContent = isYearly ? val.getAttribute('data-yearly') : val.getAttribute('data-monthly');
-      });
-
-      // Cambia el texto de USD/mes
-      periods.forEach(p => {
-          p.textContent = isYearly ? p.getAttribute('data-yearly') : p.getAttribute('data-monthly');
-      });
+  // Toggle USD / ARS
+  const currencyToggle = document.getElementById('currencyToggle');
+  currencyToggle?.addEventListener('change', () => {
+    currMode = currencyToggle.checked ? 'ARS' : 'USD';
+    document.getElementById('curr-usd-btn')?.classList.toggle('active', !currencyToggle.checked);
+    document.getElementById('curr-ars-btn')?.classList.toggle('active',  currencyToggle.checked);
+    refreshPrices();
   });
   
   // Tilt
   if (window.VanillaTilt) {
     VanillaTilt.init($$(".tilt"), { max: 10, speed: 400, glare: true, "max-glare": 0.15 });
   }
+
+  // --- Magnetic Buttons ---
+  $$('.btn.primary, .btn.ghost, .btn.contrast').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const dx = (e.clientX - (rect.left + rect.width  / 2)) * 0.28;
+      const dy = (e.clientY - (rect.top  + rect.height / 2)) * 0.28;
+      btn.style.transform = `translate(${dx}px, ${dy}px)`;
+      btn.style.transition = 'transform 0.1s ease';
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+      btn.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    });
+  });
 
   // Typed
   if (window.Typed) {
@@ -219,50 +242,20 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Animaciones GSAP (CON RED DE SEGURIDAD)
-  if (window.gsap && window.ScrollTrigger) {
-    gsap.registerPlugin(ScrollTrigger);
-    
-    // 1. Configuración de animaciones (Intento normal)
-    const titleAnim = $(".title-animated");
-    if(titleAnim) {
-       gsap.from(titleAnim, { y:18, opacity:1, duration:.8, ease:"power2.out" });
-    }
-
-    $$(".section").forEach(sec => {
-      const elements = sec.querySelectorAll(".section-title, .section-subtitle, .card, .case, .review, .phone");
-      if (elements.length > 0) {
-        gsap.from(elements, {
-          opacity: 1,       
-          y: 30,            
-          duration: 0.8,
-          ease: "power2.out",
-          stagger: 0.1,
-          scrollTrigger: { trigger: sec, start: "top 90%" } // "90%" ayuda a que dispare antes en móviles
-        });
-      }
-    });
-
-    // 2. RED DE SEGURIDAD (La Solución Anti-Instagram) 🛡️
-    // Si por alguna razón (navegador lento, bug de Instagram) las cosas siguen ocultas
-    // después de 1 segundo, las forzamos a aparecer.
-    setTimeout(() => {
-      const animatableElements = document.querySelectorAll(".section-title, .section-subtitle, .card, .case, .review, .phone, .title-animated");
-      
-      animatableElements.forEach(el => {
-        // Si el elemento sigue invisible (opacity cercano a 0), lo mostramos a la fuerza
-        if (getComputedStyle(el).opacity < 0.1) {
-          el.style.opacity = "1";
-          el.style.transform = "none"; // Quitamos cualquier desplazamiento trabado
-          el.style.visibility = "visible";
-        }
+  // Scroll reveal bidireccional — IntersectionObserver
+  (() => {
+    const SEL = '.section-title,.section-subtitle,.card,.case,.review,.phone,.why-item,.process-step';
+    document.querySelectorAll('.section:not(.hero)').forEach(sec => {
+      sec.querySelectorAll(SEL).forEach((el, i) => {
+        el.style.setProperty('--sr-d', `${Math.min(i, 5) * 0.09}s`);
       });
-      
-      // Forzamos a GSAP a recalcular una vez más por si acaso
-      ScrollTrigger.refresh();
-      
-    }, 1500); // Se ejecuta a los 1.5 segundos de cargar
-  }
+    });
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => e.target.classList.toggle('in-view', e.isIntersecting));
+    }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
+    const fullSel = SEL.split(',').map(s => `.section:not(.hero) ${s}`).join(',');
+    document.querySelectorAll(fullSel).forEach(el => obs.observe(el));
+  })();
 
   /* === Lógica del Formulario a WhatsApp === */
   const contactForm = document.getElementById('contactForm');
@@ -314,12 +307,9 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 window.addEventListener('load', () => {
-    // Esperamos un momento después de que la ventana cargue 
-    // para que coincida con la desaparición de tu #loader
     setTimeout(() => {
         const fab = document.querySelector('.floating-cta');
-        if (fab) {
-            fab.classList.add('visible');
-        }
-    }, 2000); // 2 segundos es un tiempo estándar para que el loader se vaya
+        if (fab) fab.classList.add('visible');
+    }, 2000);
+    fetchBlue();
 });

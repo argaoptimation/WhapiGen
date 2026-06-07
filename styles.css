@@ -58,7 +58,6 @@ grid-template-columns: 1fr;
     pointer-events: none;      /* No se puede clickear mientras es invisible */
     transition: opacity 0.8s ease-out, transform 0.3s ease; /* Transición suave */
 }
-/* Esta clase la agregaremos con JS cuando termine el loader */
 .floating-cta.visible {
     opacity: 1 !important;
     pointer-events: auto !important;
@@ -79,15 +78,6 @@ grid-template-columns: 1fr;
 }
 /* Progress */
 #scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--secondary),var(--accent));z-index:9999}
-
-/* Loader */
-#loader{position:fixed;inset:0;display:grid;place-items:center;background:var(--bg);z-index:99999}
-#loader.hide{opacity:0;visibility:hidden;transition:opacity .4s ease, visibility 0s .4s}
-.loader-inner{background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:16px;padding:22px 24px;text-align:center;box-shadow:var(--shadow)}
-.loader-bar{width:220px;height:8px;background:rgba(0,0,0,.08);border-radius:999px;margin:12px auto 6px;overflow:hidden}
-:root[data-theme="dark"] .loader-bar{background:rgba(255,255,255,.08)}
-.loader-bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--secondary),var(--accent));animation:load 1s ease forwards}
-@keyframes load{to{width:100%}}
 
 /* Navbar */
 .navbar{position:fixed;top:0;left:0;width: 100%;z-index:1000;backdrop-filter:saturate(120%) blur(10px);background:color-mix(in oklab, var(--glass) 60%, transparent);border-bottom:1px solid var(--border)}
@@ -333,121 +323,6 @@ color: var(--text);
 :root:not([data-theme="dark"]) .card {
 border-color: rgba(15, 23, 42, 0.05);
 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-}
-
-
-/* === Loader minimalista sin card, solo logo2 + línea + texto === */
-
-#loader {
-position: fixed;
-inset: 0;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-background: radial-gradient(circle at 50% 30%, #bfffea 0%, #cfe8ff 80%);
-background-size: 200% 200%;
-animation: gradientMove 6s ease-in-out infinite alternate;
-z-index: 99999;
-transition: opacity 1.2s ease, visibility 1.2s ease;
-}
-
-:root[data-theme="dark"] #loader {
-background: radial-gradient(circle at 50% 30%, #062620 0%, #0a1533 80%);
-animation: gradientMoveDark 6s ease-in-out infinite alternate;
-}
-
-/* Contenido suelto (sin card) */
-.loader-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 22px;
-  text-align: center;
-  /* ELIMINAMOS EL FONDO Y LA SOMBRA PARA CAMUFLARLO */
-  background: transparent; 
-  box-shadow: none;
-  border: none;
-  backdrop-filter: none;
-}
-
-/* Busca esta parte en tu CSS */
-.loader-inner img {
-  width: 130px;
-  height: auto;
-  animation: pulseLogo 1.8s ease-in-out infinite;
-  
-  /* AGREGA ESTA LÍNEA: */
-  mix-blend-mode: screen; 
-}
-
-/* Línea de carga */
-.loader-bar {
-width: 280px;
-height: 6px;
-border-radius: 999px;
-background: rgba(255, 255, 255, 0.35);
-overflow: hidden;
-box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
-}
-
-.loader-bar span {
-display: block;
-height: 100%;
-width: 0%;
-background: linear-gradient(90deg, var(--secondary), var(--accent));
-animation: loadProgress 1.8s ease forwards;
-}
-
-/* Texto */
-.loader-inner p {
-font-weight: 600;
-font-size: 16px;
-letter-spacing: 0.2px;
-color: #0f172a;
-}
-
-:root[data-theme="dark"] .loader-inner p {
-color: #e6f0ff;
-}
-
-/* Etapas de desaparición */
-#loader.fade-logo2 img,
-#loader.fade-logo2 p,
-#loader.fade-logo2 .loader-bar {
-opacity: 0;
-transition: opacity 0.6s ease;
-}
-
-#loader.hide {
-opacity: 0;
-visibility: hidden;
-transition-delay: 0.4s;
-}
-
-/* Animaciones */
-@keyframes fadeZoomIn {
-0% { opacity: 0; transform: scale(0.95); }
-100% { opacity: 1; transform: scale(1); }
-}
-
-@keyframes pulselogo2 {
-0%, 100% { transform: scale(1); opacity: 1; }
-50% { transform: scale(1.07); opacity: 0.9; }
-}
-
-@keyframes loadProgress {
-to { width: 100%; }
-}
-
-@keyframes gradientMove {
-0% { background-position: 0% 50%; }
-100% { background-position: 100% 50%; }
-}
-
-@keyframes gradientMoveDark {
-0% { background-position: 100% 50%; }
-100% { background-position: 0% 50%; }
 }
 
 
@@ -1128,7 +1003,7 @@ user-select: none;
   position: fixed;
   inset: 0;
   background: rgba(11, 18, 32, 0.98); /* Fondo casi negro */
-  z-index: 9999999; /* Por encima de TODO, incluso del Loader */
+  z-index: 9999999;
   justify-content: center;
   align-items: center;
   padding: 20px;
@@ -1173,41 +1048,6 @@ user-select: none;
   cursor: pointer;
 }
 
-/* === LOADER CAMUFLADO (FONDO OSCURO) === */
-
-#loader {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* Usamos el negro profundo de tu imagen como base */
-  background: radial-gradient(circle at 50% 40%, #0d1b1b 0%, #071018 70%); 
-  z-index: 99999;
-  transition: opacity 1.2s ease, visibility 1.2s ease;
-}
-
-/* En modo oscuro lo hacemos aún más profundo */
-:root[data-theme="dark"] #loader {
-  background: radial-gradient(circle at 50% 40%, #061616 0%, #050a0f 100%);
-}
-
-/* El texto del loader debe ser claro para que se lea sobre el negro */
-.loader-inner p {
-  color: #e6f0ff !important;
-  font-weight: 500;
-  margin-top: 15px;
-}
-
-/* OPCIONAL: El toque final para que los bordes de la imagen desaparezcan */
-.loader-inner img {
-  width: 140px;
-  height: auto;
-  filter: drop-shadow(0 0 15px rgba(39, 215, 141, 0.3)); /* Brillo verde como tu logo */
-  mix-blend-mode: lighten; /* Esto hace que el negro de la foto sea "invisible" */
-}
-
 .category-toggle {
     display: flex;
     justify-content: center;
@@ -1230,10 +1070,291 @@ user-select: none;
 /* Ajuste específico para celulares muy angostos */
 @media (max-width: 400px) {
     .category-toggle {
-        gap: 8px;        /* Achicamos el hueco para que entre todo */
+        gap: 8px;
     }
-    
     .category-toggle span {
-        font-size: 13px; /* Bajamos un punto la letra para ganar espacio */
+        font-size: 13px;
     }
+}
+
+/* =====================================================
+   EFECTOS FUTURISTAS
+   ===================================================== */
+
+/* --- Hero: z-index fix para que el contenido flote sobre mesh/grid --- */
+#home .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- 1. Gradient Mesh Animado (Hero background) --- */
+.hero-mesh {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero-mesh::before {
+  content: '';
+  position: absolute;
+  width: 750px;
+  height: 750px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(39,215,141,.22) 0%, transparent 65%);
+  top: -250px;
+  right: -220px;
+  filter: blur(72px);
+  animation: meshFloat1 10s ease-in-out infinite alternate;
+}
+.hero-mesh::after {
+  content: '';
+  position: absolute;
+  width: 620px;
+  height: 620px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(42,169,255,.18) 0%, transparent 65%);
+  bottom: -180px;
+  left: -170px;
+  filter: blur(72px);
+  animation: meshFloat2 13s ease-in-out infinite alternate;
+}
+@keyframes meshFloat1 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-70px, 50px) scale(1.18); }
+}
+@keyframes meshFloat2 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(55px, -45px) scale(1.12); }
+}
+
+/* --- 2. Perspective Grid (Hero) --- */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero-grid::before {
+  content: '';
+  position: absolute;
+  left: -30%;
+  right: -30%;
+  bottom: -10%;
+  height: 60%;
+  background-image:
+    linear-gradient(rgba(42,169,255,.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42,169,255,.09) 1px, transparent 1px);
+  background-size: 60px 60px;
+  transform: perspective(480px) rotateX(68deg);
+  transform-origin: bottom center;
+  animation: gridScroll 5s linear infinite;
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 100%);
+  mask-image: linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 100%);
+}
+@keyframes gridScroll {
+  from { background-position: 0 0; }
+  to   { background-position: 0 60px; }
+}
+
+/* --- 3. Glitch Text — removido por diseño --- */
+
+/* --- 4. Hero Tagline secundario --- */
+.hero-tagline {
+  font-size: clamp(13px, 1.7vw, 16px);
+  font-style: italic;
+  color: var(--muted);
+  margin: 0 0 12px;
+  line-height: 1.55;
+  max-width: 460px;
+  border-left: 3px solid var(--primary);
+  padding-left: 12px;
+  opacity: 0.88;
+}
+
+/* --- 5. Card Luminous Border (conic-gradient + mask) --- */
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes card-border-spin {
+  to { --border-angle: 360deg; }
+}
+
+.card {
+  position: relative;
+  isolation: isolate;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 58%,
+    var(--primary) 76%,
+    var(--secondary) 90%,
+    var(--accent) 96%,
+    transparent 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+  animation: card-border-spin 2.5s linear infinite;
+}
+
+/* --- 6. Magnetic Button base transition --- */
+.btn {
+  will-change: transform;
+}
+
+/* --- Scroll reveal mejorado: se activa vía GSAP en script.js --- */
+
+/* ── Nav link destacado ── */
+.nav-links a.nav-highlight {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: #071018 !important;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 13px;
+  transition: opacity .2s;
+}
+.nav-links a.nav-highlight:hover { opacity: .88; color: #071018 !important; }
+
+/* ── Cross-promo entre páginas ── */
+.also-offer {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(90deg, rgba(39,215,141,.06), rgba(42,169,255,.06));
+  border: 1px solid rgba(39,215,141,.28);
+  border-radius: 12px;
+  padding: 9px 16px;
+  margin-top: 16px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+  cursor: pointer;
+}
+.also-offer:hover {
+  border-color: var(--primary);
+  background: linear-gradient(90deg, rgba(39,215,141,.11), rgba(42,169,255,.11));
+  box-shadow: 0 0 20px rgba(39,215,141,.15);
+}
+.also-offer .ao-icon { font-size: 17px; }
+.also-offer .ao-arrow { color: var(--primary); font-weight: 800; margin-left: 2px; }
+
+/* ── Toggle USD / ARS ── */
+.currency-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 18px;
+  font-size: 14px;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+.currency-opts {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.curr-opt {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--muted);
+  transition: color .2s;
+}
+.curr-opt.active { color: var(--primary); }
+.rate-info {
+  font-size: 11.5px;
+  color: var(--muted);
+  background: rgba(39,215,141,.08);
+  border: 1px solid rgba(39,215,141,.2);
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+
+/* ── Tres toggles en fila (Moneda / Rubro / Período) ── */
+.toggles-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.toggles-row .currency-bar {
+  margin: 0;
+  gap: 8px;
+}
+.toggle-sep {
+  width: 1px;
+  height: 28px;
+  background: var(--border);
+  flex-shrink: 0;
+  opacity: .7;
+}
+.toggle-grp {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 14px;
+}
+@media (max-width: 680px) {
+  .toggles-row { flex-direction: column; gap: 10px; }
+  .toggle-sep   { width: 70px; height: 1px; }
+}
+
+/* ── Scroll reveal bidireccional ── */
+/* CSS oculta los elementos antes del primer render (link en <head>) */
+.section:not(.hero) .section-title,
+.section:not(.hero) .section-subtitle,
+.section:not(.hero) .card,
+.section:not(.hero) .case,
+.section:not(.hero) .review,
+.section:not(.hero) .phone,
+.section:not(.hero) .why-item,
+.section:not(.hero) .process-step {
+  opacity: 0;
+  transform: translateY(26px);
+  filter: blur(5px);
+  transition:
+    opacity   0.7s ease           var(--sr-d, 0s),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--sr-d, 0s),
+    filter    0.6s ease           var(--sr-d, 0s);
+}
+.section:not(.hero) .section-title.in-view,
+.section:not(.hero) .section-subtitle.in-view,
+.section:not(.hero) .card.in-view,
+.section:not(.hero) .case.in-view,
+.section:not(.hero) .review.in-view,
+.section:not(.hero) .phone.in-view,
+.section:not(.hero) .why-item.in-view,
+.section:not(.hero) .process-step.in-view {
+  opacity: 1;
+  transform: none;
+  filter: none;
 }

@@ -28,24 +28,27 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-  <div id="loader"><div class="loader-inner"><img src="assets/logo2.png" alt="WHAPIGEN" width="72"><div class="loader-bar"><span></span></div><p>Iniciando WHAPIGEN…</p></div></div>
   <div id="scroll-progress"></div>
   <header class="navbar"><div class="container nav-inner"><a href="#home" class="brand"><img src="assets/logo2.png" alt="logo2" class="logo2"><span>WHAPIGEN</span></a>
-  <nav class="nav-links" id="navlinks"><a href="#home" aria-current="page">Inicio</a><a href="#features">Características</a><a href="#usecases">Aplicaciones</a><a href="#demo">Demo</a><!--a href="#reviews">Reseñas</a--><a href="#pricing">Precios</a><a href="#contact">Contacto</a></nav>
+  <nav class="nav-links" id="navlinks"><a href="#home" aria-current="page">Inicio</a><a href="#features">Características</a><a href="#usecases">Aplicaciones</a><a href="#demo">Demo</a><!--a href="#reviews">Reseñas</a--><a href="#pricing">Precios</a><a href="#contact">Contacto</a><a href="web/" class="nav-highlight">🌐 Sitios Web</a></nav>
   <div class="nav-actions"><button class="btn ghost small" id="themeToggle">🌗</button><button class="nav-toggle" id="navtoggle"><span></span><span></span><span></span></button></div></div></header>
 
   <!-- HERO -->
   <section id="home" class="section hero">
+    <div class="hero-mesh" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true"></div>
     <div class="container grid-2">
       <div class="hero-copy">
-        <h1 class="title-animated">Agentes WhatsApp con <span class="gradient-text">IA</span><span class="accent">.</span></h1>
+        <h1 class="title-animated">Agentes WhatsApp con <span class="gradient-text">IA</span></h1>
         <p class="lead">Automatizá atención, ventas y turnos con <strong>WHAPIGEN</strong>. Conversaciones inteligentes 24/7 sin perder el tono humano.</p>
+        <p class="hero-tagline">Resolvemos lo que necesitás, y lo que todavía no sabés que necesitás resolver.</p>
         <p class="typed-wrap"><span class="muted">Ideal para </span><span id="typed"></span></p>
         <div class="cta-row">
           <a class="btn primary" href="https://wa.me/5493516435132?text=Tengo%20un%20negocio%de...">Consulta tu caso</a>
           <a class="btn ghost" href="#features">Ver características</a>
         </div>
         <ul class="badges"><li>⚡ Respuestas en segundos</li><li>🔒 Privacidad y seguridad</li><li>🧩 Integración de multiples plataformas</li></ul>
+        <a href="web/" class="also-offer"><span class="ao-icon">🌐</span><span class="ao-text">También: sitios web y plataformas 100% a medida</span><span class="ao-arrow">→</span></a>
       </div>
 
       <div class="hero-art phone-wrap tilt" data-tilt>
@@ -87,9 +90,9 @@
     <h2 class="section-title">Características</h2>
     <p class="section-subtitle">Todo lo que necesitás para escalar por WhatsApp.</p>
     <div class="cards grid-3">
-      <article class="card tilt"><div class="icon">🙋🏻‍♂️</div><h3>IA Conversacional</h3><p>Flujos naturales.</p><ul class="list"><li>Memoria de conversación</li><li>Tono personalizable</li><li>Recordatorios</li></ul></article>
-      <article class="card tilt"><div class="icon">📲</div><h3>Integraciones</h3><p>Funcionamiento con varios sistemas</p><ul class="list"><li>Google Sheets/Calendar</li><li>API oficial de Meta</li><li>Comprobante de Pagos</li><li>Muchos màs...</li></ul></article>
-      <article class="card tilt"><div class="icon">🛡️</div><h3>Confiable y Seguro</h3><p>Privacidad y control por defecto.</p><ul class="list"><li>Anti-spam</li><li>Rate limit</li><li>Logs</li></ul></article>
+      <article class="card tilt"><div class="icon">🤖</div><h3>IA Conversacional</h3><p>Flujos naturales.</p><ul class="list"><li>Memoria de conversación</li><li>Tono personalizable</li><li>Recordatorios</li></ul></article>
+      <article class="card tilt"><div class="icon">⚡</div><h3>Integraciones</h3><p>Funcionamiento con varios sistemas</p><ul class="list"><li>Google Sheets/Calendar</li><li>API oficial de Meta</li><li>Comprobante de Pagos</li><li>Muchos más...</li></ul></article>
+      <article class="card tilt"><div class="icon">🔐</div><h3>Confiable y Seguro</h3><p>Privacidad y control por defecto.</p><ul class="list"><li>Anti-spam</li><li>Rate limit</li><li>Logs</li></ul></article>
     </div></div>
   </section>
 
@@ -252,27 +255,39 @@
       </div>
     </div>
 
-
  <section id="pricing" class="section">
   <div class="container">
     <h2 class="section-title">Precios</h2>
     
-    <div class="category-toggle" style="margin-bottom: 25px; display: flex; justify-content: center; align-items: center; gap: 15px;">
-      <span id="label-estetica" style="font-weight: bold; color: var(--primary);">Estética y Salud</span>
-      <label class="switch">
-        <input id="industryToggle" type="checkbox">
-        <span class="slider"></span>
-      </label>
-      <span id="label-empresa">Empresas y Servicios</span>
-    </div>
+    <div class="toggles-row">
+      <!-- Moneda -->
+      <div class="currency-bar" id="currency-toggle-wrap" style="visibility:hidden">
+        <span>Ver en:</span>
+        <div class="currency-opts">
+          <span class="curr-opt active" id="curr-usd-btn">USD</span>
+          <label class="switch"><input id="currencyToggle" type="checkbox"><span class="slider"></span></label>
+          <span class="curr-opt" id="curr-ars-btn">ARS</span>
+        </div>
+        <small id="blue-rate-info" class="rate-info"></small>
+      </div>
 
-    <div class="pricing-toggle">
-      <span>Mensual</span>
-      <label class="switch">
-        <input id="billingToggle" type="checkbox">
-        <span class="slider"></span>
-      </label>
-      <span>Anual <small class="save">ahorrá 20%</small></span>
+      <div class="toggle-sep"></div>
+
+      <!-- Rubro -->
+      <div class="toggle-grp">
+        <span id="label-estetica" style="font-weight:bold;color:var(--primary);">Estética y Salud</span>
+        <label class="switch"><input id="industryToggle" type="checkbox"><span class="slider"></span></label>
+        <span id="label-empresa">Empresas y Servicios</span>
+      </div>
+
+      <div class="toggle-sep"></div>
+
+      <!-- Período -->
+      <div class="toggle-grp">
+        <span>Mensual</span>
+        <label class="switch"><input id="billingToggle" type="checkbox"><span class="slider"></span></label>
+        <span>Anual <small class="save">ahorrá 20%</small></span>
+      </div>
     </div>
 
     <div class="cards grid-4 pricing-cards">
