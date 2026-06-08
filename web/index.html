@@ -179,10 +179,23 @@
     .cta-final p   { color: var(--muted); font-size: 16px; max-width: 500px; margin: 0 auto 26px; line-height: 1.6; }
     .cta-final .cta-row { justify-content: center; }
 
-    /* ── Precio: números igual de grandes que en automatizaciones ── */
-    .web-value { font-size: 3.5rem; font-weight: 800; line-height: 1; color: var(--text); }
-    .price-row { display: flex; align-items: flex-start; gap: 4px; justify-content: center; }
-    .price-row .currency { font-size: 1.5rem; font-weight: 700; margin-top: 6px; opacity: .8; }
+    /* ── Precio: números consistentes en todas las cards (USD y ARS) ── */
+    .web-value {
+      font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .price-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 4px;
+      justify-content: center;
+      min-height: 2.8rem;
+      align-items: center;
+    }
+    .price-row .currency { font-size: 1.2rem; font-weight: 700; opacity: .8; align-self: flex-start; margin-top: 4px; }
   </style>
 </head>
 <body>
@@ -425,7 +438,7 @@
           <p class="muted">Proyectos complejos</p>
           <div class="price-amount">
             <div class="price-row">
-              <span class="web-value" style="font-size:2rem;" data-usd="cotizar">Cotizar</span>
+              <span class="web-value" data-usd="cotizar">Cotizar</span>
             </div>
             <span class="period web-period">según el proyecto</span>
           </div>
