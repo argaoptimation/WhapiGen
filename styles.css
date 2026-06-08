@@ -523,8 +523,9 @@ transform: scale(1.05);
 }
 
 .price-amount .value {
-    font-size: 42px; /* Ajustalo a tu gusto */
+    font-size: clamp(1.6rem, 3.2vw, 2.6rem);
     font-weight: 800;
+    white-space: nowrap;
 }
 
 .price-amount .currency {
@@ -891,9 +892,10 @@ user-select: none;
 }
 
 .card.price .value {
-  font-size: 3.5rem; /* Aseguramos el tamaño fijo */
+  font-size: clamp(1.6rem, 3.2vw, 2.6rem);
   font-weight: 800;
   line-height: 1;
+  white-space: nowrap;
   letter-spacing: -1px;
   
   /* EL TRUCO DE INGENIERÍA: */
