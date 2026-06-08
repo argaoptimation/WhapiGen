@@ -312,4 +312,5 @@ window.addEventListener('load', () => {
         if (fab) fab.classList.add('visible');
     }, 2000);
     fetchBlue();
+    setInterval(fetchBlue, 30 * 60 * 1000);
 });
