@@ -242,7 +242,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Scroll reveal bidireccional — IntersectionObserver
   (() => {
-    const SEL = '.section-title,.section-subtitle,.card,.case,.review,.phone,.why-item,.process-step';
+    const SEL = '.section-title,.section-subtitle,.card,.case,.review,.phone,.why-item,.process-step,.faq-item';
     document.querySelectorAll('.section:not(.hero)').forEach(sec => {
       sec.querySelectorAll(SEL).forEach((el, i) => {
         el.style.setProperty('--sr-d', `${Math.min(i, 5) * 0.09}s`);
@@ -254,6 +254,16 @@ window.addEventListener("DOMContentLoaded", () => {
     const fullSel = SEL.split(',').map(s => `.section:not(.hero) ${s}`).join(',');
     document.querySelectorAll(fullSel).forEach(el => obs.observe(el));
   })();
+
+  // FAQ accordion
+  $$('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      $$('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
 
   /* === Lógica del Formulario a WhatsApp === */
   const contactForm = document.getElementById('contactForm');

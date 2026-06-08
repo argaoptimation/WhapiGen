@@ -1349,7 +1349,8 @@ user-select: none;
 .section:not(.hero) .review,
 .section:not(.hero) .phone,
 .section:not(.hero) .why-item,
-.section:not(.hero) .process-step {
+.section:not(.hero) .process-step,
+.section:not(.hero) .faq-item {
   opacity: 0;
   transform: translateY(26px);
   filter: blur(5px);
@@ -1365,8 +1366,60 @@ user-select: none;
 .section:not(.hero) .review.in-view,
 .section:not(.hero) .phone.in-view,
 .section:not(.hero) .why-item.in-view,
-.section:not(.hero) .process-step.in-view {
+.section:not(.hero) .process-step.in-view,
+.section:not(.hero) .faq-item.in-view {
   opacity: 1;
   transform: none;
   filter: none;
+}
+
+/* ── FAQ Accordion ── */
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.faq-item:first-child { border-top: 1px solid var(--border); }
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 20px 4px;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  transition: color 0.2s;
+}
+.faq-q:hover { color: var(--primary); }
+.faq-icon {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+  color: var(--primary);
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-a {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.faq-item.open .faq-a { grid-template-rows: 1fr; }
+.faq-a-inner {
+  overflow: hidden;
+}
+.faq-a p {
+  padding: 0 4px 20px;
+  color: var(--muted);
+  line-height: 1.75;
+  font-size: 0.95rem;
 }

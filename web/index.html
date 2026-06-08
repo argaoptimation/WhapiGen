@@ -457,6 +457,52 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section id="web-faq" class="section alt">
+    <div class="container">
+      <h2 class="section-title">Preguntas frecuentes</h2>
+      <p class="section-subtitle">Todo lo que querés saber antes de arrancar tu proyecto.</p>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-q">¿Qué incluye el diagnóstico gratuito? <span class="faq-icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Es una llamada de 30 minutos donde entendemos qué tenés, qué necesitás y qué querés lograr. En la misma llamada ya podemos darte números orientativos y tiempos estimados según lo que nos contás. Si el proyecto requiere más análisis, la propuesta formal con roadmap detallado la entregamos dentro de las 48hs. Sin compromiso.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">¿Puedo seguir el avance del proyecto en tiempo real? <span class="faq-icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Sí. Todos los proyectos incluyen acceso a un dashboard de seguimiento donde podés ver cada etapa, tarea y avance desde tu celular o PC. Sin tener que preguntar, sin esperar respuesta: el estado del proyecto siempre está visible.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">¿Qué tecnologías usan para desarrollar? <span class="faq-icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Dependiendo del proyecto usamos Next.js, React, Node.js, bases de datos relacionales o NoSQL, y las integraciones que tu caso requiera. No usamos templates genéricos: cada proyecto se desarrolla desde cero con la tecnología que mejor se adapta a tus necesidades y presupuesto.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">¿El hosting está incluido en el precio? <span class="faq-icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>No está incluido por defecto, pero lo gestionamos por vos si querés. Te recomendamos opciones según el tipo de proyecto (Vercel, DigitalOcean, AWS, etc.) y te explicamos los costos. Para landing pages simples los costos de hosting suelen ser mínimos o gratuitos.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">¿Puedo pedir cambios mientras se desarrolla el proyecto? <span class="faq-icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Sí. Trabajamos con entregas parciales y puntos de revisión donde podés pedir ajustes. Los cambios menores dentro del scope acordado no tienen costo adicional. Los cambios que amplían significativamente el alcance los cotizamos aparte.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">¿El sitio queda optimizado para Google (SEO)? <span class="faq-icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Sí, todos los sitios web incluyen optimización técnica de SEO: estructura de URLs, metadatos, velocidad de carga, accesibilidad y responsive design. El posicionamiento orgánico avanzado (contenido, link building) es un servicio aparte si lo necesitás.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">¿Qué pasa después de la entrega? ¿Tienen mantenimiento? <span class="faq-icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Sí. Ofrecemos soporte post-entrega y planes de mantenimiento según la complejidad del proyecto. Si en el futuro necesitás agregar funcionalidades, escalar la plataforma o actualizar el diseño, podemos seguir trabajando juntos.</p></div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- CTA FINAL / CONTACTO -->
   <section id="web-contact" class="section">
     <div class="container cta-final">
@@ -596,9 +642,19 @@
         });
       });
 
+      // FAQ accordion
+      document.querySelectorAll('.faq-q').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = btn.closest('.faq-item');
+          const isOpen = item.classList.contains('open');
+          document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+          if (!isOpen) item.classList.add('open');
+        });
+      });
+
       // Scroll reveal bidireccional — IntersectionObserver
       (() => {
-        const SEL = '.section-title,.section-subtitle,.card,.why-item,.process-step';
+        const SEL = '.section-title,.section-subtitle,.card,.why-item,.process-step,.faq-item';
         document.querySelectorAll('.section:not(.hero)').forEach(sec => {
           sec.querySelectorAll(SEL).forEach((el, i) => {
             el.style.setProperty('--sr-d', `${Math.min(i, 5) * 0.09}s`);
