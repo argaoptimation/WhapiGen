@@ -16,12 +16,10 @@ async function fetchBlue() {
 }
 
 function toARS(usdStr) {
-  const isDesde = /desde/i.test(String(usdStr));
   const num = parseFloat(String(usdStr).replace(/[^0-9.]/g, ''));
   if (isNaN(num)) return usdStr;
   const rounded = Math.floor((num * blueRate) / 500) * 500;
-  const ars = rounded.toLocaleString('es-AR');
-  return isDesde ? `Desde $${ars}` : ars;
+  return rounded.toLocaleString('es-AR');
 }
 
 function refreshPrices() {

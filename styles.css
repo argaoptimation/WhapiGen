@@ -891,6 +891,16 @@ user-select: none;
   margin-top: 6px;
 }
 
+.desde-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  display: block;
+  margin-bottom: 2px;
+}
+
 .card.price .value {
   font-size: clamp(1.6rem, 3.2vw, 2.6rem);
   font-weight: 800;
