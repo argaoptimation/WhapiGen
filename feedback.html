@@ -168,10 +168,6 @@
             <input type="text" id="clientRole" placeholder="Ej: Dueña en Estética Norte">
           </div>
           <div class="form-group">
-            <label>URL de tu plataforma/web (Opcional)</label>
-            <input type="text" id="clientUrl" placeholder="Ej: tuempresa.com">
-          </div>
-          <div class="form-group">
             <label>Reseña o Testimonio *</label>
             <textarea id="clientComment" rows="4" required placeholder="¿Cómo fue tu experiencia trabajando con Whapigen?"></textarea>
           </div>
@@ -245,7 +241,6 @@
       btn.textContent = "Enviando...";
       errorMsg.style.display = "none";
 
-      
       let finalUrl = document.getElementById('clientUrl').value.trim();
       if (finalUrl) {
         if (!finalUrl.includes(".") || finalUrl.includes(" ")) {
@@ -259,7 +254,7 @@
           finalUrl = "https://" + finalUrl;
         }
       }
-      
+
       const payload = {
         client_name: document.getElementById('clientName').value,
         client_email: document.getElementById('clientEmail').value,

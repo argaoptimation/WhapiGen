@@ -365,10 +365,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             <div class="review-author">
               <div class="review-avatar">${initial}</div>
               <div class="review-meta">
-    <h4>${review.client_name}</h4>
-    <p>${roleText}</p>
-    ${review.client_url ? `<a href="${review.client_url}" target="_blank" rel="noopener noreferrer" style="color: var(--primary); font-size: 12px; text-decoration: none; margin-top: 4px; display: inline-block;">${review.client_url}</a>` : ''}
-  </div>
+                <h4>${review.client_name}</h4>
+                <p>${roleText}</p>
+                ${review.client_url ? `<a href="${review.client_url}" target="_blank" rel="noopener noreferrer" style="color: var(--primary); font-size: 12px; text-decoration: none; margin-top: 4px; display: inline-block;">${review.client_url}</a>` : ''}
+              </div>
             </div>
           </div>
         `;
