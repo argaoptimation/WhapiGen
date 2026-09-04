@@ -322,3 +322,83 @@ window.addEventListener('load', () => {
     fetchBlue();
     setInterval(fetchBlue, 30 * 60 * 1000);
 });
+
+/* REVIEWS FETCH LOGIC */
+document.addEventListener('DOMContentLoaded', async () => {
+  const reviewsWrapper = document.getElementById('reviewsWrapper');
+  const reviewsContainer = document.getElementById('reviewsContainer');
+  const reviewsLoading = document.getElementById('reviewsLoading');
+
+  if (!reviewsWrapper || !reviewsContainer || !reviewsLoading) return;
+
+  try {
+    // Fetch directly from Supabase REST API securely using anon key and RLS policies
+    const SUPABASE_URL = "https://olelcgovidfyfwiydrrr.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9sZWxjZ292aWRmeWZ3aXlkcnJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk4NDEzNzQsImV4cCI6MjA5NTQxNzM3NH0.zaPyxa7bQObIaoG6J65bPvmEBwCO8uzr43UOO3y1-es";
+    
+    // Solo trae reseñas aprobadas y autorizadas (validado por RLS también)
+    const res = await fetch(\\/rest/v1/reviews?allow_public_display=eq.true&is_approved=eq.true&order=created_at.desc\, {
+      method: 'GET',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': \Bearer \\
+      }
+    });
+
+    if (!res.ok) throw new Error("Error fetching reviews");
+
+    const reviews = await res.json();
+    
+    if (reviews && reviews.length > 0) {
+      reviewsLoading.style.display = 'none';
+      reviewsContainer.style.display = 'block';
+
+      reviews.forEach(review => {
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+        
+        const stars = '?'.repeat(review.rating) + '?'.repeat(5 - review.rating);
+        const initial = review.client_name.charAt(0).toUpperCase();
+        const roleText = review.role_or_company ? review.role_or_company : 'Cliente Whapigen';
+        
+        slide.innerHTML = \
+          <div class="review-card">
+            <div class="review-stars">\</div>
+            <div class="review-comment">"\"</div>
+            <div class="review-author">
+              <div class="review-avatar">\</div>
+              <div class="review-meta">
+                <h4>\</h4>
+                <p>\</p>
+              </div>
+            </div>
+          </div>
+        \;
+        reviewsWrapper.appendChild(slide);
+      });
+
+      // Init Swiper for reviews
+      new Swiper('.reviews-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        breakpoints: {
+          640: { slidesPerView: 2, spaceBetween: 24 },
+          1024: { slidesPerView: 3, spaceBetween: 32 },
+        },
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: true,
+        }
+      });
+    } else {
+      reviewsLoading.textContent = "¡Sé el primero en dejar una reseña!";
+    }
+  } catch (error) {
+    console.error("Error loading reviews:", error);
+    reviewsLoading.textContent = "No se pudieron cargar los testimonios en este momento.";
+  }
+});

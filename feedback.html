@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Dejar Reseña | WHAPIGEN Argentina</title>
+  <meta name="description" content="Dejanos tu experiencia trabajando con WHAPIGEN." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  
+  <style>
+    .feedback-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 20px 60px;
+      background: var(--bg);
+    }
+    .feedback-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 540px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    .feedback-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+    .stars {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .star {
+      background: none;
+      border: none;
+      font-size: 36px;
+      cursor: pointer;
+      color: var(--muted);
+      transition: transform 0.2s, color 0.2s;
+    }
+    .star:hover, .star.active {
+      color: var(--secondary);
+      transform: scale(1.1);
+    }
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    .checkbox-group {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 16px;
+      background: rgba(0, 242, 255, 0.05);
+      border: 1px solid rgba(0, 242, 255, 0.2);
+      border-radius: 12px;
+      margin-bottom: 24px;
+      cursor: pointer;
+    }
+    .checkbox-group input {
+      margin-top: 4px;
+      accent-color: var(--primary);
+      width: 16px;
+      height: 16px;
+    }
+    .checkbox-group .text {
+      text-align: left;
+    }
+    .checkbox-group .text strong {
+      display: block;
+      color: var(--text);
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    .checkbox-group .text p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .success-msg.active {
+      display: block;
+    }
+    .success-msg .icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <img src="assets/logo2.png" alt="logo" class="logo2">
+        <span>WHAPIGEN</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="feedback-wrap">
+    <div class="feedback-card" id="cardContainer">
+      
+      <div id="formView">
+        <h1 style="font-size: 24px; margin-bottom: 8px;">Dejanos tu experiencia 🚀</h1>
+        <p class="muted" style="margin-bottom: 30px;">Tu opinión es fundamental para que sigamos mejorando.</p>
+        
+        <form id="feedbackForm">
+          <div class="stars" id="starContainer">
+            <button type="button" class="star active" data-val="1">★</button>
+            <button type="button" class="star active" data-val="2">★</button>
+            <button type="button" class="star active" data-val="3">★</button>
+            <button type="button" class="star active" data-val="4">★</button>
+            <button type="button" class="star active" data-val="5">★</button>
+          </div>
+          <input type="hidden" id="ratingValue" value="5">
+
+          <div class="form-group">
+            <label>Nombre y Apellido *</label>
+            <input type="text" id="clientName" required placeholder="Ej: María García">
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" id="clientEmail" required placeholder="tu@email.com">
+          </div>
+          <div class="form-group">
+            <label>Cargo / Empresa (Opcional)</label>
+            <input type="text" id="clientRole" placeholder="Ej: Dueña en Estética Norte">
+          </div>
+          <div class="form-group">
+            <label>Reseña o Testimonio *</label>
+            <textarea id="clientComment" rows="4" required placeholder="¿Cómo fue tu experiencia trabajando con Whapigen?"></textarea>
+          </div>
+          
+          <label class="checkbox-group">
+            <input type="checkbox" id="allowPublic" checked>
+            <div class="text">
+              <strong>Autorizo a publicar esta reseña</strong>
+              <p>Al marcar esta opción, nos permitís usar tu testimonio en nuestra web para mostrar la calidad de nuestro trabajo a otros clientes.</p>
+            </div>
+          </label>
+
+          <p id="errorMsg" style="color: #ff4a4a; font-size: 14px; margin-bottom: 16px; display: none;"></p>
+
+          <button type="submit" class="btn primary block" id="submitBtn">Enviar Reseña</button>
+        </form>
+      </div>
+
+      <div id="successView" class="success-msg">
+        <div class="icon">🎉</div>
+        <h2 style="margin-bottom: 12px;">¡Muchas gracias!</h2>
+        <p class="muted" style="margin-bottom: 24px;">Tu reseña fue enviada con éxito. Valoramos muchísimo tu tiempo.</p>
+        <a href="index.html" class="btn ghost">Volver al inicio</a>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // URL y Key de Supabase del Dashboard de Entregas
+    const SUPABASE_URL = "https://olelcgovidfyfwiydrrr.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9sZWxjZ292aWRmeWZ3aXlkcnJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk4NDEzNzQsImV4cCI6MjA5NTQxNzM3NH0.zaPyxa7bQObIaoG6J65bPvmEBwCO8uzr43UOO3y1-es";
+
+    // Lógica de estrellas
+    const stars = document.querySelectorAll('.star');
+    const ratingInput = document.getElementById('ratingValue');
+    let currentRating = 5;
+
+    stars.forEach(star => {
+      star.addEventListener('mouseover', function() {
+        const val = this.getAttribute('data-val');
+        highlightStars(val);
+      });
+      star.addEventListener('mouseout', function() {
+        highlightStars(currentRating);
+      });
+      star.addEventListener('click', function() {
+        currentRating = this.getAttribute('data-val');
+        ratingInput.value = currentRating;
+        highlightStars(currentRating);
+      });
+    });
+
+    function highlightStars(val) {
+      stars.forEach(s => {
+        if(s.getAttribute('data-val') <= val) {
+          s.classList.add('active');
+        } else {
+          s.classList.remove('active');
+        }
+      });
+    }
+
+    // Submit del formulario directo a Supabase via REST
+    document.getElementById('feedbackForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const btn = document.getElementById('submitBtn');
+      const errorMsg = document.getElementById('errorMsg');
+      btn.disabled = true;
+      btn.textContent = "Enviando...";
+      errorMsg.style.display = "none";
+
+      const payload = {
+        client_name: document.getElementById('clientName').value,
+        client_email: document.getElementById('clientEmail').value,
+        role_or_company: document.getElementById('clientRole').value || null,
+        comment: document.getElementById('clientComment').value,
+        rating: parseInt(document.getElementById('ratingValue').value),
+        allow_public_display: document.getElementById('allowPublic').checked,
+        is_approved: true // Por defecto aprobada, el admin la puede bajar desde supabase si quiere
+      };
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/reviews`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+          throw new Error('Error al guardar la reseña');
+        }
+
+        document.getElementById('formView').style.display = 'none';
+        document.getElementById('successView').classList.add('active');
+
+      } catch (err) {
+        console.error(err);
+        errorMsg.textContent = "Ocurrió un error. Por favor intentá nuevamente.";
+        errorMsg.style.display = "block";
+        btn.disabled = false;
+        btn.textContent = "Enviar Reseña";
+      }
+    });
+  </script>
+</body>
+</html>

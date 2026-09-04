@@ -112,7 +112,7 @@
 </head>
   <div id="scroll-progress"></div>
   <header class="navbar"><div class="container nav-inner"><a href="#home" class="brand"><img src="assets/logo2.png" alt="logo2" class="logo2"><span>WHAPIGEN</span></a>
-  <nav class="nav-links" id="navlinks"><a href="#home" aria-current="page">Inicio</a><a href="#features">Características</a><a href="#usecases">Aplicaciones</a><a href="#demo">Demo</a><!--a href="#reviews">Reseñas</a--><a href="#pricing">Precios</a><a href="#contact">Contacto</a><a href="web/" class="nav-highlight">🌐 Sitios Web</a></nav>
+  <nav class="nav-links" id="navlinks"><a href="#home" aria-current="page">Inicio</a><a href="#features">Características</a><a href="#usecases">Aplicaciones</a><a href="#demo">Demo</a><a href="#reviews">Reseñas</a><a href="#pricing">Precios</a><a href="#contact">Contacto</a><a href="web/" class="nav-highlight">🌐 Sitios Web</a></nav>
   <div class="nav-actions"><button class="btn ghost small" id="themeToggle">🌗</button><button class="nav-toggle" id="navtoggle"><span></span><span></span><span></span></button></div></div></header>
 
   <!-- HERO -->
@@ -336,6 +336,29 @@
         </div>
       </div>
     </div>
+
+  <!-- REVIEWS -->
+  <section id="reviews" class="section alt">
+    <div class="container">
+      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      <p class="section-subtitle">Casos de éxito reales automatizados con WHAPIGEN.</p>
+      
+      <div class="swiper reviews-swiper" id="reviewsContainer" style="display: none; padding-bottom: 40px; padding-top: 20px;">
+        <div class="swiper-wrapper" id="reviewsWrapper">
+          <!-- Las reseñas se inyectan acá mediante JS -->
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+      
+      <div id="reviewsLoading" style="text-align: center; color: var(--muted); padding: 40px 0;">
+        Cargando testimonios...
+      </div>
+      
+      <div style="text-align: center; margin-top: 20px;">
+        <a href="feedback.html" class="btn ghost small">Dejar una reseña</a>
+      </div>
+    </div>
+  </section>
 
  <section id="pricing" class="section">
   <div class="container">
