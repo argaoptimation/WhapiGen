@@ -169,7 +169,7 @@
           </div>
           <div class="form-group">
             <label>URL de tu plataforma/web (Opcional)</label>
-            <input type="url" id="clientUrl" placeholder="https://tuempresa.com">
+            <input type="text" id="clientUrl" placeholder="Ej: tuempresa.com">
           </div>
           <div class="form-group">
             <label>Reseña o Testimonio *</label>
@@ -245,11 +245,26 @@
       btn.textContent = "Enviando...";
       errorMsg.style.display = "none";
 
+      
+      let finalUrl = document.getElementById('clientUrl').value.trim();
+      if (finalUrl) {
+        if (!finalUrl.includes(".") || finalUrl.includes(" ")) {
+          errorMsg.textContent = "Por favor, ingresá una URL válida (ej: tuempresa.com).";
+          errorMsg.style.display = "block";
+          btn.disabled = false;
+          btn.textContent = "Enviar Reseña";
+          return;
+        }
+        if (!/^https?:\/\//i.test(finalUrl)) {
+          finalUrl = "https://" + finalUrl;
+        }
+      }
+      
       const payload = {
         client_name: document.getElementById('clientName').value,
         client_email: document.getElementById('clientEmail').value,
         role_or_company: document.getElementById('clientRole').value || null,
-        client_url: document.getElementById('clientUrl').value || null,
+        client_url: finalUrl || null,
         comment: document.getElementById('clientComment').value,
         rating: parseInt(document.getElementById('ratingValue').value),
         allow_public_display: document.getElementById('allowPublic').checked,
