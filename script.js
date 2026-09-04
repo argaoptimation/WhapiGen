@@ -323,7 +323,6 @@ window.addEventListener('load', () => {
     setInterval(fetchBlue, 30 * 60 * 1000);
 });
 
-/* REVIEWS FETCH LOGIC */
 document.addEventListener('DOMContentLoaded', async () => {
   const reviewsWrapper = document.getElementById('reviewsWrapper');
   const reviewsContainer = document.getElementById('reviewsContainer');
@@ -332,20 +331,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (!reviewsWrapper || !reviewsContainer || !reviewsLoading) return;
 
   try {
-    // Fetch directly from Supabase REST API securely using anon key and RLS policies
-    const SUPABASE_URL = "https://olelcgovidfyfwiydrrr.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9sZWxjZ292aWRmeWZ3aXlkcnJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk4NDEzNzQsImV4cCI6MjA5NTQxNzM3NH0.zaPyxa7bQObIaoG6J65bPvmEBwCO8uzr43UOO3y1-es";
+    const SUPABASE_URL = 'https://olelcgovidfyfwiydrrr.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9sZWxjZ292aWRmeWZ3aXlkcnJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk4NDEzNzQsImV4cCI6MjA5NTQxNzM3NH0.zaPyxa7bQObIaoG6J65bPvmEBwCO8uzr43UOO3y1-es';
     
-    // Solo trae reseñas aprobadas y autorizadas (validado por RLS también)
-    const res = await fetch(\\/rest/v1/reviews?allow_public_display=eq.true&is_approved=eq.true&order=created_at.desc\, {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/reviews?allow_public_display=eq.true&is_approved=eq.true&order=created_at.desc`, {
       method: 'GET',
       headers: {
         'apikey': SUPABASE_ANON_KEY,
-        'Authorization': \Bearer \\
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
       }
     });
 
-    if (!res.ok) throw new Error("Error fetching reviews");
+    if (!res.ok) throw new Error('Error fetching reviews');
 
     const reviews = await res.json();
     
@@ -357,27 +354,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         const slide = document.createElement('div');
         slide.className = 'swiper-slide';
         
-        const stars = '?'.repeat(review.rating) + '?'.repeat(5 - review.rating);
+        const stars = 'â˜…'.repeat(review.rating) + 'â˜†'.repeat(5 - review.rating);
         const initial = review.client_name.charAt(0).toUpperCase();
         const roleText = review.role_or_company ? review.role_or_company : 'Cliente Whapigen';
         
-        slide.innerHTML = \
+        slide.innerHTML = `
           <div class="review-card">
-            <div class="review-stars">\</div>
-            <div class="review-comment">"\"</div>
+            <div class="review-stars">${stars}</div>
+            <div class="review-comment">"${review.comment}"</div>
             <div class="review-author">
-              <div class="review-avatar">\</div>
+              <div class="review-avatar">${initial}</div>
               <div class="review-meta">
-                <h4>\</h4>
-                <p>\</p>
+                <h4>${review.client_name}</h4>
+                <p>${roleText}</p>
               </div>
             </div>
           </div>
-        \;
+        `;
         reviewsWrapper.appendChild(slide);
       });
 
-      // Init Swiper for reviews
       new Swiper('.reviews-swiper', {
         slidesPerView: 1,
         spaceBetween: 20,
@@ -395,10 +391,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       });
     } else {
-      reviewsLoading.textContent = "¡Sé el primero en dejar una reseña!";
+      reviewsLoading.textContent = 'Â¡SÃ© el primero en dejar una reseÃ±a!';
     }
   } catch (error) {
-    console.error("Error loading reviews:", error);
-    reviewsLoading.textContent = "No se pudieron cargar los testimonios en este momento.";
+    console.error('Error loading reviews:', error);
+    reviewsLoading.textContent = 'No se pudieron cargar los testimonios en este momento.';
   }
 });
