@@ -168,6 +168,10 @@
             <input type="text" id="clientRole" placeholder="Ej: Dueña en Estética Norte">
           </div>
           <div class="form-group">
+            <label>URL de tu plataforma/web (Opcional)</label>
+            <input type="url" id="clientUrl" placeholder="https://tuempresa.com">
+          </div>
+          <div class="form-group">
             <label>Reseña o Testimonio *</label>
             <textarea id="clientComment" rows="4" required placeholder="¿Cómo fue tu experiencia trabajando con Whapigen?"></textarea>
           </div>
@@ -245,10 +249,11 @@
         client_name: document.getElementById('clientName').value,
         client_email: document.getElementById('clientEmail').value,
         role_or_company: document.getElementById('clientRole').value || null,
+        client_url: document.getElementById('clientUrl').value || null,
         comment: document.getElementById('clientComment').value,
         rating: parseInt(document.getElementById('ratingValue').value),
         allow_public_display: document.getElementById('allowPublic').checked,
-        is_approved: true // Por defecto aprobada, el admin la puede bajar desde supabase si quiere
+        is_approved: true
       };
 
       try {
