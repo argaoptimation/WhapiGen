@@ -114,7 +114,7 @@
   <link rel="preload" href="assets/logo2.png" as="image">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="styles.css?v=6.0" />
+  <link rel="stylesheet" href="styles.css?v=7.0" />
   <style>
     /* CRITICAL INLINE CSS: Forzar centrado absoluto del botón PLAY y eliminar cursor de arrastre */
     .portfolio-3d-swiper {
@@ -199,15 +199,11 @@
   </style>
 </head>
 <body>
-  <!-- Ambient Motion Background con Alta Frecuencia y Desplazamiento Continuo -->
-  <div class="ambient-motion-bg" aria-hidden="true">
-    <div class="ambient-orb ambient-orb-1"></div>
-    <div class="ambient-orb ambient-orb-2"></div>
-    <div class="ambient-orb ambient-orb-3"></div>
-    <div class="ambient-orb ambient-orb-4"></div>
-    <div class="ambient-stream-flow"></div>
-    <div class="ambient-mesh-drift"></div>
-    <canvas id="motionCanvas" class="motion-canvas"></canvas>
+  <!-- Ambient Static Background (0% CPU, Ultra Ligero) -->
+  <div class="ambient-static-bg" aria-hidden="true">
+    <div class="ambient-glow ambient-glow-1"></div>
+    <div class="ambient-glow ambient-glow-2"></div>
+    <div class="ambient-tech-grid"></div>
   </div>
 
   <div id="scroll-progress"></div>
@@ -941,7 +937,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.31/bundled/lenis.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
-  <script src="script.js?v=6.0" defer></script>
+  <script src="script.js?v=7.0" defer></script>
   
   <a href="agendar.html" class="floating-cta">
     <span class="fab-icon">📅</span>
