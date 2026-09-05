@@ -185,7 +185,394 @@ window.addEventListener("DOMContentLoaded", () => {
       autoplay: { delay: 3200, disableOnInteraction:false },
       speed: 650,
     });
+
+    // Portfolio 3D Coverflow Carousel (Orden secuencial estricto y sin bugs de bucle)
+    const portfolioSwiper = new Swiper(".portfolio-3d-swiper", {
+      effect: "coverflow",
+      grabCursor: false,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      initialSlide: 0,
+      loop: false,
+      rewind: true,
+      slideToClickedSlide: true,
+      touchStartPreventDefault: false,
+      threshold: 6,
+      preventClicks: false,
+      preventClicksPropagation: false,
+      speed: 600,
+      coverflowEffect: {
+        rotate: 20,
+        stretch: 0,
+        depth: 200,
+        modifier: 1,
+        slideShadows: true,
+      },
+      pagination: {
+        el: ".portfolio-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".portfolio-arrow-next",
+        prevEl: ".portfolio-arrow-prev",
+      },
+      breakpoints: {
+        320: { slidesPerView: 1.15, coverflowEffect: { depth: 90, rotate: 12 } },
+        640: { slidesPerView: 1.35, coverflowEffect: { depth: 150, rotate: 16 } },
+        1024: { slidesPerView: 2.1, coverflowEffect: { depth: 220, rotate: 20 } },
+      }
+    });
+
+    portfolioSwiper.on('click', (swiper, e) => {
+      console.log("[Portfolio Swiper Click] tag:", e.target?.tagName, "class:", e.target?.className, "closestBtn:", e.target?.closest(".open-project-modal"), "closestCard:", e.target?.closest(".portfolio-card"));
+      const openBtn = e.target.closest(".open-project-modal");
+      if (openBtn) {
+        triggerProjectModalFromEl(openBtn);
+        return;
+      }
+      const clickedSlide = swiper.clickedSlide || e.target.closest(".portfolio-card");
+      if (!clickedSlide) return;
+      if (clickedSlide.classList.contains("swiper-slide-active")) {
+        triggerProjectModalFromEl(clickedSlide);
+      }
+    });
   }
+
+  // --- Desplegable de Características y Aplicaciones ---
+  const specsTrigger = $("#specsTriggerBtn");
+  const specsDrawer = $("#specsDrawer");
+  const triggerLabel = $("#triggerLabelText");
+
+  function toggleSpecs(forceOpen) {
+    if (!specsDrawer || !specsTrigger) return;
+    const shouldOpen = typeof forceOpen === "boolean" ? forceOpen : !specsDrawer.classList.contains("active");
+    specsDrawer.classList.toggle("active", shouldOpen);
+    specsTrigger.classList.toggle("active", shouldOpen);
+    specsTrigger.setAttribute("aria-expanded", String(shouldOpen));
+    if (triggerLabel) {
+      triggerLabel.textContent = shouldOpen ? "Ocultar detalles" : "Desplegar detalles";
+    }
+  }
+
+  specsTrigger?.addEventListener("click", () => toggleSpecs());
+  specsTrigger?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      toggleSpecs();
+    }
+  });
+
+  const openAndScrollToSpecs = (selector) => {
+    toggleSpecs(true);
+    setTimeout(() => {
+      const target = $(selector) || specsDrawer;
+      target?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 160);
+  };
+
+  $("#heroFeaturesBtn")?.addEventListener("click", () => openAndScrollToSpecs("#features"));
+  $("#navLinkFeatures")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    openAndScrollToSpecs("#features");
+  });
+  $("#navLinkUsecases")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    openAndScrollToSpecs("#usecases");
+  });
+
+  // --- Modal de Proyectos / Videos (Soporta MP4, YouTube, Vimeo y Google Drive) ---
+  const projectModal = $("#projectModal");
+  const closeModalBtn = $("#closeProjectModal");
+  const modalTitle = $("#modalTitle");
+  const modalDesc = $("#modalDesc");
+  const modalTags = $("#modalTags");
+  const modalPlayer = $("#modalVideoPlayer");
+  const modalIframe = $("#modalVideoIframe");
+  const modalPlaceholder = $("#modalVideoPlaceholder");
+
+  function formatVideoUrl(url) {
+    if (!url) return "";
+    let trimmed = url.trim();
+    // Soporte directo para Google Drive
+    if (trimmed.includes("drive.google.com")) {
+      // Convierte /view?usp=sharing o /view en /preview para embed
+      let driveUrl = trimmed.replace(/\/view(\?.*)?$/, "/preview");
+      if (!driveUrl.includes("/preview")) {
+        driveUrl = driveUrl.replace(/\?usp=sharing/, "").replace(/\/+$/, "") + "/preview";
+      }
+      return driveUrl;
+    }
+    // Soporte YouTube (todos los formatos: normal, share, shorts, embed)
+    if (trimmed.includes("youtu.be/")) {
+      const id = trimmed.split("youtu.be/")[1]?.split(/[?&#]/)[0];
+      return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+    }
+    if (trimmed.includes("youtube.com/watch")) {
+      try {
+        const urlObj = new URL(trimmed);
+        const id = urlObj.searchParams.get("v");
+        return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+      } catch (e) {
+        const id = trimmed.split("v=")[1]?.split("&")[0];
+        return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+      }
+    }
+    if (trimmed.includes("youtube.com/shorts/")) {
+      const id = trimmed.split("youtube.com/shorts/")[1]?.split(/[?&#]/)[0];
+      return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+    }
+    if (trimmed.includes("youtube.com/embed/")) {
+      return trimmed.includes("?") ? `${trimmed}&autoplay=1` : `${trimmed}?autoplay=1`;
+    }
+    return trimmed;
+  }
+
+  function triggerProjectModalFromEl(el) {
+    console.log("[Portfolio Debug] triggerProjectModalFromEl called from element:", el);
+    if (!el) {
+      console.warn("[Portfolio Warning] triggerProjectModalFromEl called with null/undefined element!");
+      return;
+    }
+    const title = el.getAttribute("data-title") || el.querySelector("[data-title]")?.getAttribute("data-title") || "Proyecto Whapigen";
+    const desc = el.getAttribute("data-desc") || el.querySelector("[data-desc]")?.getAttribute("data-desc") || "";
+    const tags = el.getAttribute("data-tags") || el.querySelector("[data-tags]")?.getAttribute("data-tags") || "";
+    const video = el.getAttribute("data-video") || el.querySelector("[data-video]")?.getAttribute("data-video") || "";
+
+    console.log("[Portfolio Debug] Extracted data:", { title, desc, tags, video });
+
+    if (!video) {
+      console.warn("[Portfolio Warning] No video attribute found for element:", el);
+      return;
+    }
+
+    openProjectModal({ title, desc, tags, video });
+  }
+
+  function openProjectModal(data) {
+    console.log("[Portfolio Debug] openProjectModal executing with payload:", data);
+    if (!projectModal) {
+      console.warn("[Portfolio Warning] projectModal element not found in DOM!");
+      return;
+    }
+    if (modalTitle) modalTitle.textContent = data.title || "Proyecto Whapigen";
+    if (modalDesc) modalDesc.textContent = data.desc || "";
+    
+    if (modalTags) {
+      modalTags.innerHTML = "";
+      if (data.tags) {
+        data.tags.split(",").forEach(t => {
+          const span = document.createElement("span");
+          span.className = "p-tag highlight";
+          span.textContent = t.trim();
+          modalTags.appendChild(span);
+        });
+      }
+    }
+
+    if (data.video && data.video.trim()) {
+      const rawUrl = data.video.trim();
+      const vUrl = formatVideoUrl(rawUrl);
+      console.log("[Portfolio Debug] Formatted video URL for iframe/player:", vUrl);
+
+      if (vUrl.includes("youtube.com") || vUrl.includes("vimeo.com") || vUrl.includes("drive.google.com")) {
+        if (modalPlayer) { modalPlayer.style.display = "none"; modalPlayer.pause(); }
+        if (modalIframe) {
+          modalIframe.src = vUrl;
+          modalIframe.style.display = "block";
+        }
+        if (modalPlaceholder) modalPlaceholder.style.display = "none";
+      } else {
+        // Video directo MP4 / WebM
+        if (modalIframe) { modalIframe.style.display = "none"; modalIframe.src = ""; }
+        if (modalPlayer) {
+          modalPlayer.src = vUrl;
+          modalPlayer.style.display = "block";
+          modalPlayer.play().catch((err) => console.warn("[Portfolio Warning] Video player autoplay blocked:", err));
+        }
+        if (modalPlaceholder) modalPlaceholder.style.display = "none";
+      }
+    } else {
+      console.warn("[Portfolio Warning] Empty video string in openProjectModal, displaying placeholder");
+      if (modalPlayer) { modalPlayer.style.display = "none"; modalPlayer.pause(); }
+      if (modalIframe) { modalIframe.style.display = "none"; modalIframe.src = ""; }
+      if (modalPlaceholder) modalPlaceholder.style.display = "flex";
+    }
+
+    projectModal.classList.add("open");
+    projectModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeProjectModal() {
+    if (!projectModal) return;
+    projectModal.classList.remove("open");
+    projectModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    if (modalPlayer) {
+      modalPlayer.pause();
+      modalPlayer.currentTime = 0;
+    }
+    if (modalIframe) {
+      modalIframe.src = "";
+    }
+  }
+
+  // --- Motor de Fondo Motion de Alta Frecuencia (Canvas Dinámico) ---
+  const motionCanvas = document.getElementById("motionCanvas");
+  if (motionCanvas) {
+    const ctx = motionCanvas.getContext("2d");
+    let w, h;
+    let particles = [];
+    const COUNT = 45;
+    let mouse = { x: -1000, y: -1000 };
+    let isHidden = false;
+
+    document.addEventListener("visibilitychange", () => {
+      isHidden = document.hidden;
+    });
+
+    function resize() {
+      w = motionCanvas.width = window.innerWidth;
+      h = motionCanvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    window.addEventListener("mousemove", (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    window.addEventListener("touchmove", (e) => {
+      if (e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    class MotionParticle {
+      constructor() {
+        this.reset(true);
+      }
+      reset(initial) {
+        this.x = initial ? Math.random() * w : Math.random() * w;
+        this.y = initial ? Math.random() * h : h + 10;
+        // Velocidad constante de frecuencia visible
+        this.vx = (Math.random() - 0.5) * 0.9;
+        this.vy = -(Math.random() * 1.4 + 0.8); // Movimiento continuo ascendente
+        this.radius = Math.random() * 2.2 + 1.2;
+        this.phase = Math.random() * Math.PI * 2;
+        this.phaseSpeed = Math.random() * 0.04 + 0.02;
+        this.pulse = Math.random() > 0.8;
+      }
+      update() {
+        this.phase += this.phaseSpeed;
+        this.x += this.vx + Math.sin(this.phase) * 0.5;
+        this.y += this.vy;
+
+        // Atracción o desvío sutil del cursor
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const distSq = dx * dx + dy * dy;
+        if (distSq < 22500) { // 150px
+          this.x -= dx * 0.02;
+          this.y -= dy * 0.02;
+        }
+
+        // Reingreso continuo
+        if (this.y < -20 || this.x < -20 || this.x > w + 20) {
+          this.reset(false);
+        }
+      }
+    }
+
+    particles = Array.from({ length: COUNT }, () => new MotionParticle());
+
+    function renderMotion() {
+      if (!isHidden) {
+        ctx.clearRect(0, 0, w, h);
+        const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+
+        const primaryColor = isDark ? "rgba(0, 242, 255," : "rgba(0, 180, 216,";
+        const secondaryColor = isDark ? "rgba(0, 255, 136," : "rgba(0, 196, 159,";
+        const lineColor = isDark ? "0, 242, 255" : "0, 180, 216";
+
+        ctx.lineWidth = 0.6;
+
+        // Conexiones de energía
+        for (let i = 0; i < particles.length; i++) {
+          const p1 = particles[i];
+          p1.update();
+
+          for (let j = i + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const dx = p1.x - p2.x;
+            const dy = p1.y - p2.y;
+            if (Math.abs(dx) > 100 || Math.abs(dy) > 100) continue;
+
+            const distSq = dx * dx + dy * dy;
+            if (distSq < 10000) { // 100px
+              const dist = Math.sqrt(distSq);
+              const alpha = (1 - dist / 100) * 0.32;
+              ctx.beginPath();
+              ctx.moveTo(p1.x, p1.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = `rgba(${lineColor}, ${alpha.toFixed(3)})`;
+              ctx.stroke();
+            }
+          }
+        }
+
+        // Partículas activas
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = p.pulse ? `${secondaryColor} 0.85)` : `${primaryColor} 0.75)`;
+          ctx.fill();
+
+          if (p.pulse) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius * 2.8, 0, Math.PI * 2);
+            ctx.fillStyle = `${secondaryColor} 0.16)`;
+            ctx.fill();
+          }
+        }
+      }
+
+      requestAnimationFrame(renderMotion);
+    }
+
+    requestAnimationFrame(renderMotion);
+  }
+
+  $$(".open-project-modal").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      console.log("[Portfolio Debug] Direct click on .open-project-modal button:", btn);
+      e.stopPropagation();
+      triggerProjectModalFromEl(btn);
+    });
+  });
+
+  $$(".portfolio-card").forEach(card => {
+    card.addEventListener("click", (e) => {
+      console.log("[Portfolio Debug] Click on .portfolio-card container:", card, "target:", e.target);
+      if (e.target.closest(".open-project-modal")) return;
+      // Si la tarjeta ya está en foco/activa (o si es click directo), abrir el modal
+      if (card.classList.contains("swiper-slide-active") || !card.classList.contains("swiper-slide")) {
+        triggerProjectModalFromEl(card);
+      }
+    });
+  });
+
+  closeModalBtn?.addEventListener("click", closeProjectModal);
+  projectModal?.addEventListener("click", (e) => {
+    if (e.target === projectModal) closeProjectModal();
+  });
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && projectModal?.classList.contains("open")) {
+      closeProjectModal();
+    }
+  });
 
   // Tabs demo (fundamental para que NO se vean todos)
   $$(".tab-btn").forEach(btn => {

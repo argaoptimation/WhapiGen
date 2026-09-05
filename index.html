@@ -69,7 +69,7 @@
             "name": "¿En cuánto tiempo está funcionando el agente de WhatsApp?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "En la mayoría de los casos entre 5 y 10 días hábiles desde que arrancamos. Incluye configuración del agente, integración con WhatsApp y pruebas."
+              "text": "En la mayoría de los casos entre 10 y 15 días hábiles desde que arrancamos. Incluye configuración del agente, integración con WhatsApp y pruebas."
             }
           },
           {
@@ -102,18 +102,166 @@
   }
   </script>
 
+  <!-- Favicon sincronizado con el perfil de WhatsApp / logo2.png -->
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/favicon-192.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" href="assets/logo2.png" as="image">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=6.0" />
+  <style>
+    /* CRITICAL INLINE CSS: Forzar centrado absoluto del botón PLAY y eliminar cursor de arrastre */
+    .portfolio-3d-swiper {
+      cursor: default !important;
+    }
+    .portfolio-3d-swiper .swiper-wrapper {
+      pointer-events: none !important;
+      cursor: default !important;
+    }
+    .portfolio-3d-swiper .swiper-slide,
+    .portfolio-card {
+      pointer-events: auto !important;
+      cursor: pointer !important;
+    }
+    .portfolio-media,
+    .project-thumb-wrap {
+      position: relative !important;
+      width: 100% !important;
+      height: 100% !important;
+      overflow: hidden !important;
+      cursor: pointer !important;
+      display: block !important;
+    }
+    .project-thumb-img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+    }
+    .play-btn-circle {
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      width: 64px !important;
+      height: 64px !important;
+      border-radius: 50% !important;
+      border: none !important;
+      background: linear-gradient(135deg, var(--primary, #27d78d), var(--secondary, #2aa9ff)) !important;
+      color: #050b14 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      box-shadow: 0 0 25px rgba(39, 215, 141, 0.5), 0 0 45px rgba(0, 242, 255, 0.3) !important;
+      z-index: 30 !important;
+      pointer-events: auto !important;
+      margin: 0 !important;
+    }
+    .play-btn-circle svg {
+      margin-left: 3px !important;
+      width: 26px !important;
+      height: 26px !important;
+      pointer-events: none !important;
+    }
+    .play-btn-circle::before {
+      content: "" !important;
+      position: absolute !important;
+      inset: -8px !important;
+      border-radius: 50% !important;
+      border: 2px solid rgba(0, 242, 255, 0.55) !important;
+      animation: playPulseRing 2.4s infinite cubic-bezier(0.215, 0.61, 0.355, 1) !important;
+      pointer-events: none !important;
+    }
+    .portfolio-card:hover .play-btn-circle,
+    .play-btn-circle:hover {
+      transform: translate(-50%, -50%) scale(1.15) !important;
+      box-shadow: 0 0 35px rgba(39, 215, 141, 0.8), 0 0 65px rgba(0, 242, 255, 0.5) !important;
+    }
+    .swiper-slide-shadow,
+    .swiper-slide-shadow-left,
+    .swiper-slide-shadow-right,
+    .swiper-slide-shadow-top,
+    .swiper-slide-shadow-bottom,
+    .thumb-gradient-overlay,
+    .tech-grid-overlay {
+      pointer-events: none !important;
+    }
+    .swiper-slide-active.portfolio-card {
+      z-index: 20 !important;
+    }
+  </style>
 </head>
+<body>
+  <!-- Ambient Motion Background con Alta Frecuencia y Desplazamiento Continuo -->
+  <div class="ambient-motion-bg" aria-hidden="true">
+    <div class="ambient-orb ambient-orb-1"></div>
+    <div class="ambient-orb ambient-orb-2"></div>
+    <div class="ambient-orb ambient-orb-3"></div>
+    <div class="ambient-orb ambient-orb-4"></div>
+    <div class="ambient-stream-flow"></div>
+    <div class="ambient-mesh-drift"></div>
+    <canvas id="motionCanvas" class="motion-canvas"></canvas>
+  </div>
+
   <div id="scroll-progress"></div>
-  <header class="navbar"><div class="container nav-inner"><a href="#home" class="brand"><img src="assets/logo2.png" alt="logo2" class="logo2"><span>WHAPIGEN</span></a>
-  <nav class="nav-links" id="navlinks"><a href="#home" aria-current="page">Inicio</a><a href="#features">Características</a><a href="#usecases">Aplicaciones</a><a href="#demo">Demo</a><a href="#reviews">Reseñas</a><a href="#pricing">Precios</a><a href="#contact">Contacto</a><a href="web/" class="nav-highlight">🌐 Sitios Web</a></nav>
-  <div class="nav-actions"><button class="btn ghost small" id="themeToggle">🌗</button><button class="nav-toggle" id="navtoggle"><span></span><span></span><span></span></button></div></div></header>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="brand">
+        <img src="assets/logo2.png" alt="WHAPIGEN Logo" class="logo2">
+        <span>WHAPIGEN</span>
+      </a>
+      <nav class="nav-links" id="navlinks">
+        <a href="#home" aria-current="page">Inicio</a>
+        <a href="#specsDrawer" id="navLinkFeatures">Características</a>
+        <a href="#specsDrawer" id="navLinkUsecases">Aplicaciones</a>
+        <a href="#demo">Demo</a>
+        <a href="#portfolio">Portafolio</a>
+        <a href="#reviews">Reseñas</a>
+        <a href="#pricing">Precios</a>
+        <a href="#contact">Contacto</a>
+        <a href="web/" class="nav-highlight">
+          <svg class="nav-icon-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span>Sitios Web</span>
+        </a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Cambiar modo claro / oscuro" title="Cambiar tema">
+          <span class="theme-icon sun-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-icon moon-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+        <button class="nav-toggle" id="navtoggle" aria-label="Menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
 
   <!-- HERO -->
   <section id="home" class="section hero">
@@ -127,10 +275,20 @@
         <p class="typed-wrap"><span class="muted">Ideal para </span><span id="typed"></span></p>
         <div class="cta-row">
           <a class="btn primary" href="https://wa.me/5493516435132?text=Tengo%20un%20negocio%de...">Consulta tu caso</a>
-          <a class="btn ghost" href="#features">Ver características</a>
+          <button class="btn ghost" id="heroFeaturesBtn">Ver características</button>
         </div>
         <ul class="badges"><li>⚡ Respuestas en segundos</li><li>🔒 Privacidad y seguridad</li><li>🧩 Integración de multiples plataformas</li></ul>
-        <a href="web/" class="also-offer"><span class="ao-icon">🌐</span><span class="ao-text">También: sitios web y plataformas 100% a medida</span><span class="ao-arrow">→</span></a>
+        <a href="web/" class="also-offer">
+          <span class="ao-icon-wrap">
+            <svg class="ao-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </span>
+          <span class="ao-text">También: sitios web y plataformas 100% a medida</span>
+          <span class="ao-arrow">→</span>
+        </a>
       </div>
 
       <div class="hero-art phone-wrap tilt" data-tilt>
@@ -167,26 +325,49 @@
   </div>
   </section>
 
-  <!-- FEATURES -->
-  <section id="features" class="section"><div class="container">
-    <h2 class="section-title">Características</h2>
-    <p class="section-subtitle">Todo lo que necesitás para escalar por WhatsApp.</p>
-    <div class="cards grid-3">
-      <article class="card tilt"><div class="icon">🤖</div><h3>IA Conversacional</h3><p>Flujos naturales.</p><ul class="list"><li>Memoria de conversación</li><li>Tono personalizable</li><li>Recordatorios</li></ul></article>
-      <article class="card tilt"><div class="icon">⚡</div><h3>Integraciones</h3><p>Funcionamiento con varios sistemas</p><ul class="list"><li>Google Sheets/Calendar</li><li>API oficial de Meta</li><li>Comprobante de Pagos</li><li>Muchos más...</li></ul></article>
-      <article class="card tilt"><div class="icon">🔐</div><h3>Confiable y Seguro</h3><p>Privacidad y control por defecto.</p><ul class="list"><li>Anti-spam</li><li>Rate limit</li><li>Logs</li></ul></article>
-    </div></div>
-  </section>
+  <!-- SECCIÓN DESPLEGABLE: CARACTERÍSTICAS Y APLICACIONES -->
+  <section class="section collapsible-specs-section">
+    <div class="container">
+      <div class="collapsible-card-trigger" id="specsTriggerBtn" role="button" tabindex="0" aria-expanded="false" aria-controls="specsDrawer">
+        <div class="trigger-left">
+          <span class="trigger-pill">Especificaciones &amp; Integraciones</span>
+          <h3 class="trigger-title">Características de IA &amp; Casos de Aplicación</h3>
+          <p class="trigger-subtitle">Explorá integraciones técnicas, seguridad y automatizaciones específicas por rubro.</p>
+        </div>
+        <div class="trigger-right">
+          <span class="trigger-label" id="triggerLabelText">Desplegar detalles</span>
+          <span class="trigger-arrow">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </div>
+      </div>
 
-  <!-- USE CASES -->
-  <section id="usecases" class="section alt"><div class="container">
-    <h2 class="section-title">Aplicaciones</h2>
-    <p class="section-subtitle">Casos donde WHAPIGEN acelera tu negocio.</p>
-    <div class="swiper cases-swiper"><div class="swiper-wrapper">
-      <div class="swiper-slide case"><span>🛠️ Pymes - Asesoramiento ténico</span><ul><li>Comparativa técnica entre productos</li><li>Sugerencia de repuestos y compatibilidad</li><li>Criterios de mantenimiento preventivo</li><li>Conversión de unidades y cálculos técnicos</li><li>Resúmen de información técnica del producto solicitado</li><li>Búsqueda semántica en manuales de +500 páginas</li></ul></div>
-      <div class="swiper-slide case"><span>💇🏻‍♂️ Centros de belleza — Turnos</span><ul><li>Agenda automatizada (reserva, reprograma y cancela)</li><li>Integración Google Calendar y Sheets</li><li>Seguimiento de posibles clientes</li><li>Recordatorios 24-72hs antes</li><li>Reportes de asistencia</li><li>CRM propio</li></ul></div>
-      <div class="swiper-slide case"><span>🐾 Pet Shop — Catálogo y stock</span><ul><li>Sincronización Sheets</li><li>Pedidos por encargo</li><li>Control automático de stock</li><li>Pedidos y pagos por WhatsApp</li><li>Recordatorios de reposición</li><li>Notificaciones automáticas</li></ul></div>
-    </div></div></div>
+      <div class="collapsible-drawer" id="specsDrawer">
+        <div class="drawer-inner">
+          <!-- FEATURES -->
+          <div id="features" class="sub-section">
+            <h2 class="section-title">Características</h2>
+            <p class="section-subtitle">Todo lo que necesitás para escalar por WhatsApp.</p>
+            <div class="cards grid-3">
+              <article class="card tilt"><div class="icon">🤖</div><h3>IA Conversacional</h3><p>Flujos naturales.</p><ul class="list"><li>Memoria de conversación</li><li>Tono personalizable</li><li>Recordatorios</li></ul></article>
+              <article class="card tilt"><div class="icon">⚡</div><h3>Integraciones</h3><p>Funcionamiento con varios sistemas</p><ul class="list"><li>Google Sheets/Calendar</li><li>API oficial de Meta</li><li>Comprobante de Pagos</li><li>Muchos más...</li></ul></article>
+              <article class="card tilt"><div class="icon">🔐</div><h3>Confiable y Seguro</h3><p>Privacidad y control por defecto.</p><ul class="list"><li>Anti-spam</li><li>Rate limit</li><li>Logs</li></ul></article>
+            </div>
+          </div>
+
+          <!-- USE CASES -->
+          <div id="usecases" class="sub-section" style="margin-top: 36px;">
+            <h2 class="section-title">Aplicaciones</h2>
+            <p class="section-subtitle">Casos donde WHAPIGEN acelera tu negocio.</p>
+            <div class="swiper cases-swiper"><div class="swiper-wrapper">
+              <div class="swiper-slide case"><span>🛠️ Pymes - Asesoramiento técnico</span><ul><li>Comparativa técnica entre productos</li><li>Sugerencia de repuestos y compatibilidad</li><li>Criterios de mantenimiento preventivo</li><li>Conversión de unidades y cálculos técnicos</li><li>Resúmen de información técnica del producto solicitado</li><li>Búsqueda semántica en manuales de +500 páginas</li></ul></div>
+              <div class="swiper-slide case"><span>💇🏻‍♂️ Centros de belleza — Turnos</span><ul><li>Agenda automatizada (reserva, reprograma y cancela)</li><li>Integración Google Calendar y Sheets</li><li>Seguimiento de posibles clientes</li><li>Recordatorios 24-72hs antes</li><li>Reportes de asistencia</li><li>CRM propio</li></ul></div>
+              <div class="swiper-slide case"><span>🐾 Pet Shop — Catálogo y stock</span><ul><li>Sincronización Sheets</li><li>Pedidos por encargo</li><li>Control automático de stock</li><li>Pedidos y pagos por WhatsApp</li><li>Recordatorios de reposición</li><li>Notificaciones automáticas</li></ul></div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
 
@@ -336,6 +517,158 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+  <!-- PORTFOLIO / DESARROLLOS (CARRUSEL 3D) -->
+  <section id="portfolio" class="section">
+    <div class="container">
+      <div class="portfolio-header">
+        <span class="portfolio-badge">Desarrollos Recientes</span>
+        <h2 class="section-title">Portafolio de Proyectos</h2>
+        <p class="section-subtitle">Explorá algunos de los sistemas automatizados y plataformas que pusimos en marcha.</p>
+      </div>
+
+      <!-- 3D Swiper Coverflow -->
+      <div class="swiper portfolio-3d-swiper">
+        <div class="swiper-wrapper">
+          <!-- Slide 1: Gestión Whapigen -->
+          <div class="swiper-slide portfolio-card" 
+               data-project="gestion-whapigen"
+               data-title="Sistema de Gestión &amp; Automatizaciones Whapigen" 
+               data-desc="Demostración completa del panel operativo de Whapigen: gestión de contactos, flujos de cobranza automática, integración con WhatsApp y métricas del negocio." 
+               data-tags="Gestión Automatizada, CRM Propio, Panel de Control, Whapigen Cloud" 
+               data-video="https://youtu.be/e8mou2LeEw0">
+            <div class="portfolio-media" style="position: relative; width: 100%; height: 220px; overflow: hidden; cursor: pointer;">
+              <div class="project-thumb-wrap" style="position: relative; width: 100%; height: 100%; overflow: hidden; display: block; cursor: pointer;">
+                <img src="https://img.youtube.com/vi/e8mou2LeEw0/maxresdefault.jpg" alt="Gestión Whapigen" class="project-thumb-img" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                <div class="thumb-gradient-overlay" style="pointer-events: none;"></div>
+                <div class="project-tag" style="pointer-events: none;">⚡ CRM &amp; Automatización</div>
+                <button type="button" class="play-btn-circle open-project-modal" 
+                        style="position: absolute !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 30; cursor: pointer; border: none; margin: 0;"
+                        title="Reproducir demostración"
+                        aria-label="Reproducir demostración de Gestión Whapigen"
+                        data-title="Sistema de Gestión &amp; Automatizaciones Whapigen" 
+                        data-desc="Demostración completa del panel operativo de Whapigen: gestión de contactos, flujos de cobranza automática, integración con WhatsApp y métricas del negocio." 
+                        data-tags="Gestión Automatizada, CRM Propio, Panel de Control, Whapigen Cloud" 
+                        data-video="https://youtu.be/e8mou2LeEw0">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </button>
+              </div>
+            </div>
+            <div class="portfolio-content">
+              <div class="portfolio-tags">
+                <span class="p-tag">Whapigen Cloud</span>
+                <span class="p-tag highlight">Gestión Integral</span>
+              </div>
+              <h3>Sistema de Gestión &amp; Automatizaciones Whapigen</h3>
+              <p>Plataforma centralizada para control de clientes, recordatorios automáticos de cobro y trazabilidad de pedidos en tiempo real.</p>
+            </div>
+          </div>
+
+          <!-- Slide 2: The Impostor -->
+          <div class="swiper-slide portfolio-card" 
+               data-project="the-impostor"
+               data-title="The Impostor: Speaking Edition (Cil Lenguas)" 
+               data-desc="Aplicación web interactiva desarrollada para academias de idiomas. Salas multijugador en tiempo real, asignación dinámica de roles, turnos con temporizador y sistema de votación para expulsar al impostor." 
+               data-tags="Web App Realtime, Supabase, React, Gamificación, EdTech" 
+               data-video="https://youtu.be/V44_2NNMsq0">
+            <div class="portfolio-media" style="position: relative; width: 100%; height: 220px; overflow: hidden; cursor: pointer;">
+              <div class="project-thumb-wrap" style="position: relative; width: 100%; height: 100%; overflow: hidden; display: block; cursor: pointer;">
+                <img src="https://img.youtube.com/vi/V44_2NNMsq0/maxresdefault.jpg" alt="The Impostor" class="project-thumb-img" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                <div class="thumb-gradient-overlay" style="pointer-events: none;"></div>
+                <div class="project-tag" style="pointer-events: none;">🎮 Web App Realtime</div>
+                <button type="button" class="play-btn-circle open-project-modal" 
+                        style="position: absolute !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 30; cursor: pointer; border: none; margin: 0;"
+                        title="Reproducir demostración"
+                        aria-label="Reproducir demostración de The Impostor"
+                        data-title="The Impostor: Speaking Edition (Cil Lenguas)" 
+                        data-desc="Aplicación web interactiva desarrollada para academias de idiomas. Salas multijugador en tiempo real, asignación dinámica de roles, turnos con temporizador y sistema de votación para expulsar al impostor." 
+                        data-tags="Web App Realtime, Supabase, React, Gamificación, EdTech" 
+                        data-video="https://youtu.be/V44_2NNMsq0">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </button>
+              </div>
+            </div>
+            <div class="portfolio-content">
+              <div class="portfolio-tags">
+                <span class="p-tag">Cil Lenguas</span>
+                <span class="p-tag highlight">Supabase Realtime</span>
+              </div>
+              <h3>The Impostor: Speaking Edition</h3>
+              <p>Juego multijugador interactivo para práctica de inglés oral. Sincronización en vivo con Supabase Realtime, roles de impostor y votación.</p>
+            </div>
+          </div>
+
+          <!-- Slide 3: Página Motion Museo -->
+          <div class="swiper-slide portfolio-card" 
+               data-project="motion-museo"
+               data-title="Plataforma Web Motion &amp; Experiencia Inmersiva (Museo)" 
+               data-desc="Desarrollo web a medida de alto impacto visual. Integra animaciones de desplazamiento cinemáticas, renderizado interactivo y estética de vanguardia para instituciones culturales." 
+               data-tags="Web Motion, Diseño 100% a Medida, GSAP, Experiencia 3D" 
+               data-video="https://youtu.be/SVae3Wi1q0c">
+            <div class="portfolio-media" style="position: relative; width: 100%; height: 220px; overflow: hidden; cursor: pointer;">
+              <div class="project-thumb-wrap" style="position: relative; width: 100%; height: 100%; overflow: hidden; display: block; cursor: pointer;">
+                <img src="https://img.youtube.com/vi/SVae3Wi1q0c/maxresdefault.jpg" alt="Página Motion Museo" class="project-thumb-img" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                <div class="thumb-gradient-overlay" style="pointer-events: none;"></div>
+                <div class="project-tag" style="pointer-events: none;">🏛️ Web Motion &amp; 3D</div>
+                <button type="button" class="play-btn-circle open-project-modal" 
+                        style="position: absolute !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 30; cursor: pointer; border: none; margin: 0;"
+                        title="Reproducir demostración"
+                        aria-label="Reproducir demostración de Página Motion Museo"
+                        data-title="Plataforma Web Motion &amp; Experiencia Inmersiva (Museo)" 
+                        data-desc="Desarrollo web a medida de alto impacto visual. Integra animaciones de desplazamiento cinemáticas, renderizado interactivo y estética de vanguardia para instituciones culturales." 
+                        data-tags="Web Motion, Diseño 100% a Medida, GSAP, Experiencia 3D" 
+                        data-video="https://youtu.be/SVae3Wi1q0c">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </button>
+              </div>
+            </div>
+            <div class="portfolio-content">
+              <div class="portfolio-tags">
+                <span class="p-tag">Experiencia Inmersiva</span>
+                <span class="p-tag highlight">100% a Medida</span>
+              </div>
+              <h3>Plataforma Web Motion &amp; Experiencia Inmersiva</h3>
+              <p>Sitio web cinematográfico con animaciones interactivas de scroll, diseño audiovisual de alta gama y transiciones fluidas.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controles Carrusel 3D -->
+        <div class="swiper-pagination portfolio-pagination"></div>
+        <div class="portfolio-arrow portfolio-arrow-prev" aria-label="Anterior">‹</div>
+        <div class="portfolio-arrow portfolio-arrow-next" aria-label="Siguiente">›</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL DE PROYECTO / VIDEO -->
+  <div class="project-modal-backdrop" id="projectModal" aria-hidden="true">
+    <div class="project-modal-dialog">
+      <button class="project-modal-close" id="closeProjectModal" aria-label="Cerrar modal">&times;</button>
+      <div class="project-modal-video-box">
+        <div class="modal-video-placeholder" id="modalVideoPlaceholder">
+          <div class="modal-play-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          </div>
+          <p class="modal-video-hint" style="margin: 8px 0 0; font-size: 13px;">Video de demostración del sistema</p>
+        </div>
+        <video id="modalVideoPlayer" class="modal-video-player" controls playsinline style="display:none;"></video>
+        <iframe id="modalVideoIframe" class="modal-video-iframe" style="display:none;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+      </div>
+      <div class="project-modal-info">
+        <div class="modal-tags" id="modalTags"></div>
+        <h3 class="modal-title" id="modalTitle">Título del Proyecto</h3>
+        <p class="modal-desc" id="modalDesc">Descripción detallada del desarrollo.</p>
+        <div class="modal-footer-cta">
+          <a href="https://wa.me/5493516435132?text=Hola,%20vi%20el%20proyecto%20en%20el%20portafolio%20y%20quiero%20uno%20similar" target="_blank" class="btn primary small">
+            Consultar por este desarrollo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- REVIEWS -->
   <section id="reviews" class="section alt">
@@ -538,12 +871,12 @@
 
         <div class="faq-item">
           <button class="faq-q">¿En cuánto tiempo está funcionando el agente? <span class="faq-icon">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner"><p>En la mayoría de los casos entre 5 y 10 días hábiles desde que arrancamos. Incluye la configuración del agente, la integración con tu WhatsApp y las pruebas. Para proyectos más complejos con múltiples flujos el tiempo puede extenderse un poco más.</p></div></div>
+          <div class="faq-a"><div class="faq-a-inner"><p>En la mayoría de los casos entre 10 y 15 días hábiles desde que arrancamos. Incluye la configuración del agente, la integración con tu WhatsApp y las pruebas. Para proyectos más complejos con múltiples flujos el tiempo puede extenderse un poco más.</p></div></div>
         </div>
 
         <div class="faq-item">
           <button class="faq-q">¿Necesito un número de WhatsApp exclusivo para el agente? <span class="faq-icon">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner"><p>Sí, recomendamos usar un número dedicado para el agente, diferente al que usás vos personalmente. Puede ser una línea nueva o un chip que ya tengas sin uso. Si ya tenés WhatsApp Business configurado, también podemos integrarlo directamente.</p></div></div>
+          <div class="faq-a"><div class="faq-a-inner"><p>Sí, recomendamos usar un número dedicado para el agente, diferente al que usás vos personalmente. Puede ser una línea nueva o un chip que ya tengas sin uso.</p></div></div>
         </div>
 
         <div class="faq-item">
@@ -608,15 +941,12 @@
   <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.31/bundled/lenis.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
-  <script src="script.js?v=4" defer></script>
+  <script src="script.js?v=6.0" defer></script>
   
   <a href="agendar.html" class="floating-cta">
     <span class="fab-icon">📅</span>
     <span class="fab-text">Agendar Diagnóstico</span>
   </a>
-
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="js/main.js"></script> 
 </body>
 </html>
 
