@@ -89,8 +89,90 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="../styles.css?v=7.1" />
   <style>
+    /* ── Portafolio 3D: interactividad y centrado de botones ── */
+    .portfolio-3d-swiper {
+      cursor: default !important;
+    }
+    .portfolio-3d-swiper .swiper-wrapper {
+      pointer-events: none !important;
+      cursor: default !important;
+    }
+    .portfolio-3d-swiper .swiper-slide,
+    .portfolio-card {
+      pointer-events: auto !important;
+      cursor: pointer !important;
+    }
+    .portfolio-media,
+    .project-thumb-wrap {
+      position: relative !important;
+      width: 100% !important;
+      height: 220px !important;
+      overflow: hidden !important;
+      cursor: pointer !important;
+      display: block !important;
+    }
+    .project-thumb-img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+    }
+    .play-btn-circle {
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      width: 64px !important;
+      height: 64px !important;
+      border-radius: 50% !important;
+      border: none !important;
+      background: linear-gradient(135deg, var(--primary, #27d78d), var(--secondary, #2aa9ff)) !important;
+      color: #050b14 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      box-shadow: 0 0 25px rgba(39, 215, 141, 0.5), 0 0 45px rgba(0, 242, 255, 0.3) !important;
+      z-index: 30 !important;
+      pointer-events: auto !important;
+      margin: 0 !important;
+    }
+    .play-btn-circle svg {
+      margin-left: 3px !important;
+      width: 26px !important;
+      height: 26px !important;
+      pointer-events: none !important;
+    }
+    .play-btn-circle::before {
+      content: "" !important;
+      position: absolute !important;
+      inset: -8px !important;
+      border-radius: 50% !important;
+      border: 2px solid rgba(0, 242, 255, 0.55) !important;
+      animation: playPulseRing 2.4s infinite cubic-bezier(0.215, 0.61, 0.355, 1) !important;
+      pointer-events: none !important;
+    }
+    .portfolio-card:hover .play-btn-circle,
+    .play-btn-circle:hover {
+      transform: translate(-50%, -50%) scale(1.15) !important;
+      box-shadow: 0 0 35px rgba(39, 215, 141, 0.8), 0 0 65px rgba(0, 242, 255, 0.5) !important;
+    }
+    .swiper-slide-shadow,
+    .swiper-slide-shadow-left,
+    .swiper-slide-shadow-right,
+    .swiper-slide-shadow-top,
+    .swiper-slide-shadow-bottom,
+    .thumb-gradient-overlay,
+    .tech-grid-overlay {
+      pointer-events: none !important;
+    }
+    .swiper-slide-active.portfolio-card {
+      z-index: 20 !important;
+    }
+
     /* ── Overrides de hero para esta página ── */
     .hero {
       min-height: auto;
@@ -296,7 +378,10 @@
       <nav class="nav-links" id="navlinks">
         <a href="#web-proceso">Proceso</a>
         <a href="#web-why">Ventajas</a>
+        <a href="#portfolio">Portafolio</a>
         <a href="#web-services">Servicios</a>
+        <a href="#reviews">Reseñas</a>
+        <a href="#web-faq">FAQ</a>
         <a href="#web-contact">Contacto</a>
         <a href="/" class="nav-highlight">
           <svg class="nav-icon-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -451,6 +536,156 @@
     </div>
   </section>
 
+  <!-- PORTFOLIO / DESARROLLOS (CARRUSEL 3D) -->
+  <section id="portfolio" class="section">
+    <div class="container">
+      <div class="portfolio-header">
+        <span class="portfolio-badge">Desarrollos Recientes</span>
+        <h2 class="section-title">Portafolio de Proyectos</h2>
+        <p class="section-subtitle">Explorá algunos de los sitios web, plataformas y sistemas a medida que pusimos en marcha.</p>
+      </div>
+
+      <!-- 3D Swiper Coverflow -->
+      <div class="swiper portfolio-3d-swiper">
+        <div class="swiper-wrapper">
+          <!-- Slide 1: Gestión Whapigen -->
+          <div class="swiper-slide portfolio-card" 
+               data-project="gestion-whapigen"
+               data-title="Sistema de Gestión &amp; Automatizaciones Whapigen" 
+               data-desc="Demostración completa del panel operativo de Whapigen: gestión de contactos, flujos de cobranza automática, integración con WhatsApp y métricas del negocio." 
+               data-tags="Gestión Automatizada, CRM Propio, Panel de Control, Whapigen Cloud" 
+               data-video="https://youtu.be/e8mou2LeEw0">
+            <div class="portfolio-media" style="position: relative; width: 100%; height: 220px; overflow: hidden; cursor: pointer;">
+              <div class="project-thumb-wrap" style="position: relative; width: 100%; height: 100%; overflow: hidden; display: block; cursor: pointer;">
+                <img src="https://img.youtube.com/vi/e8mou2LeEw0/maxresdefault.jpg" alt="Gestión Whapigen" class="project-thumb-img" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                <div class="thumb-gradient-overlay" style="pointer-events: none;"></div>
+                <div class="project-tag" style="pointer-events: none;">⚡ CRM &amp; Automatización</div>
+                <button type="button" class="play-btn-circle open-project-modal" 
+                        style="position: absolute !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 30; cursor: pointer; border: none; margin: 0;"
+                        title="Reproducir demostración"
+                        aria-label="Reproducir demostración de Gestión Whapigen"
+                        data-title="Sistema de Gestión &amp; Automatizaciones Whapigen" 
+                        data-desc="Demostración completa del panel operativo de Whapigen: gestión de contactos, flujos de cobranza automática, integración con WhatsApp y métricas del negocio." 
+                        data-tags="Gestión Automatizada, CRM Propio, Panel de Control, Whapigen Cloud" 
+                        data-video="https://youtu.be/e8mou2LeEw0">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </button>
+              </div>
+            </div>
+            <div class="portfolio-content">
+              <div class="portfolio-tags">
+                <span class="p-tag">Whapigen Cloud</span>
+                <span class="p-tag highlight">Gestión Integral</span>
+              </div>
+              <h3>Sistema de Gestión &amp; Automatizaciones Whapigen</h3>
+              <p>Plataforma centralizada para control de clientes, recordatorios automáticos de cobro y trazabilidad de pedidos en tiempo real.</p>
+            </div>
+          </div>
+
+          <!-- Slide 2: The Impostor -->
+          <div class="swiper-slide portfolio-card" 
+               data-project="the-impostor"
+               data-title="The Impostor: Speaking Edition (Cil Lenguas)" 
+               data-desc="Aplicación web interactiva desarrollada para academias de idiomas. Salas multijugador en tiempo real, asignación dinámica de roles, turnos con temporizador y sistema de votación para expulsar al impostor." 
+               data-tags="Web App Realtime, Supabase, React, Gamificación, EdTech" 
+               data-video="https://youtu.be/V44_2NNMsq0">
+            <div class="portfolio-media" style="position: relative; width: 100%; height: 220px; overflow: hidden; cursor: pointer;">
+              <div class="project-thumb-wrap" style="position: relative; width: 100%; height: 100%; overflow: hidden; display: block; cursor: pointer;">
+                <img src="https://img.youtube.com/vi/V44_2NNMsq0/maxresdefault.jpg" alt="The Impostor" class="project-thumb-img" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                <div class="thumb-gradient-overlay" style="pointer-events: none;"></div>
+                <div class="project-tag" style="pointer-events: none;">🎮 Web App Realtime</div>
+                <button type="button" class="play-btn-circle open-project-modal" 
+                        style="position: absolute !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 30; cursor: pointer; border: none; margin: 0;"
+                        title="Reproducir demostración"
+                        aria-label="Reproducir demostración de The Impostor"
+                        data-title="The Impostor: Speaking Edition (Cil Lenguas)" 
+                        data-desc="Aplicación web interactiva desarrollada para academias de idiomas. Salas multijugador en tiempo real, asignación dinámica de roles, turnos con temporizador y sistema de votación para expulsar al impostor." 
+                        data-tags="Web App Realtime, Supabase, React, Gamificación, EdTech" 
+                        data-video="https://youtu.be/V44_2NNMsq0">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </button>
+              </div>
+            </div>
+            <div class="portfolio-content">
+              <div class="portfolio-tags">
+                <span class="p-tag">Cil Lenguas</span>
+                <span class="p-tag highlight">Supabase Realtime</span>
+              </div>
+              <h3>The Impostor: Speaking Edition</h3>
+              <p>Juego multijugador interactivo para práctica de inglés oral. Sincronización en vivo con Supabase Realtime, roles de impostor y votación.</p>
+            </div>
+          </div>
+
+          <!-- Slide 3: Página Motion Museo -->
+          <div class="swiper-slide portfolio-card" 
+               data-project="motion-museo"
+               data-title="Plataforma Web Motion &amp; Experiencia Inmersiva (Museo)" 
+               data-desc="Desarrollo web a medida de alto impacto visual. Integra animaciones de desplazamiento cinemáticas, renderizado interactivo y estética de vanguardia para instituciones culturales." 
+               data-tags="Web Motion, Diseño 100% a Medida, GSAP, Experiencia 3D" 
+               data-video="https://youtu.be/SVae3Wi1q0c">
+            <div class="portfolio-media" style="position: relative; width: 100%; height: 220px; overflow: hidden; cursor: pointer;">
+              <div class="project-thumb-wrap" style="position: relative; width: 100%; height: 100%; overflow: hidden; display: block; cursor: pointer;">
+                <img src="https://img.youtube.com/vi/SVae3Wi1q0c/maxresdefault.jpg" alt="Página Motion Museo" class="project-thumb-img" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                <div class="thumb-gradient-overlay" style="pointer-events: none;"></div>
+                <div class="project-tag" style="pointer-events: none;">🏛️ Web Motion &amp; 3D</div>
+                <button type="button" class="play-btn-circle open-project-modal" 
+                        style="position: absolute !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 30; cursor: pointer; border: none; margin: 0;"
+                        title="Reproducir demostración"
+                        aria-label="Reproducir demostración de Página Motion Museo"
+                        data-title="Plataforma Web Motion &amp; Experiencia Inmersiva (Museo)" 
+                        data-desc="Desarrollo web a medida de alto impacto visual. Integra animaciones de desplazamiento cinemáticas, renderizado interactivo y estética de vanguardia para instituciones culturales." 
+                        data-tags="Web Motion, Diseño 100% a Medida, GSAP, Experiencia 3D" 
+                        data-video="https://youtu.be/SVae3Wi1q0c">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </button>
+              </div>
+            </div>
+            <div class="portfolio-content">
+              <div class="portfolio-tags">
+                <span class="p-tag">Experiencia Inmersiva</span>
+                <span class="p-tag highlight">100% a Medida</span>
+              </div>
+              <h3>Plataforma Web Motion &amp; Experiencia Inmersiva</h3>
+              <p>Sitio web cinematográfico con animaciones interactivas de scroll, diseño audiovisual de alta gama y transiciones fluidas.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controles Carrusel 3D -->
+        <div class="swiper-pagination portfolio-pagination"></div>
+        <div class="portfolio-arrow portfolio-arrow-prev" aria-label="Anterior">‹</div>
+        <div class="portfolio-arrow portfolio-arrow-next" aria-label="Siguiente">›</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL DE PROYECTO / VIDEO -->
+  <div class="project-modal-backdrop" id="projectModal" aria-hidden="true">
+    <div class="project-modal-dialog">
+      <button class="project-modal-close" id="closeProjectModal" aria-label="Cerrar modal">&times;</button>
+      <div class="project-modal-video-box">
+        <div class="modal-video-placeholder" id="modalVideoPlaceholder">
+          <div class="modal-play-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          </div>
+          <p class="modal-video-hint" style="margin: 8px 0 0; font-size: 13px;">Video de demostración del sistema</p>
+        </div>
+        <video id="modalVideoPlayer" class="modal-video-player" controls playsinline style="display:none;"></video>
+        <iframe id="modalVideoIframe" class="modal-video-iframe" style="display:none;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+      </div>
+      <div class="project-modal-info">
+        <div class="modal-tags" id="modalTags"></div>
+        <h3 class="modal-title" id="modalTitle">Título del Proyecto</h3>
+        <p class="modal-desc" id="modalDesc">Descripción detallada del desarrollo.</p>
+        <div class="modal-footer-cta">
+          <a href="https://wa.me/5493516435132?text=Hola,%20vi%20el%20proyecto%20en%20el%20portafolio%20y%20quiero%20uno%20similar" target="_blank" class="btn primary small">
+            Consultar por este desarrollo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- SERVICIOS / PRECIOS (al final) -->
   <section id="web-services" class="section alt">
     <div class="container">
@@ -569,6 +804,25 @@
     </div>
   </section>
 
+  <!-- REVIEWS -->
+  <section id="reviews" class="section">
+    <div class="container">
+      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      <p class="section-subtitle">Casos reales de clientes que impulsaron su negocio con WHAPIGEN.</p>
+      
+      <div class="swiper reviews-swiper" id="reviewsContainer" style="display: none; padding-bottom: 40px; padding-top: 20px;">
+        <div class="swiper-wrapper" id="reviewsWrapper">
+          <!-- Las reseñas se inyectan acá mediante JS -->
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+      <div id="reviewsLoading" style="text-align: center; color: var(--muted); padding: 40px 0;">Cargando testimonios de clientes...</div>
+      <div style="text-align: center; margin-top: 20px;">
+        <a href="../feedback.html" class="btn ghost small">Dejar una reseña</a>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section id="web-faq" class="section alt">
     <div class="container">
@@ -634,7 +888,9 @@
         <a href="/">Inicio</a>
         <a href="#web-proceso">Proceso</a>
         <a href="#web-why">Ventajas</a>
+        <a href="#portfolio">Portafolio</a>
         <a href="#web-services">Servicios</a>
+        <a href="#reviews">Reseñas</a>
         <a href="#web-contact">Contacto</a>
       </nav>
     </div>
@@ -646,6 +902,7 @@
     <span class="fab-text">Diagnóstico gratis</span>
   </a>
 
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js" defer></script>
@@ -764,9 +1021,308 @@
         });
       });
 
-      // Scroll reveal bidireccional — IntersectionObserver
+      // ── Portafolio 3D Coverflow Carousel ───────────────────
+      if (window.Swiper && document.querySelector(".portfolio-3d-swiper")) {
+        const portfolioSwiper = new Swiper(".portfolio-3d-swiper", {
+          effect: "coverflow",
+          grabCursor: false,
+          centeredSlides: true,
+          slidesPerView: "auto",
+          initialSlide: 0,
+          loop: false,
+          rewind: true,
+          slideToClickedSlide: true,
+          touchStartPreventDefault: false,
+          threshold: 6,
+          preventClicks: false,
+          preventClicksPropagation: false,
+          speed: 600,
+          coverflowEffect: {
+            rotate: 20,
+            stretch: 0,
+            depth: 200,
+            modifier: 1,
+            slideShadows: true,
+          },
+          pagination: {
+            el: ".portfolio-pagination",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".portfolio-arrow-next",
+            prevEl: ".portfolio-arrow-prev",
+          },
+          breakpoints: {
+            320: { slidesPerView: 1.15, coverflowEffect: { depth: 90, rotate: 12 } },
+            640: { slidesPerView: 1.35, coverflowEffect: { depth: 150, rotate: 16 } },
+            1024: { slidesPerView: 2.1, coverflowEffect: { depth: 220, rotate: 20 } },
+          }
+        });
+
+        portfolioSwiper.on('click', (swiper, e) => {
+          console.log("[Portfolio Swiper Click] tag:", e.target?.tagName, "class:", e.target?.className, "closestBtn:", e.target?.closest(".open-project-modal"), "closestCard:", e.target?.closest(".portfolio-card"));
+          const openBtn = e.target.closest(".open-project-modal");
+          if (openBtn) {
+            triggerProjectModalFromEl(openBtn);
+            return;
+          }
+          const clickedSlide = swiper.clickedSlide || e.target.closest(".portfolio-card");
+          if (!clickedSlide) {
+            console.warn("[Portfolio Warning] Swiper click did not resolve to a card");
+            return;
+          }
+          if (clickedSlide.classList.contains("swiper-slide-active")) {
+            triggerProjectModalFromEl(clickedSlide);
+          }
+        });
+      }
+
+      // ── Modal de Proyectos / Videos ────────────────────────
+      const projectModal = document.getElementById("projectModal");
+      const closeModalBtn = document.getElementById("closeProjectModal");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalDesc = document.getElementById("modalDesc");
+      const modalTags = document.getElementById("modalTags");
+      const modalPlayer = document.getElementById("modalVideoPlayer");
+      const modalIframe = document.getElementById("modalVideoIframe");
+      const modalPlaceholder = document.getElementById("modalVideoPlaceholder");
+
+      function formatVideoUrl(url) {
+        if (!url) return "";
+        let trimmed = url.trim();
+        if (trimmed.includes("drive.google.com")) {
+          let driveUrl = trimmed.replace(/\/view(\?.*)?$/, "/preview");
+          if (!driveUrl.includes("/preview")) {
+            driveUrl = driveUrl.replace(/\?usp=sharing/, "").replace(/\/+$/, "") + "/preview";
+          }
+          return driveUrl;
+        }
+        if (trimmed.includes("youtu.be/")) {
+          const id = trimmed.split("youtu.be/")[1]?.split(/[?&#]/)[0];
+          return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+        }
+        if (trimmed.includes("youtube.com/watch")) {
+          try {
+            const urlObj = new URL(trimmed);
+            const id = urlObj.searchParams.get("v");
+            return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+          } catch (e) {
+            const id = trimmed.split("v=")[1]?.split("&")[0];
+            return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+          }
+        }
+        if (trimmed.includes("youtube.com/shorts/")) {
+          const id = trimmed.split("youtube.com/shorts/")[1]?.split(/[?&#]/)[0];
+          return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+        }
+        if (trimmed.includes("youtube.com/embed/")) {
+          return trimmed.includes("?") ? `${trimmed}&autoplay=1` : `${trimmed}?autoplay=1`;
+        }
+        return trimmed;
+      }
+
+      function triggerProjectModalFromEl(el) {
+        console.log("[Portfolio Debug] triggerProjectModalFromEl called from element:", el);
+        if (!el) {
+          console.warn("[Portfolio Warning] triggerProjectModalFromEl called with null/undefined element!");
+          return;
+        }
+        const title = el.getAttribute("data-title") || el.querySelector("[data-title]")?.getAttribute("data-title") || "Proyecto Whapigen";
+        const desc = el.getAttribute("data-desc") || el.querySelector("[data-desc]")?.getAttribute("data-desc") || "";
+        const tags = el.getAttribute("data-tags") || el.querySelector("[data-tags]")?.getAttribute("data-tags") || "";
+        const video = el.getAttribute("data-video") || el.querySelector("[data-video]")?.getAttribute("data-video") || "";
+
+        console.log("[Portfolio Debug] Extracted data:", { title, desc, tags, video });
+
+        if (!video) {
+          console.warn("[Portfolio Warning] No video attribute found for element:", el);
+          return;
+        }
+
+        openProjectModal({ title, desc, tags, video });
+      }
+
+      function openProjectModal(data) {
+        console.log("[Portfolio Debug] openProjectModal executing with payload:", data);
+        if (!projectModal) {
+          console.warn("[Portfolio Warning] projectModal element not found in DOM!");
+          return;
+        }
+        if (modalTitle) modalTitle.textContent = data.title || "Proyecto Whapigen";
+        if (modalDesc) modalDesc.textContent = data.desc || "";
+        
+        if (modalTags) {
+          modalTags.innerHTML = "";
+          if (data.tags) {
+            data.tags.split(",").forEach(t => {
+              const span = document.createElement("span");
+              span.className = "p-tag highlight";
+              span.textContent = t.trim();
+              modalTags.appendChild(span);
+            });
+          }
+        }
+
+        if (data.video && data.video.trim()) {
+          const rawUrl = data.video.trim();
+          const vUrl = formatVideoUrl(rawUrl);
+          console.log("[Portfolio Debug] Formatted video URL for iframe/player:", vUrl);
+
+          if (vUrl.includes("youtube.com") || vUrl.includes("vimeo.com") || vUrl.includes("drive.google.com")) {
+            if (modalPlayer) { modalPlayer.style.display = "none"; modalPlayer.pause(); }
+            if (modalIframe) {
+              modalIframe.src = vUrl;
+              modalIframe.style.display = "block";
+            }
+            if (modalPlaceholder) modalPlaceholder.style.display = "none";
+          } else {
+            if (modalIframe) { modalIframe.style.display = "none"; modalIframe.src = ""; }
+            if (modalPlayer) {
+              modalPlayer.src = vUrl;
+              modalPlayer.style.display = "block";
+              modalPlayer.play().catch((err) => console.warn("[Portfolio Warning] Video player autoplay blocked:", err));
+            }
+            if (modalPlaceholder) modalPlaceholder.style.display = "none";
+          }
+        } else {
+          console.warn("[Portfolio Warning] Empty video string in openProjectModal, displaying placeholder");
+          if (modalPlayer) { modalPlayer.style.display = "none"; modalPlayer.pause(); }
+          if (modalIframe) { modalIframe.style.display = "none"; modalIframe.src = ""; }
+          if (modalPlaceholder) modalPlaceholder.style.display = "flex";
+        }
+
+        projectModal.classList.add("open");
+        projectModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeProjectModal() {
+        if (!projectModal) {
+          console.warn("[Portfolio Warning] projectModal not found on close");
+          return;
+        }
+        projectModal.classList.remove("open");
+        projectModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        if (modalPlayer) {
+          modalPlayer.pause();
+          modalPlayer.currentTime = 0;
+        }
+        if (modalIframe) {
+          modalIframe.src = "";
+        }
+      }
+
+      document.querySelectorAll(".open-project-modal").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          console.log("[Portfolio Debug] Direct click on .open-project-modal button:", btn);
+          e.stopPropagation();
+          triggerProjectModalFromEl(btn);
+        });
+      });
+
+      document.querySelectorAll(".portfolio-card").forEach(card => {
+        card.addEventListener("click", (e) => {
+          console.log("[Portfolio Debug] Click on .portfolio-card container:", card, "target:", e.target);
+          if (e.target.closest(".open-project-modal")) return;
+          if (card.classList.contains("swiper-slide-active") || !card.classList.contains("swiper-slide")) {
+            triggerProjectModalFromEl(card);
+          }
+        });
+      });
+
+      closeModalBtn?.addEventListener("click", closeProjectModal);
+      projectModal?.addEventListener("click", (e) => {
+        if (e.target === projectModal) closeProjectModal();
+      });
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && projectModal?.classList.contains("open")) {
+          closeProjectModal();
+        }
+      });
+
+      // ── Reseñas Dinámicas desde Supabase ────────────────────
+      (async function loadReviews() {
+        const reviewsWrapper = document.getElementById('reviewsWrapper');
+        const reviewsContainer = document.getElementById('reviewsContainer');
+        const reviewsLoading = document.getElementById('reviewsLoading');
+
+        if (!reviewsWrapper || !reviewsContainer || !reviewsLoading) {
+          console.warn("[Reviews Warning] Reviews DOM elements not found on page");
+          return;
+        }
+
+        try {
+          const SUPABASE_URL = 'https://olelcgovidfyfwiydrrr.supabase.co';
+          const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9sZWxjZ292aWRmeWZ3aXlkcnJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk4NDEzNzQsImV4cCI6MjA5NTQxNzM3NH0.zaPyxa7bQObIaoG6J65bPvmEBwCO8uzr43UOO3y1-es';
+          
+          const res = await fetch(`${SUPABASE_URL}/rest/v1/reviews?allow_public_display=eq.true&is_approved=eq.true&order=created_at.desc`, {
+            method: 'GET',
+            headers: {
+              'apikey': SUPABASE_ANON_KEY,
+              'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+            }
+          });
+
+          if (!res.ok) throw new Error('Error fetching reviews');
+
+          const reviews = await res.json();
+          
+          if (reviews && reviews.length > 0) {
+            reviewsLoading.style.display = 'none';
+            reviewsContainer.style.display = 'block';
+
+            reviews.forEach(review => {
+              const slide = document.createElement('div');
+              slide.className = 'swiper-slide';
+              
+              const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+              const initial = review.client_name.charAt(0).toUpperCase();
+              const roleText = review.role_or_company ? review.role_or_company : 'Cliente Whapigen';
+              
+              slide.innerHTML = `
+                <div class="review-card">
+                  <div class="review-stars">${stars}</div>
+                  <div class="review-comment">"${review.comment}"</div>
+                  <div class="review-author">
+                    <div class="review-avatar">${initial}</div>
+                    <div class="review-meta">
+                      <h4>${review.client_name}</h4>
+                      <p>${roleText}</p>
+                      ${review.client_url ? `<a href="${review.client_url}" target="_blank" rel="noopener noreferrer" style="color: var(--primary); font-size: 12px; text-decoration: none; margin-top: 4px; display: inline-block;">${review.client_url}</a>` : ''}
+                    </div>
+                  </div>
+                </div>
+              `;
+              reviewsWrapper.appendChild(slide);
+            });
+
+            new Swiper('.reviews-swiper', {
+              slidesPerView: 1,
+              spaceBetween: 20,
+              pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+              },
+              breakpoints: {
+                640: { slidesPerView: 2, spaceBetween: 24 },
+                1024: { slidesPerView: 3, spaceBetween: 32 },
+              },
+              autoplay: {
+                delay: 4000,
+                disableOnInteraction: true,
+              }
+            });
+          } else {
+            reviewsLoading.textContent = '¡Sé el primero en dejar una reseña!';
+          }
+        } catch (error) {
+          console.error('Error loading reviews:', error);
+          reviewsLoading.textContent = 'No se pudieron cargar los testimonios en este momento.';
+        }
+      })();
       (() => {
-        const SEL = '.section-title,.section-subtitle,.card,.why-item,.process-step,.faq-item';
+        const SEL = '.section-title,.section-subtitle,.card,.why-item,.process-step,.faq-item,.portfolio-card,.review-card';
         document.querySelectorAll('.section:not(.hero)').forEach(sec => {
           sec.querySelectorAll(SEL).forEach((el, i) => {
             el.style.setProperty('--sr-d', `${Math.min(i, 5) * 0.09}s`);

@@ -48,23 +48,31 @@ const empresaElements = document.querySelectorAll('.type-empresa');
 const labelEstetica = document.getElementById('label-estetica');
 const labelEmpresa = document.getElementById('label-empresa');
 
-industryToggle.addEventListener('change', () => {
+industryToggle?.addEventListener('change', () => {
     if (industryToggle.checked) {
         // MODO EMPRESA
         esteticaElements.forEach(el => el.style.display = 'none');
         empresaElements.forEach(el => el.style.display = 'block');
-        labelEmpresa.style.fontWeight = '700'; // Bold
-        labelEmpresa.style.color = 'var(--primary)';
-        labelEstetica.style.fontWeight = '400'; // Normal
-        labelEstetica.style.color = 'inherit';
+        if (labelEmpresa) {
+          labelEmpresa.style.fontWeight = '700'; // Bold
+          labelEmpresa.style.color = 'var(--primary)';
+        }
+        if (labelEstetica) {
+          labelEstetica.style.fontWeight = '400'; // Normal
+          labelEstetica.style.color = 'inherit';
+        }
     } else {
         // MODO ESTÉTICA
         esteticaElements.forEach(el => el.style.display = 'block');
         empresaElements.forEach(el => el.style.display = 'none');
-        labelEstetica.style.fontWeight = '700';
-        labelEstetica.style.color = 'var(--primary)';
-        labelEmpresa.style.fontWeight = '400';
-        labelEmpresa.style.color = 'inherit';
+        if (labelEstetica) {
+          labelEstetica.style.fontWeight = '700';
+          labelEstetica.style.color = 'var(--primary)';
+        }
+        if (labelEmpresa) {
+          labelEmpresa.style.fontWeight = '400';
+          labelEmpresa.style.color = 'inherit';
+        }
     }
 });
 
@@ -75,7 +83,8 @@ const $$ = (s, ctx=document) => Array.from(ctx.querySelectorAll(s));
 
 
 // Año footer
-$("#year").textContent = new Date().getFullYear();
+const yearEl = $("#year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // Nav mobile
 const navToggle = $("#navtoggle");
@@ -170,72 +179,69 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Swipers
   if (window.Swiper) {
-    new Swiper(".cases-swiper", {
-      slidesPerView: "auto",
-      spaceBetween: 12,
-      freeMode: true,
-      loop: true,
-      autoplay: { delay: 1, disableOnInteraction: false },
-      speed: 4500,
-    });
-    new Swiper(".reviews-swiper", {
-      loop: true, centeredSlides: true,
-      slidesPerView: 1.1, spaceBetween: 14,
-      breakpoints: { 768:{slidesPerView:2.2}, 1024:{slidesPerView:3} },
-      autoplay: { delay: 3200, disableOnInteraction:false },
-      speed: 650,
-    });
+    if (document.querySelector(".cases-swiper")) {
+      new Swiper(".cases-swiper", {
+        slidesPerView: "auto",
+        spaceBetween: 12,
+        freeMode: true,
+        loop: true,
+        autoplay: { delay: 1, disableOnInteraction: false },
+        speed: 4500,
+      });
+    }
 
     // Portfolio 3D Coverflow Carousel (Orden secuencial estricto y sin bugs de bucle)
-    const portfolioSwiper = new Swiper(".portfolio-3d-swiper", {
-      effect: "coverflow",
-      grabCursor: false,
-      centeredSlides: true,
-      slidesPerView: "auto",
-      initialSlide: 0,
-      loop: false,
-      rewind: true,
-      slideToClickedSlide: true,
-      touchStartPreventDefault: false,
-      threshold: 6,
-      preventClicks: false,
-      preventClicksPropagation: false,
-      speed: 600,
-      coverflowEffect: {
-        rotate: 20,
-        stretch: 0,
-        depth: 200,
-        modifier: 1,
-        slideShadows: true,
-      },
-      pagination: {
-        el: ".portfolio-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".portfolio-arrow-next",
-        prevEl: ".portfolio-arrow-prev",
-      },
-      breakpoints: {
-        320: { slidesPerView: 1.15, coverflowEffect: { depth: 90, rotate: 12 } },
-        640: { slidesPerView: 1.35, coverflowEffect: { depth: 150, rotate: 16 } },
-        1024: { slidesPerView: 2.1, coverflowEffect: { depth: 220, rotate: 20 } },
-      }
-    });
+    if (document.querySelector(".portfolio-3d-swiper")) {
+      const portfolioSwiper = new Swiper(".portfolio-3d-swiper", {
+        effect: "coverflow",
+        grabCursor: false,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        initialSlide: 0,
+        loop: false,
+        rewind: true,
+        slideToClickedSlide: true,
+        touchStartPreventDefault: false,
+        threshold: 6,
+        preventClicks: false,
+        preventClicksPropagation: false,
+        speed: 600,
+        coverflowEffect: {
+          rotate: 20,
+          stretch: 0,
+          depth: 200,
+          modifier: 1,
+          slideShadows: true,
+        },
+        pagination: {
+          el: ".portfolio-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".portfolio-arrow-next",
+          prevEl: ".portfolio-arrow-prev",
+        },
+        breakpoints: {
+          320: { slidesPerView: 1.15, coverflowEffect: { depth: 90, rotate: 12 } },
+          640: { slidesPerView: 1.35, coverflowEffect: { depth: 150, rotate: 16 } },
+          1024: { slidesPerView: 2.1, coverflowEffect: { depth: 220, rotate: 20 } },
+        }
+      });
 
-    portfolioSwiper.on('click', (swiper, e) => {
-      console.log("[Portfolio Swiper Click] tag:", e.target?.tagName, "class:", e.target?.className, "closestBtn:", e.target?.closest(".open-project-modal"), "closestCard:", e.target?.closest(".portfolio-card"));
-      const openBtn = e.target.closest(".open-project-modal");
-      if (openBtn) {
-        triggerProjectModalFromEl(openBtn);
-        return;
-      }
-      const clickedSlide = swiper.clickedSlide || e.target.closest(".portfolio-card");
-      if (!clickedSlide) return;
-      if (clickedSlide.classList.contains("swiper-slide-active")) {
-        triggerProjectModalFromEl(clickedSlide);
-      }
-    });
+      portfolioSwiper.on('click', (swiper, e) => {
+        console.log("[Portfolio Swiper Click] tag:", e.target?.tagName, "class:", e.target?.className, "closestBtn:", e.target?.closest(".open-project-modal"), "closestCard:", e.target?.closest(".portfolio-card"));
+        const openBtn = e.target.closest(".open-project-modal");
+        if (openBtn) {
+          triggerProjectModalFromEl(openBtn);
+          return;
+        }
+        const clickedSlide = swiper.clickedSlide || e.target.closest(".portfolio-card");
+        if (!clickedSlide) return;
+        if (clickedSlide.classList.contains("swiper-slide-active")) {
+          triggerProjectModalFromEl(clickedSlide);
+        }
+      });
+    }
   }
 
   // --- Desplegable de Características y Aplicaciones ---
