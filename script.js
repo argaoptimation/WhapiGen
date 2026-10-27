@@ -144,37 +144,86 @@ window.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(raf);
   }
 
-  // Hero: chat en vivo
+  // Hero: chat en vivo estilo WhatsApp realista
   const live = $("#live-chat");
   const typing = $("#typing");
   if (live && typing) {
+    const doubleCheckSvg = `<svg class="wa-double-check" viewBox="0 0 16 11" width="15" height="11" fill="none"><path d="M11.05.5a.65.65 0 0 0-.46.19L5.35 5.93 3.41 4a.65.65 0 1 0-.92.92l2.4 2.4a.65.65 0 0 0 .92 0l5.7-5.7a.65.65 0 0 0-.46-1.12z" fill="#53bdeb"/><path d="M14.05.5a.65.65 0 0 0-.46.19l-5.7 5.7a.65.65 0 1 0 .92.92l5.24-5.24a.65.65 0 0 0-.46-1.12z" fill="#53bdeb"/></svg>`;
+
     const msgs = [
-      { t:"out", s:"Hola, quiero saber cómo funciona." },
-      { t:"in",  s:"Automatizamos tus mensajes de WhatsApp con IA 🤖." },
-      { t:"out", s:"¿Que se puede automatizar?" },
-      { t:"in",  s:"El pedido de productos, agendar citas, asesoramiento técnico y mucho más!" },
-      { t:"in",  s:"Todo personalizado en base a tu negocio y tus preferencias." },
-      { t:"out", s:"Muy bueno, como puedo saber si sirve en mi caso." },
-      { t:"in",  s:"Agendá una breve llamada de diagnóstico para ver tu caso💬👇" },
-      { t:"in",  html:`<a href="agendar.html" target="_blank" rel="noopener noreferrer">Agendar</a>` },
+      { t:"out", s:"Hola, quiero saber cómo funciona.", time:"10:41" },
+      { t:"in",  s:"Automatizamos tus mensajes de WhatsApp con IA 🚀.", time:"10:41" },
+      { t:"out", s:"¿Qué se puede automatizar?", time:"10:42" },
+      { t:"in",  s:"El pedido de productos, agendar citas, asesoramiento técnico y mucho más!", time:"10:42" },
+      { t:"in",  s:"Todo personalizado en base a tu negocio y tus preferencias.", time:"10:42" },
+      { t:"out", s:"Muy bueno, ¿cómo puedo saber si sirve en mi caso?", time:"10:43" },
+      { 
+        t:"in", 
+        isCard: true, 
+        s:"Agendá una breve llamada de diagnóstico para ver tu caso 👇", 
+        btnText:"Agendar llamada", 
+        btnUrl:"agendar.html", 
+        time:"10:43" 
+      },
     ];
+
     let i = 0;
-    const delay = 1600;
+    const delay = 1700;
+
     const push = () => {
-      if (i >= msgs.length) { typing.style.display = "none"; return; }
-      const el = document.createElement("div");
-      el.className = `msg msg-${msgs[i].t}`;
-      if (msgs[i].html) {
-        el.innerHTML = msgs[i].html;     // link clickeable
-      } else {
-        el.textContent = msgs[i].s;      // texto normal
+      if (i >= msgs.length) {
+        typing.style.display = "none";
+        return;
       }
-      live.appendChild(el);
+      const item = msgs[i];
+      const el = document.createElement("div");
+      el.className = `msg msg-${item.t}${item.isCard ? ' msg-card' : ''}`;
+      
+      let metaHtml = `<span class="msg-meta"><span class="msg-time">${item.time}</span>`;
+      if (item.t === "out") {
+        metaHtml += `<span class="msg-ticks">${doubleCheckSvg}</span>`;
+      }
+      metaHtml += `</span>`;
+
+      if (item.isCard) {
+        el.innerHTML = `
+          <span>${item.s}</span>
+          ${metaHtml}
+          <div class="msg-card-action">
+            <a href="${item.btnUrl}" target="_blank" rel="noopener noreferrer" class="wa-action-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              <span>${item.btnText}</span>
+            </a>
+          </div>
+        `;
+      } else {
+        el.innerHTML = `<span>${item.s}</span>${metaHtml}`;
+      }
+
+      live.insertBefore(el, typing);
       live.scrollTop = live.scrollHeight;
-      typing.style.visibility = "visible";
-      setTimeout(() => { typing.style.visibility = "hidden"; i++; setTimeout(push, 500); }, delay);
+
+      if (i + 1 < msgs.length) {
+        typing.style.display = "inline-flex";
+        live.scrollTop = live.scrollHeight;
+        setTimeout(() => {
+          typing.style.display = "none";
+          i++;
+          setTimeout(push, 400);
+        }, delay);
+      } else {
+        typing.style.display = "none";
+        i++;
+      }
     };
-    setTimeout(push, 800);
+
+    setTimeout(() => {
+      typing.style.display = "inline-flex";
+      setTimeout(() => {
+        typing.style.display = "none";
+        push();
+      }, 700);
+    }, 1000);
   }
 
   // Swipers
