@@ -2622,10 +2622,32 @@ transform: scale(1.05);
   color: #008069;
 }
 
+.hero-centered .hero-web-showcase,
+.hero-web-showcase.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-web-showcase .hws-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
 .hero-web-showcase .hws-body {
   display: flex;
   align-items: center;
   gap: 14px;
+  text-align: left;
+}
+
+.hero-web-showcase .hws-info {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
 }
 
 .hero-web-showcase .hws-icon-box {
