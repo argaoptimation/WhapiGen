@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Política de Privacidad | WHAPIGEN Argentina</title>
+  <meta name="description" content="Política de Privacidad y Tratamiento de Datos Personales de WHAPIGEN.cloud. Conocé cómo protegemos tu información y la de tus clientes." />
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f7fb">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1220">
+  <link rel="canonical" href="https://whapigen.cloud/privacidad.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://whapigen.cloud/privacidad.html">
+  <meta property="og:title" content="Política de Privacidad | WHAPIGEN Argentina">
+  <meta property="og:description" content="Información transparente sobre el tratamiento de datos, cumplimiento normativo y privacidad en los servicios de WHAPIGEN.">
+  <meta property="og:image" content="https://whapigen.cloud/assets/logo2.png">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="WHAPIGEN">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/favicon-192.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="styles.css?v=8.0" />
+
+  <style>
+    /* Estilos específicos para páginas de documentación legal */
+    .legal-body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .legal-hero {
+      flex-shrink: 0;
+      padding: 130px 20px 40px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(0, 242, 255, 0.04) 0%, rgba(0, 0, 0, 0) 100%);
+    }
+
+    .legal-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .legal-breadcrumb a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .legal-breadcrumb a:hover {
+      color: var(--primary);
+    }
+
+    .legal-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0 0 14px;
+      color: var(--text);
+    }
+
+    .legal-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+
+    .legal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(0, 242, 255, 0.1);
+      border: 1px solid rgba(0, 242, 255, 0.25);
+      color: var(--turquoise);
+    }
+
+    .legal-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+
+    .legal-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 12.5px;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .legal-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Layout de contenido de dos columnas */
+    .legal-main {
+      padding: 50px 20px 80px;
+      flex: 1;
+    }
+
+    .legal-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .legal-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .legal-actions {
+        margin-left: 0;
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+
+    /* Barra lateral con tabla de contenidos */
+    .legal-sidebar {
+      position: sticky;
+      top: 100px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .toc-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      margin: 0 0 14px;
+      font-family: 'JetBrains Mono', monospace;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 7px 10px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      line-height: 1.35;
+    }
+    .toc-link:hover, .toc-link.active {
+      color: var(--text);
+      background: rgba(0, 242, 255, 0.08);
+      color: var(--turquoise);
+      font-weight: 600;
+      padding-left: 14px;
+    }
+
+    .toc-highlight-card {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .toc-highlight-card strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* Artículo de texto legal */
+    .legal-content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 44px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    @media (max-width: 640px) {
+      .legal-content {
+        padding: 24px 20px;
+        border-radius: 16px;
+      }
+    }
+
+    .legal-section {
+      margin-bottom: 40px;
+      scroll-margin-top: 120px;
+    }
+    .legal-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .legal-section h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 16px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+    .section-num {
+      font-size: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--turquoise);
+      font-weight: 600;
+    }
+
+    .legal-section h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 22px 0 10px;
+    }
+
+    .legal-section p {
+      margin: 0 0 16px;
+      color: var(--text);
+      opacity: 0.92;
+    }
+
+    .legal-section ul, .legal-section ol {
+      margin: 0 0 20px 20px;
+      padding: 0;
+      color: var(--text);
+      opacity: 0.92;
+    }
+    .legal-section li {
+      margin-bottom: 8px;
+    }
+
+    /* Cajas destacadas de cumplimiento (Meta, Seguridad, Derechos) */
+    .callout-box {
+      background: rgba(0, 242, 255, 0.05);
+      border: 1px solid rgba(0, 242, 255, 0.25);
+      border-left: 4px solid var(--turquoise);
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin: 24px 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .callout-box.emerald {
+      background: rgba(0, 255, 136, 0.05);
+      border-color: rgba(0, 255, 136, 0.25);
+      border-left-color: #00ff88;
+    }
+    .callout-title {
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14.5px;
+    }
+
+    .data-table-wrap {
+      overflow-x: auto;
+      margin: 20px 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .data-table th, .data-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table th {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Print styles */
+    @media print {
+      .navbar, .footer, .legal-sidebar, .legal-actions, .floating-cta, .ambient-static-bg {
+        display: none !important;
+      }
+      .legal-hero {
+        padding: 20px 0;
+        border: none;
+      }
+      .legal-layout {
+        display: block;
+      }
+      .legal-content {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+      }
+      body {
+        background: #fff;
+        color: #000;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Política de Privacidad | WHAPIGEN Argentina",
+    "description": "Política de Privacidad y Tratamiento de Datos Personales de WHAPIGEN.cloud.",
+    "url": "https://whapigen.cloud/privacidad.html",
+    "publisher": {
+      "@type": "Organization",
+      "name": "WHAPIGEN",
+      "url": "https://whapigen.cloud",
+      "logo": "https://whapigen.cloud/assets/logo2.png"
+    }
+  }
+  </script>
+</head>
+<body class="legal-body">
+
+  <!-- Ambient Static Background -->
+  <div class="ambient-static-bg" aria-hidden="true">
+    <div class="ambient-glow ambient-glow-1"></div>
+    <div class="ambient-glow ambient-glow-2"></div>
+    <div class="ambient-tech-grid"></div>
+  </div>
+
+  <div id="scroll-progress"></div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <img src="assets/logo2.png" alt="logo" class="logo2">
+        <span>WHAPIGEN</span>
+      </a>
+      <nav class="nav-links" id="navlinks">
+        <a href="index.html#home">Inicio</a>
+        <a href="index.html#features">Características</a>
+        <a href="index.html#usecases">Aplicaciones</a>
+        <a href="web/#portfolio">Portafolio</a>
+        <a href="index.html#pricing">Precios</a>
+        <a href="index.html#contact">Contacto</a>
+        <a href="terminos.html">Términos</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Cambiar modo claro / oscuro" title="Cambiar tema">
+          <span class="theme-icon sun-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-icon moon-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+        <button class="nav-toggle" id="navtoggle" aria-label="Menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="legal-hero">
+    <div class="container">
+      <div class="legal-breadcrumb">
+        <a href="index.html">WHAPIGEN</a>
+        <span>/</span>
+        <span>Legal</span>
+        <span>/</span>
+        <span style="color: var(--turquoise);">Privacidad</span>
+      </div>
+
+      <h1 class="legal-title">Política de Privacidad</h1>
+
+      <div class="legal-meta-row">
+        <div class="legal-badge">
+          <span>🛡️</span>
+          <span>Vigente: Noviembre 2026</span>
+        </div>
+        <div>Cumplimiento Ley 25.326 &amp; Políticas de Meta / WhatsApp</div>
+
+        <div class="legal-actions">
+          <button type="button" class="legal-btn" onclick="window.print()" title="Imprimir o guardar en PDF">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            <span>Imprimir</span>
+          </button>
+          <button type="button" class="legal-btn" id="btnCopyUrl" title="Copiar enlace de esta página">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span id="copyUrlText">Copiar Link</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenido Principal -->
+  <main class="legal-main">
+    <div class="legal-layout">
+      
+      <!-- Tabla de Contenidos Flotante -->
+      <aside class="legal-sidebar">
+        <h3 class="toc-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+          <span>Índice</span>
+        </h3>
+        <nav>
+          <ul class="toc-list">
+            <li><a href="#responsable" class="toc-link">1. Responsable del Tratamiento</a></li>
+            <li><a href="#datos" class="toc-link">2. Datos que Recopilamos</a></li>
+            <li><a href="#finalidad" class="toc-link">3. Finalidad del Tratamiento</a></li>
+            <li><a href="#whatsapp" class="toc-link">4. Integración WhatsApp &amp; Meta</a></li>
+            <li><a href="#seguridad" class="toc-link">5. Seguridad y Conservación</a></li>
+            <li><a href="#derechos" class="toc-link">6. Derechos del Titular (ARCO)</a></li>
+            <li><a href="#eliminacion" class="toc-link">7. Solicitud de Eliminación</a></li>
+            <li><a href="#cookies" class="toc-link">8. Cookies y Tecnologías</a></li>
+            <li><a href="#modificaciones" class="toc-link">9. Modificaciones</a></li>
+            <li><a href="#contacto" class="toc-link">10. Contacto y Jurisdicción</a></li>
+          </ul>
+        </nav>
+
+        <div class="toc-highlight-card">
+          <strong>🔒 Privacidad por Diseño</strong>
+          Tus datos y los de tus usuarios se procesan exclusivamente para brindar el servicio. No vendemos ni compartimos información con terceros anunciantes.
+        </div>
+      </aside>
+
+      <!-- Artículo de Texto Legal -->
+      <article class="legal-content">
+        
+        <p class="lead" style="font-size: 1.08rem; color: var(--text); opacity: 0.95; margin-bottom: 28px;">
+          En <strong>WHAPIGEN</strong> (en adelante "WHAPIGEN", "nosotros" o "la Plataforma"), accesible desde 
+          <a href="https://whapigen.cloud" style="color: var(--turquoise); text-decoration: none;">https://whapigen.cloud</a>, 
+          respetamos y protegemos la privacidad de todas las personas físicas y jurídicas que interactúan con nuestros servicios, 
+          sitios web, agentes de Inteligencia Artificial para WhatsApp y aplicaciones de automatización.
+        </p>
+
+        <!-- Sección 1 -->
+        <section id="responsable" class="legal-section">
+          <h2><span class="section-num">01.</span> Responsable del Tratamiento de los Datos</h2>
+          <p>
+            El responsable del tratamiento de los datos personales recabados y tratados conforme a esta política es <strong>WHAPIGEN</strong>, 
+            con operaciones y domicilio en la República Argentina.
+          </p>
+          <ul>
+            <li><strong>Sitio Web Oficial:</strong> <a href="https://whapigen.cloud" style="color: var(--turquoise);">https://whapigen.cloud</a></li>
+            <li><strong>Correo de Contacto y Privacidad:</strong> <a href="mailto:hola@whapigen.cloud" style="color: var(--turquoise);">hola@whapigen.cloud</a></li>
+            <li><strong>Actividad Principal:</strong> Desarrollo de soluciones de software, agentes de inteligencia artificial integrados a WhatsApp Business, plataformas web y automatización de procesos empresariales.</li>
+          </ul>
+        </section>
+
+        <!-- Sección 2 -->
+        <section id="datos" class="legal-section">
+          <h2><span class="section-num">02.</span> Datos que Recopilamos</h2>
+          <p>
+            Recopilamos únicamente la información necesaria para coordinar diagnósticos, ejecutar proyectos contratados, brindar soporte técnico 
+            y operar los flujos conversacionales automatizados solicitados:
+          </p>
+          
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Origen del Dato</th>
+                  <th>Tipos de Datos Recabados</th>
+                  <th>Finalidad Principal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Formularios de Contacto y Diagnóstico</strong></td>
+                  <td>Nombre, apellido, dirección de correo electrónico, número de WhatsApp, nombre del negocio y descripción de necesidades.</td>
+                  <td>Coordinar reuniones diagnósticas, elaborar presupuestos y brindar soporte comercial.</td>
+                </tr>
+                <tr>
+                  <td><strong>Interacción en WhatsApp (Meta Cloud API)</strong></td>
+                  <td>Número telefónico remitente, contenido textual de mensajes, audios o adjuntos transmitidos por el usuario al bot comercial.</td>
+                  <td>Procesamiento en tiempo real por el agente IA para responder consultas, agendar turnos o canalizar ventas.</td>
+                </tr>
+                <tr>
+                  <td><strong>Dashboard de Entregas &amp; Reseñas</strong></td>
+                  <td>Nombre del cliente, correo, enlaces a repositorios o desplegables, y valoraciones/reseñas voluntarias.</td>
+                  <td>Seguimiento transparente del avance de proyectos contratados y acreditación de testimonios autorizados.</td>
+                </tr>
+                <tr>
+                  <td><strong>Navegación Web</strong></td>
+                  <td>Dirección IP (anonimizada), tipo de navegador, sistema operativo y preferencia de tema (claro/oscuro guardada localmente).</td>
+                  <td>Seguridad del servidor, prevención de abusos y renderizado visual óptimo.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout-box emerald">
+            <div class="callout-title">
+              <span>💳</span>
+              <span>Tratamiento de Datos Financieros</span>
+            </div>
+            Los pagos por servicios contratados se procesan a través de pasarelas de pago y entidades bancarias certificadas (por ejemplo, MercadoPago o transferencias directas). WHAPIGEN no almacena ni tiene acceso a números completos de tarjetas de crédito o códigos de seguridad bancarios.
+          </div>
+        </section>
+
+        <!-- Sección 3 -->
+        <section id="finalidad" class="legal-section">
+          <h2><span class="section-num">03.</span> Finalidad del Tratamiento de los Datos</h2>
+          <p>Los datos personales recabados son tratados exclusivamente para los siguientes fines legítimos:</p>
+          <ol>
+            <li><strong>Prestación y Operatividad del Servicio:</strong> Desarrollar, desplegar, alojar y mantener agentes conversacionales en WhatsApp y sitios web a medida.</li>
+            <li><strong>Atención al Cliente y Soporte:</strong> Brindar asistencia técnica, evacuar dudas y responder consultas operativas.</li>
+            <li><strong>Seguimiento de Entregas:</strong> Mantener al cliente informado sobre el progreso de su solución a través de nuestro Dashboard de Entregas y notificaciones transaccionales vía correo (vía Resend).</li>
+            <li><strong>Cumplimiento Normativo:</strong> Atender requerimientos legales, fiscales o regulatorios aplicables bajo la legislación argentina.</li>
+          </ol>
+          <p>
+            <strong>Garantía estricta de no comercialización:</strong> WHAPIGEN jamás comercializa, vende, alquila ni cede bases de datos 
+            o registros de conversaciones a terceros para fines publicitarios, telemarketing o prospección no consentida.
+          </p>
+        </section>
+
+        <!-- Sección 4 -->
+        <section id="whatsapp" class="legal-section">
+          <h2><span class="section-num">04.</span> Integración con WhatsApp &amp; Políticas de Meta</h2>
+          <p>
+            Para brindar el servicio de agentes inteligentes en WhatsApp, WHAPIGEN utiliza la <strong>WhatsApp Business Platform (Cloud API)</strong> 
+            provista oficialmente por <strong>Meta Platforms, Inc.</strong>
+          </p>
+          
+          <div class="callout-box">
+            <div class="callout-title">
+              <span>💬</span>
+              <span>Compromiso con las Políticas de Mensajería de Meta</span>
+            </div>
+            Nuestras soluciones cumplen estrictamente con la <em>Política de Comercio de WhatsApp</em> y las <em>Políticas de Mensajería de WhatsApp Business</em>. Los agentes IA actúan en nombre del titular de la cuenta comercial únicamente en respuesta a mensajes entrantes de usuarios o en el envío de plantillas pre-aprobadas que cuentan con el consentimiento previo (opt-in) del destinatario.
+          </div>
+
+          <h3>Subprocesadores de Inteligencia Artificial</h3>
+          <p>
+            Para el procesamiento de lenguaje natural y generación de respuestas, los mensajes pueden procesarse a través de endpoints seguros 
+            de proveedores de modelos avanzados de IA (como OpenAI, Anthropic o Google Cloud). Estos proveedores operan bajo acuerdos empresariales 
+            de procesamiento de datos donde <strong>los datos transmitidos no se utilizan para entrenar modelos públicos</strong>.
+          </p>
+        </section>
+
+        <!-- Sección 5 -->
+        <section id="seguridad" class="legal-section">
+          <h2><span class="section-num">05.</span> Seguridad, Almacenamiento y Conservación</h2>
+          <p>
+            Implementamos rigurosas medidas técnicas, administrativas y de infraestructura para resguardar la confidencialidad 
+            e integridad de la información:
+          </p>
+          <ul>
+            <li><strong>Cifrado en Tránsito y Reposo:</strong> Toda la comunicación web y API opera bajo protocolos criptográficos seguros HTTPS / TLS 1.3. Las bases de datos seguras (Supabase) emplean cifrado en reposo AES-256.</li>
+            <li><strong>Principio de Mínimo Privilegio:</strong> El acceso a claves de API, webhooks y bases de datos está restringido exclusivamente al personal técnico indispensable para el mantenimiento del servicio.</li>
+            <li><strong>Plazos de Conservación:</strong> Los datos se conservan únicamente mientras dure la relación contractual o sea necesario para el funcionamiento técnico de las automatizaciones contratadas. Una vez finalizada la relación, los datos son archivados de forma segura o suprimidos conforme a derecho.</li>
+          </ul>
+        </section>
+
+        <!-- Sección 6 -->
+        <section id="derechos" class="legal-section">
+          <h2><span class="section-num">06.</span> Derechos del Titular de los Datos (ARCO)</h2>
+          <p>
+            De acuerdo con la <strong>Ley N° 25.326 de Protección de los Datos Personales de la República Argentina</strong>, 
+            el titular de los datos tiene derecho a ejercer en cualquier momento y de forma gratuita sus derechos de:
+          </p>
+          <ul>
+            <li><strong>Acceso:</strong> Conocer qué datos personales propios obran en poder de WHAPIGEN y bajo qué tratamientos.</li>
+            <li><strong>Rectificación y Actualización:</strong> Corregir información inexacta, desactualizada o incompleta.</li>
+            <li><strong>Supresión / Cancelación:</strong> Solicitar la eliminación total de sus datos de nuestros registros cuando no exista una obligación legal o contractual que justifique su conservación.</li>
+            <li><strong>Oposición y Revocación:</strong> Oponerse al tratamiento o revocar el consentimiento prestado previamente.</li>
+          </ul>
+          <p>
+            Para ejercer cualquiera de estos derechos, basta con enviar un correo electrónico a 
+            <a href="mailto:hola@whapigen.cloud" style="color: var(--turquoise); font-weight: 600;">hola@whapigen.cloud</a> 
+            adjuntando copia que acredite la identidad del solicitante y la petición puntual.
+          </p>
+        </section>
+
+        <!-- Sección 7 -->
+        <section id="eliminacion" class="legal-section">
+          <h2><span class="section-num">07.</span> Instrucciones para la Eliminación de Datos de Usuario (Meta / Facebook)</h2>
+          <p>
+            En cumplimiento con los requerimientos de la plataforma para desarrolladores de Meta (Facebook / WhatsApp Data Deletion Callback &amp; Instructions), 
+            proporcionamos a continuación el mecanismo transparente para solicitar la eliminación de datos generados mediante nuestras integraciones:
+          </p>
+
+          <div class="callout-box">
+            <div class="callout-title">
+              <span>🗑️</span>
+              <span>Procedimiento para solicitar el borrado de datos:</span>
+            </div>
+            <ol style="margin: 8px 0 0 16px; padding: 0;">
+              <li>Enviá un correo electrónico a <strong>hola@whapigen.cloud</strong> con el asunto: <code>Solicitud de Eliminación de Datos Meta / WhatsApp</code>.</li>
+              <li>Indicá en el cuerpo del mensaje tu nombre completo y el número de teléfono con el cual interactuaste con el servicio o agente.</li>
+              <li>Nuestro equipo técnico verificará la solicitud y procederá a la purga de logs, registros de conversaciones y asociaciones de base de datos dentro de un plazo máximo de <strong>72 horas hábiles</strong>.</li>
+              <li>Recibirás un correo electrónico de confirmación con el código de seguimiento de la eliminación completada.</li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- Sección 8 -->
+        <section id="cookies" class="legal-section">
+          <h2><span class="section-num">08.</span> Cookies y Tecnologías Similares</h2>
+          <p>
+            El sitio web <strong>whapigen.cloud</strong> utiliza únicamente cookies y almacenamiento local (<code>localStorage</code>) estrictamente 
+            necesarios para el funcionamiento técnico:
+          </p>
+          <ul>
+            <li><strong>Preferencia de Tema:</strong> Almacena si el usuario prefiere visualizar el sitio en modo oscuro o modo claro.</li>
+            <li><strong>Sesión Segura de Administración:</strong> Galletitas de sesión cifradas (<code>httpOnly</code>) para el acceso al panel administrativo por parte de los operadores autorizados de WHAPIGEN.</li>
+          </ul>
+          <p>
+            No utilizamos cookies de terceros destinadas a la elaboración de perfiles con fines publicitarios invasivos.
+          </p>
+        </section>
+
+        <!-- Sección 9 -->
+        <section id="modificaciones" class="legal-section">
+          <h2><span class="section-num">09.</span> Modificaciones a esta Política</h2>
+          <p>
+            WHAPIGEN se reserva el derecho de actualizar la presente Política de Privacidad para reflejar cambios en nuestras prácticas comerciales, 
+            mejoras en las plataformas de automatización o nuevas exigencias normativas. La versión actualizada estará disponible en esta URL, 
+            indicándose la fecha de última modificación al inicio del documento.
+          </p>
+        </section>
+
+        <!-- Sección 10 -->
+        <section id="contacto" class="legal-section">
+          <h2><span class="section-num">10.</span> Canales de Contacto y Jurisdicción</h2>
+          <p>
+            Ante cualquier duda, sugerencia o consulta sobre la protección de tus datos o los términos de esta política, podés comunicarte 
+            a través de los canales oficiales:
+          </p>
+          <ul>
+            <li><strong>Correo Electrónico:</strong> <a href="mailto:hola@whapigen.cloud" style="color: var(--turquoise);">hola@whapigen.cloud</a></li>
+            <li><strong>Canal de WhatsApp:</strong> <a href="https://wa.me/5491171350811" target="_blank" rel="noopener noreferrer" style="color: var(--turquoise);">+54 9 11 7135-0811</a></li>
+            <li><strong>Jurisdicción Aplicable:</strong> República Argentina.</li>
+          </ul>
+        </section>
+
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <nav class="f-links">
+        <a href="index.html#home">Inicio</a>
+        <a href="index.html#features">Características</a>
+        <a href="index.html#usecases">Aplicaciones</a>
+        <a href="web/#portfolio">Portafolio</a>
+        <a href="index.html#pricing">Precios</a>
+        <a href="index.html#contact">Contacto</a>
+        <a href="privacidad.html" style="color: var(--turquoise);">Privacidad</a>
+        <a href="terminos.html">Términos</a>
+      </nav>
+    </div>
+    <div class="legal">© <span id="year"></span> WHAPIGEN. Todos los derechos reservados.</div>
+  </footer>
+
+  <!-- Botón Flotante -->
+  <a href="agendar.html" target="_blank" rel="noopener noreferrer" class="floating-cta visible">
+    <span class="fab-icon">📅</span>
+    <span class="fab-text">Agendar Diagnóstico</span>
+  </a>
+
+  <!-- Scripts -->
+  <script>
+    // Año dinámico
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll progress bar
+    window.addEventListener('scroll', () => {
+      const sc = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      const bar = document.getElementById('scroll-progress');
+      if (bar) bar.style.width = `${Math.min(100, sc * 100)}%`;
+    });
+
+    // Theme toggle
+    (() => {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+    document.getElementById('themeToggle')?.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+
+    // Nav mobile toggle
+    document.getElementById('navtoggle')?.addEventListener('click', () => {
+      document.getElementById('navlinks')?.classList.toggle('show');
+    });
+
+    // Botón copiar link
+    document.getElementById('btnCopyUrl')?.addEventListener('click', () => {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        const span = document.getElementById('copyUrlText');
+        if (span) {
+          const orig = span.textContent;
+          span.textContent = '¡Copiado!';
+          setTimeout(() => { span.textContent = orig; }, 2500);
+        }
+      });
+    });
+
+    // Highlighting activo de la tabla de contenidos en scroll
+    const sections = document.querySelectorAll('.legal-section');
+    const navLinks = document.querySelectorAll('.toc-link');
+
+    window.addEventListener('scroll', () => {
+      let currentId = '';
+      sections.forEach(section => {
+        const top = section.offsetTop - 160;
+        if (window.scrollY >= top) {
+          currentId = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentId}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Términos y Condiciones | WHAPIGEN Argentina</title>
+  <meta name="description" content="Términos y Condiciones del Servicio de WHAPIGEN.cloud. Marco contractual para agentes de IA en WhatsApp, desarrollo web y automatizaciones." />
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f7fb">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1220">
+  <link rel="canonical" href="https://whapigen.cloud/terminos.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://whapigen.cloud/terminos.html">
+  <meta property="og:title" content="Términos y Condiciones | WHAPIGEN Argentina">
+  <meta property="og:description" content="Condiciones contractuales, responsabilidades de uso y garantías para los servicios brindados por WHAPIGEN.">
+  <meta property="og:image" content="https://whapigen.cloud/assets/logo2.png">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="WHAPIGEN">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/favicon-192.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="styles.css?v=8.0" />
+
+  <style>
+    /* Estilos específicos para páginas de documentación legal */
+    .legal-body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .legal-hero {
+      flex-shrink: 0;
+      padding: 130px 20px 40px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(39, 215, 141, 0.04) 0%, rgba(0, 0, 0, 0) 100%);
+    }
+
+    .legal-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .legal-breadcrumb a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .legal-breadcrumb a:hover {
+      color: var(--primary);
+    }
+
+    .legal-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0 0 14px;
+      color: var(--text);
+    }
+
+    .legal-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+
+    .legal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(39, 215, 141, 0.1);
+      border: 1px solid rgba(39, 215, 141, 0.25);
+      color: var(--primary);
+    }
+
+    .legal-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+
+    .legal-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 12.5px;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .legal-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Layout de contenido de dos columnas */
+    .legal-main {
+      padding: 50px 20px 80px;
+      flex: 1;
+    }
+
+    .legal-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .legal-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .legal-actions {
+        margin-left: 0;
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+
+    /* Barra lateral con tabla de contenidos */
+    .legal-sidebar {
+      position: sticky;
+      top: 100px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .toc-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      margin: 0 0 14px;
+      font-family: 'JetBrains Mono', monospace;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 7px 10px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      line-height: 1.35;
+    }
+    .toc-link:hover, .toc-link.active {
+      background: rgba(39, 215, 141, 0.08);
+      color: var(--primary);
+      font-weight: 600;
+      padding-left: 14px;
+    }
+
+    .toc-highlight-card {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .toc-highlight-card strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* Artículo de texto legal */
+    .legal-content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 44px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    @media (max-width: 640px) {
+      .legal-content {
+        padding: 24px 20px;
+        border-radius: 16px;
+      }
+    }
+
+    .legal-section {
+      margin-bottom: 40px;
+      scroll-margin-top: 120px;
+    }
+    .legal-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .legal-section h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 16px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+    .section-num {
+      font-size: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .legal-section h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 22px 0 10px;
+    }
+
+    .legal-section p {
+      margin: 0 0 16px;
+      color: var(--text);
+      opacity: 0.92;
+    }
+
+    .legal-section ul, .legal-section ol {
+      margin: 0 0 20px 20px;
+      padding: 0;
+      color: var(--text);
+      opacity: 0.92;
+    }
+    .legal-section li {
+      margin-bottom: 8px;
+    }
+
+    .callout-box {
+      background: rgba(0, 242, 255, 0.05);
+      border: 1px solid rgba(0, 242, 255, 0.25);
+      border-left: 4px solid var(--turquoise);
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin: 24px 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .callout-box.emerald {
+      background: rgba(0, 255, 136, 0.05);
+      border-color: rgba(0, 255, 136, 0.25);
+      border-left-color: #00ff88;
+    }
+    .callout-box.warning {
+      background: rgba(255, 180, 0, 0.05);
+      border-color: rgba(255, 180, 0, 0.25);
+      border-left-color: #ffb400;
+    }
+    .callout-title {
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14.5px;
+    }
+
+    /* Print styles */
+    @media print {
+      .navbar, .footer, .legal-sidebar, .legal-actions, .floating-cta, .ambient-static-bg {
+        display: none !important;
+      }
+      .legal-hero {
+        padding: 20px 0;
+        border: none;
+      }
+      .legal-layout {
+        display: block;
+      }
+      .legal-content {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+      }
+      body {
+        background: #fff;
+        color: #000;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Términos y Condiciones | WHAPIGEN Argentina",
+    "description": "Términos y Condiciones de Uso de WHAPIGEN.cloud.",
+    "url": "https://whapigen.cloud/terminos.html",
+    "publisher": {
+      "@type": "Organization",
+      "name": "WHAPIGEN",
+      "url": "https://whapigen.cloud",
+      "logo": "https://whapigen.cloud/assets/logo2.png"
+    }
+  }
+  </script>
+</head>
+<body class="legal-body">
+
+  <!-- Ambient Static Background -->
+  <div class="ambient-static-bg" aria-hidden="true">
+    <div class="ambient-glow ambient-glow-1"></div>
+    <div class="ambient-glow ambient-glow-2"></div>
+    <div class="ambient-tech-grid"></div>
+  </div>
+
+  <div id="scroll-progress"></div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <img src="assets/logo2.png" alt="logo" class="logo2">
+        <span>WHAPIGEN</span>
+      </a>
+      <nav class="nav-links" id="navlinks">
+        <a href="index.html#home">Inicio</a>
+        <a href="index.html#features">Características</a>
+        <a href="index.html#usecases">Aplicaciones</a>
+        <a href="web/#portfolio">Portafolio</a>
+        <a href="index.html#pricing">Precios</a>
+        <a href="index.html#contact">Contacto</a>
+        <a href="privacidad.html">Privacidad</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Cambiar modo claro / oscuro" title="Cambiar tema">
+          <span class="theme-icon sun-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-icon moon-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+        <button class="nav-toggle" id="navtoggle" aria-label="Menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="legal-hero">
+    <div class="container">
+      <div class="legal-breadcrumb">
+        <a href="index.html">WHAPIGEN</a>
+        <span>/</span>
+        <span>Legal</span>
+        <span>/</span>
+        <span style="color: var(--primary);">Términos y Condiciones</span>
+      </div>
+
+      <h1 class="legal-title">Términos y Condiciones de Uso</h1>
+
+      <div class="legal-meta-row">
+        <div class="legal-badge">
+          <span>⚖️</span>
+          <span>Vigente: Noviembre 2026</span>
+        </div>
+        <div>Marco Contractual &amp; Condiciones Generales del Servicio</div>
+
+        <div class="legal-actions">
+          <button type="button" class="legal-btn" onclick="window.print()" title="Imprimir o guardar en PDF">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            <span>Imprimir</span>
+          </button>
+          <button type="button" class="legal-btn" id="btnCopyUrl" title="Copiar enlace de esta página">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span id="copyUrlText">Copiar Link</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenido Principal -->
+  <main class="legal-main">
+    <div class="legal-layout">
+      
+      <!-- Tabla de Contenidos Flotante -->
+      <aside class="legal-sidebar">
+        <h3 class="toc-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+          <span>Contenido</span>
+        </h3>
+        <nav>
+          <ul class="toc-list">
+            <li><a href="#aceptacion" class="toc-link">1. Aceptación de los Términos</a></li>
+            <li><a href="#servicios" class="toc-link">2. Descripción de Servicios</a></li>
+            <li><a href="#contratacion" class="toc-link">3. Diagnóstico y Presupuestos</a></li>
+            <li><a href="#uso-aceptable" class="toc-link">4. Uso Aceptable (WhatsApp/Meta)</a></li>
+            <li><a href="#propiedad" class="toc-link">5. Propiedad Intelectual</a></li>
+            <li><a href="#pagos" class="toc-link">6. Precios y Condiciones de Pago</a></li>
+            <li><a href="#entregas" class="toc-link">7. Entregas y Dashboard</a></li>
+            <li><a href="#garantia" class="toc-link">8. Garantía y Soporte</a></li>
+            <li><a href="#responsabilidad" class="toc-link">9. Limitación de Responsabilidad</a></li>
+            <li><a href="#terminacion" class="toc-link">10. Rescisión y Suspensión</a></li>
+            <li><a href="#jurisdiccion" class="toc-link">11. Ley Aplicable y Jurisdicción</a></li>
+          </ul>
+        </nav>
+
+        <div class="toc-highlight-card">
+          <strong>🤝 Compromiso de Servicio</strong>
+          Desarrollamos soluciones a medida con plazos claros y seguimiento en tiempo real. Leé con atención nuestros términos para una colaboración exitosa.
+        </div>
+      </aside>
+
+      <!-- Artículo de Texto Legal -->
+      <article class="legal-content">
+        
+        <p class="lead" style="font-size: 1.08rem; color: var(--text); opacity: 0.95; margin-bottom: 28px;">
+          Bienvenido a <strong>WHAPIGEN</strong> (en adelante "WHAPIGEN", "la Plataforma" o "nosotros"), accesible a través del dominio 
+          <a href="https://whapigen.cloud" style="color: var(--primary); text-decoration: none;">https://whapigen.cloud</a>. 
+          Los presentes Términos y Condiciones regulan el acceso, contratación y uso de nuestros servicios de desarrollo de software, 
+          agentes de Inteligencia Artificial para WhatsApp, sitios web y automatizaciones de flujos empresariales.
+        </p>
+
+        <!-- Sección 1 -->
+        <section id="aceptacion" class="legal-section">
+          <h2><span class="section-num">01.</span> Aceptación de los Términos</h2>
+          <p>
+            Al navegar en este sitio web, agendar un diagnóstico gratuito, contratar cualquiera de nuestros planes o servicios, 
+            o utilizar las soluciones implementadas por WHAPIGEN, usted (en adelante el "Cliente" o "Usuario") manifiesta que ha leído, 
+            comprendido y acepta plenamente quedar vinculado por las cláusulas de este acuerdo y por nuestra 
+            <a href="privacidad.html" style="color: var(--primary);">Política de Privacidad</a>.
+          </p>
+          <p>
+            Si usted actúa en nombre de una sociedad o entidad comercial, declara y garantiza contar con las facultades suficientes para 
+            obligar legalmente a dicha entidad bajo los presentes Términos.
+          </p>
+        </section>
+
+        <!-- Sección 2 -->
+        <section id="servicios" class="legal-section">
+          <h2><span class="section-num">02.</span> Descripción de los Servicios</h2>
+          <p>WHAPIGEN provee servicios especializados orientados a la transformación digital y automatización de negocios, tales como:</p>
+          <ul>
+            <li><strong>Agentes de WhatsApp con Inteligencia Artificial:</strong> Configuración, entrenamiento con base de conocimientos del cliente e integración de agentes autónomos sobre la WhatsApp Business Platform (Cloud API de Meta) para atención de consultas, agendado de turnos y calificación de prospectos.</li>
+            <li><strong>Desarrollo Web &amp; Plataformas Digitales:</strong> Diseño, maquetación, programación y puesta en producción de sitios web corporativos, landing pages de alta conversión y paneles administrativos a medida.</li>
+            <li><strong>Automatizaciones e Integraciones:</strong> Conexión de flujos de trabajo con CRMs, Google Calendar, pasarelas de pago, hojas de cálculo y bases de datos relacionales en la nube.</li>
+            <li><strong>Dashboard de Entregas:</strong> Acceso a un portal personalizado en tiempo real donde el cliente puede supervisar las fases de avance, fechas estimadas de entrega, enlaces provisorios y definitivos.</li>
+          </ul>
+        </section>
+
+        <!-- Sección 3 -->
+        <section id="contratacion" class="legal-section">
+          <h2><span class="section-num">03.</span> Diagnósticos Gratuitos y Presupuestos</h2>
+          <p>
+            El diagnóstico inicial (agendado vía Calendly / WhatsApp) es 100% gratuito y tiene por objeto relevar las necesidades técnicas y operativas del Cliente. 
+            La realización de este diagnóstico no genera obligación alguna de contratación para ninguna de las partes.
+          </p>
+          <p>
+            Las propuestas comerciales y cotizaciones detallan el alcance específico convenido, los entregables acordados, el cronograma de ejecución 
+            (con plazos estimados de primera entrega generalmente entre 10 y 15 días hábiles a partir de la recepción de la información base requerida) y las condiciones arancelarias.
+          </p>
+        </section>
+
+        <!-- Sección 4 -->
+        <section id="uso-aceptable" class="legal-section">
+          <h2><span class="section-num">04.</span> Uso Aceptable y Cumplimiento con Políticas de WhatsApp / Meta</h2>
+          <p>
+            El Cliente es el único y exclusivo responsable del contenido, información, promociones y mensajes que transmita 
+            o autorice transmitir a través de los canales configurados por WHAPIGEN.
+          </p>
+          
+          <div class="callout-box warning">
+            <div class="callout-title">
+              <span>⚠️</span>
+              <span>Prohibición Expresa de SPAM y Contenido Ilícito</span>
+            </div>
+            Queda estrictamente prohibido utilizar los agentes de WhatsApp o plataformas provistas por WHAPIGEN para:
+            <ul style="margin: 8px 0 0 16px; padding: 0;">
+              <li>Envío de mensajes no solicitados (SPAM), listas de difusión masivas no autorizadas o prospección fría indiscriminada.</li>
+              <li>Violación de la <em>Política de Comercio</em> y de la <em>Política de Mensajería de WhatsApp Business</em> dictadas por Meta Platforms, Inc.</li>
+              <li>Comercialización o promoción de bienes y servicios restringidos o ilícitos (drogas, armas, servicios para adultos, apuestas ilegales o esquemas piramidales).</li>
+              <li>Suplantación de identidad, phishing o captación engañosa de datos personales o bancarios de terceros.</li>
+            </ul>
+          </div>
+
+          <p>
+            <strong>Responsabilidad por Líneas Telefónicas:</strong> El Cliente reconoce que la titularidad, mantenimiento y reputación 
+            del número telefónico ante Meta recae en el Cliente. WHAPIGEN no se responsabiliza por bloqueos, penalizaciones 
+            o suspensiones de números derivados del incumplimiento por parte del Cliente de las políticas de Meta.
+          </p>
+        </section>
+
+        <!-- Sección 5 -->
+        <section id="propiedad" class="legal-section">
+          <h2><span class="section-num">05.</span> Propiedad Intelectual</h2>
+          <h3>Materiales y Contenidos del Cliente</h3>
+          <p>
+            El Cliente conserva la titularidad sobre sus marcas, logotipos, imágenes, textos comerciales y bases de datos provistas 
+            para la ejecución del proyecto. El Cliente otorga a WHAPIGEN una licencia no exclusiva y limitada únicamente al fin de diseñar, 
+            configurar y probar las soluciones acordadas.
+          </p>
+
+          <h3>Desarrollos y Código Fuente</h3>
+          <p>
+            Una vez abonado el 100% de los honorarios pactados, el Cliente adquiere la propiedad o licencia de uso perpetua e irrestricta 
+            sobre los entregables desarrollados a su medida (diseño visual, código de aplicación específica y configuraciones exclusivas).
+          </p>
+          <p>
+            Las metodologías, módulos base reutilizables, arquitecturas internas, bibliotecas propietarias y la marca 
+            <strong>WHAPIGEN</strong> permanecen como propiedad intelectual exclusiva de WHAPIGEN.
+          </p>
+        </section>
+
+        <!-- Sección 6 -->
+        <section id="pagos" class="legal-section">
+          <h2><span class="section-num">06.</span> Precios y Condiciones de Pago</h2>
+          <ul>
+            <li><strong>Moneda y Cotizaciones:</strong> Los precios podrán ser cotizados en Dólares Estadounidenses (USD) o en Pesos Argentinos (ARS) según el tipo de cambio oficial o de referencia vigente explicitado al momento de la propuesta.</li>
+            <li><strong>Esquema de Pago:</strong> Salvo acuerdo particular por escrito, los proyectos se estructuran bajo un anticipo para dar inicio al desarrollo y un saldo final contra entrega y validación en el Dashboard de Entregas.</li>
+            <li><strong>Costos de Plataformas Externas:</strong> Las tarifas por consumo directo de la API de Meta (WhatsApp Cloud API) o tokens de Inteligencia Artificial (OpenAI, Anthropic) serán solventadas por el Cliente según su volumen real de uso, salvo que el plan comercial contratado indique expresamente su inclusión.</li>
+          </ul>
+        </section>
+
+        <!-- Sección 7 -->
+        <section id="entregas" class="legal-section">
+          <h2><span class="section-num">07.</span> Proceso de Entrega y Dashboard de Seguimiento</h2>
+          <p>
+            WHAPIGEN pone a disposición de cada cliente un enlace privado al <strong>Dashboard de Entregas</strong>, donde es posible monitorear 
+            hitos, requerimientos pendientes y fecha estimada de finalización.
+          </p>
+          <p>
+            Cumplida la fase de desarrollo, se efectuará un período de pruebas conjuntas para verificar el correcto funcionamiento 
+            del bot o sitio web antes del despliegue en producción final.
+          </p>
+        </section>
+
+        <!-- Sección 8 -->
+        <section id="garantia" class="legal-section">
+          <h2><span class="section-num">08.</span> Garantía Técnica y Soporte Post-Entrega</h2>
+          <p>
+            Todos nuestros proyectos cuentan con una garantía de soporte técnico post-entrega de <strong>15 a 30 días corridos</strong> 
+            (según el plan contratado) para resolver cualquier desperfecto, inconsistencia o error atribuible directamente al código desarrollado.
+          </p>
+          <p>
+            Las modificaciones de alcance, agregado de nuevas funciones o cambios sustanciales en la lógica operativa no previstos 
+            en el alcance original serán presupuestados por separado.
+          </p>
+        </section>
+
+        <!-- Sección 9 -->
+        <section id="responsabilidad" class="legal-section">
+          <h2><span class="section-num">09.</span> Limitación de Responsabilidad</h2>
+          <p>
+            WHAPIGEN aplica las mejores prácticas de ingeniería de software para asegurar la máxima estabilidad de sus soluciones. Sin embargo:
+          </p>
+          <ul>
+            <li><strong>Disponibilidad de Servicios de Terceros:</strong> No seremos responsables por fallas, caídas globales, latencias o interrupciones de servicio atribuibles a terceros proveedores indispensables, incluyendo Meta Platforms (WhatsApp), OpenAI, Anthropic, Supabase, servidores DNS o redes de telecomunicaciones.</li>
+            <li><strong>Alucinaciones o Respuestas Inexactas de la IA:</strong> Si bien los agentes se configuran con estrictas instrucciones y bases de conocimiento precisas, los modelos de lenguaje pueden eventualmente generar respuestas no previstas. El Cliente debe supervisar periódicamente las conversaciones de su negocio.</li>
+            <li><strong>Lucro Cesante:</strong> En ningún caso WHAPIGEN responderá por daños indirectos, lucro cesante, pérdida de ingresos comerciales o daño reputacional derivados del uso o imposibilidad de uso de las herramientas de software.</li>
+          </ul>
+        </section>
+
+        <!-- Sección 10 -->
+        <section id="terminacion" class="legal-section">
+          <h2><span class="section-num">10.</span> Rescisión y Suspensión del Servicio</h2>
+          <p>
+            WHAPIGEN se reserva el derecho de suspender o rescindir unilateralmente el servicio de forma inmediata, sin derecho a reintegro, 
+            si se comprueba que el Cliente está empleando el agente o la plataforma para actividades ilícitas, violatorias de los derechos de terceros 
+            o que infrinjan reiteradamente las políticas de Meta Platforms.
+          </p>
+        </section>
+
+        <!-- Sección 11 -->
+        <section id="jurisdiccion" class="legal-section">
+          <h2><span class="section-num">11.</span> Ley Aplicable y Jurisdicción</h2>
+          <p>
+            Los presentes Términos y Condiciones se rigen e interpretan exclusivamente por las leyes de la <strong>República Argentina</strong>. 
+            Para cualquier diferendo, reclamo o controversia derivada de la interpretación o validez de este contrato, las partes acuerdan 
+            someterse a la jurisdicción de los Tribunales Ordinarios en lo Comercial de la Ciudad Autónoma de Buenos Aires, con renuncia expresa a cualquier otro fuero.
+          </p>
+        </section>
+
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <nav class="f-links">
+        <a href="index.html#home">Inicio</a>
+        <a href="index.html#features">Características</a>
+        <a href="index.html#usecases">Aplicaciones</a>
+        <a href="web/#portfolio">Portafolio</a>
+        <a href="index.html#pricing">Precios</a>
+        <a href="index.html#contact">Contacto</a>
+        <a href="privacidad.html">Privacidad</a>
+        <a href="terminos.html" style="color: var(--primary);">Términos</a>
+      </nav>
+    </div>
+    <div class="legal">© <span id="year"></span> WHAPIGEN. Todos los derechos reservados.</div>
+  </footer>
+
+  <!-- Botón Flotante -->
+  <a href="agendar.html" target="_blank" rel="noopener noreferrer" class="floating-cta visible">
+    <span class="fab-icon">📅</span>
+    <span class="fab-text">Agendar Diagnóstico</span>
+  </a>
+
+  <!-- Scripts -->
+  <script>
+    // Año dinámico
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll progress bar
+    window.addEventListener('scroll', () => {
+      const sc = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      const bar = document.getElementById('scroll-progress');
+      if (bar) bar.style.width = `${Math.min(100, sc * 100)}%`;
+    });
+
+    // Theme toggle
+    (() => {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+    document.getElementById('themeToggle')?.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+
+    // Nav mobile toggle
+    document.getElementById('navtoggle')?.addEventListener('click', () => {
+      document.getElementById('navlinks')?.classList.toggle('show');
+    });
+
+    // Botón copiar link
+    document.getElementById('btnCopyUrl')?.addEventListener('click', () => {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        const span = document.getElementById('copyUrlText');
+        if (span) {
+          const orig = span.textContent;
+          span.textContent = '¡Copiado!';
+          setTimeout(() => { span.textContent = orig; }, 2500);
+        }
+      });
+    });
+
+    // Highlighting activo de la tabla de contenidos en scroll
+    const sections = document.querySelectorAll('.legal-section');
+    const navLinks = document.querySelectorAll('.toc-link');
+
+    window.addEventListener('scroll', () => {
+      let currentId = '';
+      sections.forEach(section => {
+        const top = section.offsetTop - 160;
+        if (window.scrollY >= top) {
+          currentId = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentId}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
