@@ -63,8 +63,8 @@
         "offers": {
           "@type": "AggregateOffer",
           "priceCurrency": "USD",
-          "lowPrice": "19",
-          "highPrice": "399",
+          "lowPrice": "59",
+          "highPrice": "1300",
           "offerCount": "4"
         }
       },
@@ -643,9 +643,9 @@
 
       <!-- Rubro -->
       <div class="toggle-grp">
-        <span id="label-estetica" style="font-weight:bold;color:var(--primary);">Estética y Salud</span>
+        <span id="label-estetica" style="font-weight:bold;color:var(--primary);">Servicios &amp; Agenda</span>
         <label class="switch"><input id="industryToggle" type="checkbox"><span class="slider"></span></label>
-        <span id="label-empresa">Empresas y Servicios</span>
+        <span id="label-empresa">Empresas &amp; Procesos</span>
       </div>
 
       <div class="toggle-sep"></div>
@@ -660,103 +660,107 @@
 
     <div class="cards grid-4 pricing-cards">
       
+      <!-- ESENCIAL -->
       <article class="card price tilt">
         <h3>Esencial</h3>
-        <p class="muted type-estetica">Para independientes</p>
-        <p class="muted type-empresa" style="display:none;">Pequeños negocios</p>
+        <p class="muted type-estetica">Consultorios y Profesionales</p>
+        <p class="muted type-empresa" style="display:none;">Comercios y Pymes</p>
         
         <div class="price-amount">
           <div class="price-row">
             <span class="currency">$</span>
-            <span class="value type-estetica" data-monthly="19" data-yearly="15">19</span>
-            <span class="value type-empresa" style="display:none;" data-monthly="39" data-yearly="31">39</span>
-          </div>
-          <span class="period" data-monthly="USD/mes" data-yearly="USD/mes (anual)">USD/mes</span>
-        </div>
-
-        <p class="setup-fee type-estetica">Set Up: 100USD (pago único)</p>
-        <p class="setup-fee type-empresa" style="display:none;">Set Up: 120USD (pago único)</p>
-        
-        <ul class="list">
-          <li class="type-estetica"><strong>1 Profesional</strong></li>
-          <li class="type-empresa" style="display:none;"><strong>1 Agente de IA</strong></li>
-          <li class="type-estetica">Hasta 10 servicios</li>
-          <li class="type-empresa" style="display:none;">FAQ Inteligente de Catálogo</li>
-          <li>Soporte vía WhatsApp</li>
-          <li>IA con respuesta humana</li>
-          <li class="type-estetica">Integración con Google Calendar</li>
-          <li class="type-empresa" style="display:none;">Integración con Google Sheets</li>
-        </ul>
-        <a class="btn primary block" target="_blank" href="agendar.html">Agendar Llamada</a>
-      </article>
-
-      <article class="card price featured tilt">
-        <div class="ribbon">Popular</div>
-        <h3>Premium</h3>
-        <p class="muted type-estetica">Centros en crecimiento</p>
-        <p class="muted type-empresa" style="display:none;">Pymes en crecimiento</p>
-        
-        <div class="price-amount">
-          <div class="price-row">
-            <span class="currency">$</span>
-            <span class="value type-estetica" data-monthly="69" data-yearly="55">69</span>
+            <span class="value type-estetica" data-monthly="59" data-yearly="47">59</span>
             <span class="value type-empresa" style="display:none;" data-monthly="89" data-yearly="71">89</span>
           </div>
           <span class="period" data-monthly="USD/mes" data-yearly="USD/mes (anual)">USD/mes</span>
         </div>
 
-        <p class="setup-fee type-estetica">Set Up: 250USD (pago único)</p>
-        <p class="setup-fee type-empresa" style="display:none;">Set Up: 250USD (pago único)</p>
+        <p class="setup-fee type-estetica">Set Up: 250 USD (pago único)</p>
+        <p class="setup-fee type-empresa" style="display:none;">Set Up: 400 USD (pago único)</p>
         
         <ul class="list">
-          <li class="type-estetica"><strong>2 a 4 Profesionales</strong></li>
-          <li class="type-empresa" style="display:none;"><strong>Envio de PDFs técnicos</strong></li>
-          <li class="type-estetica">Hasta 20 servicios</li>
-          <li class="type-empresa" style="display:none;">Consultas de disponibilidad 24/7</li>
-          <li>Todas las funcionalidades del Esencial, más:</li>
-          <li class="type-estetica">Envío de recordatorios via WhatsApp</li>
-          <li class="type-empresa" style="display:none;">Alertas críticas al dueño (Handoff)</li>
+          <li class="type-estetica"><strong>1 Profesional / Agenda</strong></li>
+          <li class="type-empresa" style="display:none;"><strong>1 Agente de IA Comercial</strong></li>
+          <li class="type-estetica">Hasta 15 servicios / motivos</li>
+          <li class="type-empresa" style="display:none;">FAQ Inteligente de Catálogo</li>
+          <li>Soporte vía WhatsApp</li>
+          <li>IA con respuesta humana 24/7</li>
+          <li class="type-estetica">Integración con Google Calendar</li>
           <li class="type-empresa" style="display:none;">Integración con Google Sheets</li>
-          <li>Botones para respuestas dinámicas</li>
-          <li>Pausa automática al intervenir un humano</li>
-          <li>CRM propio</li>
         </ul>
-        <a class="btn contrast block" target="_blank" href="agendar.html">Agendar una llamada</a>
+        <a class="btn primary block" target="_blank" href="agendar.html">Agendar Diagnóstico</a>
       </article>
 
-      <article class="card price tilt">
-        <h3>Business</h3>
-        <p class="muted type-estetica">Grandes centros</p>
-        <p class="muted type-empresa" style="display:none;">Soporte Técnico Avanzado</p>
+      <!-- PREMIUM -->
+      <article class="card price featured tilt">
+        <div class="ribbon">Popular</div>
+        <h3>Premium</h3>
+        <p class="muted type-estetica">Estudios y Centros en crecimiento</p>
+        <p class="muted type-empresa" style="display:none;">Ventas y Distribuidoras</p>
         
         <div class="price-amount">
           <div class="price-row">
             <span class="currency">$</span>
-            <span class="value type-estetica" data-monthly="159" data-yearly="111">159</span>
-            <span class="value type-empresa" style="display:none;" data-monthly="179" data-yearly="143">179</span>
+            <span class="value type-estetica" data-monthly="119" data-yearly="95">119</span>
+            <span class="value type-empresa" style="display:none;" data-monthly="159" data-yearly="127">159</span>
           </div>
           <span class="period" data-monthly="USD/mes" data-yearly="USD/mes (anual)">USD/mes</span>
         </div>
 
-        <p class="setup-fee type-estetica">Set Up: 450USD (pago único)</p>
-        <p class="setup-fee type-empresa" style="display:none;">Set Up: 500USD (pago único)</p>
+        <p class="setup-fee type-estetica">Set Up: 500 USD (pago único)</p>
+        <p class="setup-fee type-empresa" style="display:none;">Set Up: 700 USD (pago único)</p>
         
         <ul class="list">
-          <li class="type-estetica"><strong>5 a 9 Profesionales</strong></li>
-          <li class="type-empresa" style="display:none;"><strong>Asistente Técnico IA (RAG)</strong></li>
-          <li><strong>Hasta 2 Agentes IA especializados</strong></li>
-          <li class="type-estetica">Hasta 40 servicios</li>
-          <li class="type-empresa" style="display:none;">Lectura de Manuales y OCR</li>
-          <li>Todas las funcionalidades del Premium, más:</li>
-          <li>Soporte prioritario</li>
-          <li>Follow-Up de ventas</li>
-          <li class="type-estetica">Comprueba pagos de los clientes</li>
-          <li class="type-empresa" style="display:none;">Integración con n8n avanzada</li>
-          <li>Reportes de gestión mensuales</li>
+          <li class="type-estetica"><strong>2 a 4 Profesionales / Agendas</strong></li>
+          <li class="type-empresa" style="display:none;"><strong>Consultas de disponibilidad 24/7</strong></li>
+          <li class="type-estetica">Hasta 30 servicios / consultas</li>
+          <li class="type-empresa" style="display:none;"><strong>Envío de PDFs y listas de precios</strong></li>
+          <li>Todas las funciones de Esencial, más:</li>
+          <li class="type-estetica">Recordatorios automáticos vía WhatsApp</li>
+          <li class="type-empresa" style="display:none;">Alertas críticas al equipo (Handoff)</li>
+          <li class="type-empresa" style="display:none;">Integración con Google Sheets / CRM</li>
+          <li>Botones para respuestas dinámicas</li>
+          <li>Pausa automática al intervenir humano</li>
+          <li>CRM propio de seguimiento</li>
         </ul>
-        <a class="btn primary block" target="_blank" href="agendar.html?">Agendar Diagnóstico</a>
+        <a class="btn contrast block" target="_blank" href="agendar.html">Agendar Diagnóstico</a>
       </article>
 
+      <!-- BUSINESS -->
+      <article class="card price tilt">
+        <h3>Business</h3>
+        <p class="muted type-estetica">Grandes Clínicas y Firmas</p>
+        <p class="muted type-empresa" style="display:none;">Soporte Técnico y RAG Avanzado</p>
+        
+        <div class="price-amount">
+          <div class="price-row">
+            <span class="currency">$</span>
+            <span class="value type-estetica" data-monthly="199" data-yearly="159">199</span>
+            <span class="value type-empresa" style="display:none;" data-monthly="279" data-yearly="223">279</span>
+          </div>
+          <span class="period" data-monthly="USD/mes" data-yearly="USD/mes (anual)">USD/mes</span>
+        </div>
+
+        <p class="setup-fee type-estetica">Set Up: 900 USD (pago único)</p>
+        <p class="setup-fee type-empresa" style="display:none;">Set Up: 1.300 USD (pago único)</p>
+        
+        <ul class="list">
+          <li class="type-estetica"><strong>5 a 10 Profesionales / Agendas</strong></li>
+          <li class="type-empresa" style="display:none;"><strong>Asistente Técnico IA (RAG)</strong></li>
+          <li><strong>Hasta 2 Agentes IA especializados</strong></li>
+          <li class="type-estetica">Asistente RAG (documentos / fallos)</li>
+          <li class="type-empresa" style="display:none;">Lectura de Manuales, Contratos y OCR</li>
+          <li>Todas las funciones de Premium, más:</li>
+          <li>Follow-Up proactivo de ventas / citas</li>
+          <li>Soporte técnico prioritario</li>
+          <li class="type-estetica">Comprobación automática de pagos</li>
+          <li class="type-empresa" style="display:none;">Integración con n8n, Webhooks y CRM</li>
+          <li>Reportes de gestión mensuales</li>
+        </ul>
+        <a class="btn primary block" target="_blank" href="agendar.html">Agendar Diagnóstico</a>
+      </article>
+
+      <!-- ENTERPRISE -->
       <article class="card price tilt">
         <h3>Enterprise</h3>
         <p class="muted">Soluciones Corporativas</p>
@@ -771,24 +775,46 @@
           <span class="period" data-monthly="USD/mes" data-yearly="USD/mes (anual)">USD/mes</span>
         </div>
 
-        <p class="setup-fee type-estetica">Set Up: Consultar cotización específica</p>
-        <p class="setup-fee type-empresa" style="display:none;">Set Up: Consultar cotización específica</p>
+        <p class="setup-fee type-estetica">Set Up: A medida según proyecto</p>
+        <p class="setup-fee type-empresa" style="display:none;">Set Up: A medida según proyecto</p>
         
         <ul class="list">
-          <li><strong>Hasta 10 Agentes IA especiallizados</strong></li>
-          <li>Personalización total de IA</li>
-          <li>Ecosistema Omnicanal (WhatsApp, Instagram y Facebook)</li>
-          <li>Capacitación técnica de equipo</li>
+          <li><strong>Hasta 10 Agentes IA especializados</strong></li>
+          <li>Personalización total de flujos de IA</li>
+          <li>Ecosistema Omnicanal (WhatsApp, IG, FB)</li>
+          <li>Capacitación técnica a tu equipo</li>
           <li>Soporte VIP: Línea Directa de Emergencia</li>
-          <li>Entorno de Datos Aislado</li>
-          <li class="type-estetica">Gestión Multi-sucursal</li>
-          <li class="type-empresa">Entrenamiento IA con Manuales Ilimitados</li>
-          <li class="type-empresa">Consultoría de Integración a Medida</li>
+          <li>Entorno de Datos Aislado y Seguro</li>
+          <li class="type-estetica">Gestión Multi-sucursal y Agendas</li>
+          <li class="type-empresa">Entrenamiento con Documentación Ilimitada</li>
+          <li>Consultoría e Integración a Medida</li>
         </ul>
         <a class="btn primary block" target="_blank" href="agendar.html">Consultar</a>
       </article>
 
     </div>
+
+    <!-- Banner Transparencia Meta (WhatsApp Cloud API) -->
+    <div class="meta-pricing-notice">
+      <div class="meta-notice-header">
+        <span class="meta-notice-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          Transparencia de Costos Meta
+        </span>
+        <h4 class="meta-notice-title">Facturación directa de mensajes y conversaciones en WhatsApp Cloud API</h4>
+      </div>
+      <p class="meta-notice-text">
+        Meta Platforms (empresa matriz de WhatsApp) factura de forma directa las conversaciones y mensajes salientes (plantillas de marketing, recordatorios automáticos de turnos o avisos de utilidad). 
+        <strong>Este importe es 100% independiente de nuestros planes de servicio</strong> y se abona directamente a Meta a través de la tarjeta vinculada a tu cuenta comercial de Meta Business Manager. De esta manera, asegurás pagar el costo oficial exacto según el uso real de tu negocio, <em>sin comisiones ni recargos de intermediarios</em>.
+      </p>
+      <div class="meta-notice-tags">
+        <span class="meta-notice-tag">✓ Tarifa oficial directa de Meta</span>
+        <span class="meta-notice-tag">✓ Ventana de atención de 24 hs gratuita por cliente</span>
+        <span class="meta-notice-tag">✓ Control y límites de presupuesto en tu Business Manager</span>
+        <span class="meta-notice-tag">✓ Sin sobreprecios ni comisiones de reventa</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -798,6 +824,11 @@
       <h2 class="section-title">Preguntas frecuentes</h2>
       <p class="section-subtitle">Todo lo que querés saber antes de arrancar.</p>
       <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-q">¿Cómo se pagan los mensajes de WhatsApp a Meta y cuánto cuestan? <span class="faq-icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Meta Platforms cobra directamente por el volumen de conversaciones y mensajes salientes que envía tu línea comercial (por ejemplo, plantillas de recordatorio de turnos, confirmaciones o campañas). Este consumo se paga de forma directa y transparente a Meta desde tu propia tarjeta en Meta Business Manager, sin intermediarios ni sobreprecios de nuestra parte. En las conversaciones de atención al cliente (cuando el usuario te escribe primero), disponés de una ventana de 24 horas para responder sin costo adicional por mensaje. En la llamada de diagnóstico gratuita estimamos tu volumen mensual proyectado.</p></div></div>
+        </div>
 
         <div class="faq-item">
           <button class="faq-q">¿En cuánto tiempo está funcionando el agente? <span class="faq-icon">+</span></button>
