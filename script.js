@@ -533,18 +533,18 @@ window.addEventListener("DOMContentLoaded", () => {
     VanillaTilt.init($$(".tilt"), { max: 10, speed: 400, glare: true, "max-glare": 0.15 });
   }
 
-  // --- Magnetic Buttons ---
+  // --- Magnetic Buttons (efecto sutil y acotado) ---
   $$('.btn.primary, .btn.ghost, .btn.contrast').forEach(btn => {
     btn.addEventListener('mousemove', (e) => {
       const rect = btn.getBoundingClientRect();
-      const dx = (e.clientX - (rect.left + rect.width  / 2)) * 0.28;
-      const dy = (e.clientY - (rect.top  + rect.height / 2)) * 0.28;
+      const dx = Math.max(-3, Math.min(3, (e.clientX - (rect.left + rect.width  / 2)) * 0.06));
+      const dy = Math.max(-2, Math.min(2, (e.clientY - (rect.top  + rect.height / 2)) * 0.06));
       btn.style.transform = `translate(${dx}px, ${dy}px)`;
-      btn.style.transition = 'transform 0.1s ease';
+      btn.style.transition = 'transform 0.18s ease-out';
     });
     btn.addEventListener('mouseleave', () => {
       btn.style.transform = '';
-      btn.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      btn.style.transition = 'transform 0.35s ease-out';
     });
   });
 
