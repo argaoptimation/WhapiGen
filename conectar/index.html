@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Conectar WhatsApp | WHAPIGEN</title>
+  <meta name="description" content="Conectá el número de WhatsApp de tu estudio a WHAPIGEN de forma segura, a través del registro integrado oficial de Meta." />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="color-scheme" content="dark light">
+  <link rel="canonical" href="https://whapigen.com/conectar/" />
+  <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon.png" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=8.0" />
+
+  <style>
+    .cx-body { min-height: 100vh; display: flex; flex-direction: column; background: var(--bg); color: var(--text); }
+    .cx-main { flex: 1; padding: 120px 20px 60px; }
+    .cx-wrap { max-width: 720px; margin: 0 auto; }
+    .cx-breadcrumb { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+    .cx-breadcrumb a { color: var(--muted); text-decoration: none; }
+    .cx-breadcrumb a:hover { color: var(--primary); }
+    .cx-title { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 800; margin: 0 0 12px; line-height: 1.15; }
+    .cx-lead { color: var(--muted); margin: 0 0 28px; font-size: 1.05rem; }
+    .cx-card { border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 20px; background: rgba(255,255,255,0.02); }
+    .cx-card h2 { font-size: 1.1rem; margin: 0 0 10px; }
+    .cx-card ul { margin: 0; padding-left: 20px; color: var(--muted); }
+    .cx-card li { margin: 6px 0; }
+    .cx-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .cx-field label { font-weight: 600; font-size: 0.92rem; }
+    .cx-field input[type="text"], .cx-field input[type="email"] {
+      padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border);
+      background: transparent; color: var(--text); font: inherit;
+    }
+    .cx-field input:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+    .cx-check { display: flex; gap: 10px; align-items: flex-start; font-size: 0.92rem; color: var(--muted); margin: 6px 0 18px; }
+    .cx-check input { margin-top: 4px; }
+    .cx-check a { color: var(--primary); }
+    .cx-actions { display: flex; flex-direction: column; gap: 12px; }
+    .cx-btn {
+      appearance: none; border: 0; cursor: pointer; border-radius: 12px; padding: 14px 18px;
+      font: inherit; font-weight: 700; text-align: left; color: #06241a; background: var(--primary);
+    }
+    .cx-btn small { display: block; font-weight: 500; opacity: .85; margin-top: 2px; }
+    .cx-btn.secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .cx-btn:disabled { opacity: .5; cursor: not-allowed; }
+    .cx-status { margin-top: 18px; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--border); display: none; }
+    .cx-status.show { display: block; }
+    .cx-status.ok { border-color: var(--primary); }
+    .cx-status.err { border-color: #ff6b6b; }
+    .cx-note { font-size: 0.85rem; color: var(--muted); margin-top: 18px; }
+  </style>
+</head>
+<body class="cx-body">
+  <main class="cx-main">
+    <div class="cx-wrap">
+      <div class="cx-breadcrumb"><a href="/">WHAPIGEN</a> / conectar</div>
+      <h1 class="cx-title">Conectá el WhatsApp de tu estudio</h1>
+      <p class="lead cx-lead">
+        Vinculá tu número de WhatsApp a WHAPIGEN con el registro integrado oficial de Meta (WhatsApp Embedded Signup).
+        Tus mensajes siguen llegando a tu WhatsApp y el asistente de WHAPIGEN responde por la API oficial.
+      </p>
+
+      <section class="cx-card" aria-labelledby="cx-que">
+        <h2 id="cx-que">Qué se comparte y qué no</h2>
+        <ul>
+          <li>Autorizás a WHAPIGEN a enviar y recibir mensajes de la cuenta de WhatsApp Business que elijas.</li>
+          <li>WHAPIGEN <strong>no ve ni guarda tu contraseña</strong> de Facebook ni de WhatsApp: el inicio de sesión ocurre en una ventana de Meta.</li>
+          <li>Podés revocar el acceso cuando quieras desde la configuración de tu cuenta de Meta o escribiéndonos.</li>
+          <li>El tratamiento de datos se detalla en la <a href="/privacidad.html">Política de Privacidad</a> y en los <a href="/terminos.html">Términos</a>.</li>
+        </ul>
+      </section>
+
+      <section class="cx-card" aria-labelledby="cx-datos">
+        <h2 id="cx-datos">Tus datos de contacto</h2>
+        <div class="cx-field">
+          <label for="cx-estudio">Nombre del estudio o negocio</label>
+          <input id="cx-estudio" type="text" autocomplete="organization" maxlength="120" required />
+        </div>
+        <div class="cx-field">
+          <label for="cx-email">Email de contacto</label>
+          <input id="cx-email" type="email" autocomplete="email" maxlength="160" required />
+        </div>
+        <label class="cx-check">
+          <input id="cx-ok" type="checkbox" />
+          <span>Acepto los <a href="/terminos.html">Términos</a> y la <a href="/privacidad.html">Política de Privacidad</a> de WHAPIGEN y autorizo la conexión de mi cuenta de WhatsApp Business.</span>
+        </label>
+
+        <div class="cx-actions">
+          <button id="cx-btn-app" class="cx-btn" type="button" disabled>
+            Ya uso la app WhatsApp Business en mi celular
+            <small>Conecta tu número actual y sigue funcionando en tu celular (coexistencia).</small>
+          </button>
+          <button id="cx-btn-nuevo" class="cx-btn secondary" type="button" disabled>
+            Tengo un número nuevo o solo para el asistente
+            <small>Registro estándar de un número en la API de WhatsApp Business.</small>
+          </button>
+        </div>
+
+        <div id="cx-status" class="cx-status" role="status" aria-live="polite"></div>
+        <p class="cx-note">Si tenés dudas antes de conectar, escribinos a <a href="mailto:arga.optimation@gmail.com">arga.optimation@gmail.com</a>.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <nav class="f-links">
+        <a href="/">Inicio</a>
+        <a href="/privacidad.html">Privacidad</a>
+        <a href="/terminos.html">Términos</a>
+      </nav>
+    </div>
+    <div class="legal">© <span id="year"></span> WHAPIGEN — nombre comercial de MATELUNA LLORET GABRIEL ADRIAN · CUIT 20-41967325-1 · Córdoba, Argentina · <a href="mailto:arga.optimation@gmail.com" style="color:inherit">arga.optimation@gmail.com</a>. Todos los derechos reservados.</div>
+  </footer>
+
+  <script>
+    // ---- Configuración pública (no hay secretos en esta página) ----
+    var CX = {
+      appId: '1151826627591278',
+      configId: '1782432619501026',
+      graphVersion: 'v25.0',
+      endpoint: 'https://n8n.whapigen.com/webhook/whapigen-embedded-signup'
+    };
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    var $estudio = document.getElementById('cx-estudio');
+    var $email = document.getElementById('cx-email');
+    var $ok = document.getElementById('cx-ok');
+    var $btnApp = document.getElementById('cx-btn-app');
+    var $btnNuevo = document.getElementById('cx-btn-nuevo');
+    var $status = document.getElementById('cx-status');
+
+    var session = { code: null, info: null, mode: null, sent: false, nonce: null };
+
+    function setStatus(msg, kind) {
+      $status.textContent = msg;
+      $status.className = 'cx-status show' + (kind ? ' ' + kind : '');
+    }
+
+    function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+    function refreshButtons() {
+      var ready = $estudio.value.trim().length >= 2 && validEmail($email.value.trim()) && $ok.checked;
+      $btnApp.disabled = !ready;
+      $btnNuevo.disabled = !ready;
+    }
+    [$estudio, $email].forEach(function (el) { el.addEventListener('input', refreshButtons); });
+    $ok.addEventListener('change', refreshButtons);
+
+    // ---- SDK de Facebook ----
+    window.fbAsyncInit = function () {
+      FB.init({ appId: CX.appId, autoLogAppEvents: true, xfbml: true, version: CX.graphVersion });
+    };
+    (function (d, s, id) {
+      if (d.getElementById(id)) return;
+      var js = d.createElement(s); js.id = id; js.async = true; js.defer = true;
+      js.crossOrigin = 'anonymous';
+      js.src = 'https://connect.facebook.net/es_LA/sdk.js';
+      d.head.appendChild(js);
+    })(document, 'script', 'facebook-jssdk');
+
+    // ---- Evento con waba_id / phone_number_id ----
+    window.addEventListener('message', function (event) {
+      if (!event.origin || !/(^|\.)facebook\.com$/.test(new URL(event.origin).hostname)) return;
+      var data;
+      try { data = JSON.parse(event.data); } catch (e) { return; }
+      if (!data || data.type !== 'WA_EMBEDDED_SIGNUP') return;
+
+      if (data.event === 'CANCEL') {
+        var d = data.data || {};
+        setStatus(d.error_message ? 'Meta informó un problema: ' + d.error_message : 'Cancelaste el proceso. Podés volver a intentarlo cuando quieras.', 'err');
+        resetSession();
+        return;
+      }
+      if (/^FINISH/.test(data.event || '')) {
+        session.info = { event: data.event, data: data.data || {} };
+        trySend();
+      }
+    });
+
+    function resetSession() {
+      session.code = null; session.info = null; session.sent = false;
+    }
+
+    function launch(mode) {
+      if (typeof FB === 'undefined') { setStatus('No se pudo cargar el servicio de Meta. Recargá la página e intentá de nuevo.', 'err'); return; }
+      resetSession();
+      session.mode = mode;
+      session.nonce = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random();
+      setStatus('Abriendo la ventana de Meta…');
+
+      var extras = { setup: {} };
+      if (mode === 'business_app') {
+        extras.featureType = 'whatsapp_business_app_onboarding';
+        extras.sessionInfoVersion = '3';
+      } else {
+        extras.sessionInfoVersion = '3';
+      }
+
+      FB.login(function (response) {
+        if (response && response.authResponse && response.authResponse.code) {
+          session.code = response.authResponse.code;
+          trySend();
+        } else if (!session.info) {
+          setStatus('No se completó la conexión. Podés volver a intentarlo.', 'err');
+        }
+      }, {
+        config_id: CX.configId,
+        response_type: 'code',
+        override_default_response_type: true,
+        extras: extras
+      });
+    }
+
+    $btnApp.addEventListener('click', function () { launch('business_app'); });
+    $btnNuevo.addEventListener('click', function () { launch('standard'); });
+
+    // El código de Meta dura ~30 s: se envía al servidor apenas están el código y los IDs.
+    function trySend() {
+      if (session.sent || !session.code || !session.info) return;
+      session.sent = true;
+      setStatus('Conectando tu cuenta…');
+      var d = session.info.data || {};
+      var payload = {
+        code: session.code,
+        event: session.info.event,
+        mode: session.mode,
+        waba_id: d.waba_id || null,
+        phone_number_id: d.phone_number_id || null,
+        business_id: d.business_id || null,
+        estudio: $estudio.value.trim(),
+        email: $email.value.trim(),
+        consentimiento: true,
+        nonce: session.nonce
+      };
+      fetch(CX.endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        setStatus('¡Listo! Recibimos tu conexión. Te escribimos por email para confirmar que todo funciona.', 'ok');
+      }).catch(function () {
+        setStatus('No pudimos completar la conexión. Escribinos a arga.optimation@gmail.com y lo resolvemos.', 'err');
+        session.sent = false;
+      });
+    }
+  </script>
+</body>
+</html>
